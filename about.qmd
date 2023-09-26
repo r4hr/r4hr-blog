@@ -1,0 +1,27 @@
+---
+title: "Quienes Somos"
+image: logo.png
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/club_rrhh
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/company/r4hr
+    - icon: github
+      text: Github
+      href: https://github.com/r4hr
+    - icon: youtube
+      text: Youtube
+      href: https://www.youtube.com/@R4HRClub
+---
+
+Somos una comunidad de aprendizaje de R, enfocado en las personas que trabajan o les gustaría trabajar en Recursos Humanos.
+
+Generamos un espacio seguro, inclusivo, respetuoso, abierto y entretenido. Todo nuestro contenido está generado en castellano, y en la medida de lo posible, con datos del ámbito de Recursos Humanos con el fin de hacer más simple el aprendizaje y la adopción de R en la práctica.
+
+También nos dedicamos a promover un uso responsable y ético de los datos de las personas en un entorno de trabajo para que el uso de People Analytics en las organizaciones genere buenos resultados para la organización, y beneficios y una experiencia agradable y segura para las personas que las integran.
+
+Somos una comunidad auspiciada por [R Consortium](https://www.r-consortium.org/). Te invitamos a seguirnos en [nuestras redes sociales](https://linktr.ee/r4hrclub).

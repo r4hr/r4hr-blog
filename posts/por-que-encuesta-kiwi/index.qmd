@@ -1,0 +1,23 @@
+---
+title: "¿Por qué la encuesta se llama KIWI?"
+author: "Sergio | R4HR"
+categories: [fun]
+---
+
+# ¿Por qué la encuesta se llama KIWI?
+
+¿Recuerdas esas situaciones en reuniones familiares o de amigos en donde una palabra o una cosa se vuelve motivo de risa, y que la sola mención de la palabra hace estallar de risa a todo el grupo?
+
+Bueno, algo similar nos pasó a nosotros diseñando la encuesta de sueldos.
+
+![](/posts/por-que-encuesta-kiwi/encuesta-kiwi.png){fig-align="center" width="480"}
+
+En los encuentros de tecnología, hay lugar para el humor, los memes y cierta informalidad que no quita que el trabajo o la presentación sean profesionales y serios. Y algo que tuvimos claro desde el minuto 1 del diseño de la encuesta es que queríamos disfrutar el proceso y divertirnos en el camino (lo venimos logrando).
+
+Con la encuesta de sueldos, además de querer indagar sobre algunas cuestiones formales como posición, sueldo, beneficios, tipo de empresa, etc., se nos ocurrió preguntar algunas cosas divertidas y relevantes, y por eso existe la sección "Preguntas Random" en la encuesta.
+
+Y la anécdota con los kiwis es la siguiente: cuándo estábamos en la fase de brainstorming de la primera reunión hablando sobre los beneficios, nos acordamos de los avisos de trabajo que ponen supuestos beneficios "cool" para atraer candidatos, y Santiago se acordó de uno que decía: *"Y los lunes tenemos kiwis"* y quedó para la historia. Y en cada uno de nuestros encuentros la palabra kiwi en nosotros gatilla risas y sonrisas.
+
+Para que resultara después tuvimos que buscar un acrónimo, y lo encontramos: *Key Investigation of Wages and Incomes* que podría traducirse algo así como Investigación Clave de Sueldos e Ingresos.
+
+Así que esa es la historia del por qué el KIWI está presente en nuestra encuesta y lo utilizamos en todas nuestras publicaciones. Además, es una fruta deliciosa y nutritiva. Ahora que conocés la historia, podés completar la última edición de la [Encuesta KIWI](https://forms.gle/s4C9bqNCqbqjJzup9) 🥝

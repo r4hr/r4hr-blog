@@ -1,0 +1,26 @@
+project:
+  type: website
+
+website:
+  title: "R4HR - Club de R para RRHH"
+  description: "El blog de R4HR, una comunidad de R y datos para RRHH"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/r4hr
+      - icon: twitter
+        href: https://twitter.com/club_rrhh
+      - icon: linkedin
+        href: https://linkedin.com/company/r4hr
+      - icon: youtube
+        text: YouTube
+        href: https://www.youtube.com/@R4HRClub
+format:
+  html:
+    theme: minty
+    css: styles.css
+    highlight-style: nord
+
+editor: visual
+
