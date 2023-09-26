@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 3f56d09d-8830-4584-9cfd-7878533b7777
+      url: 'https://magenta-macaron-5f8a45.netlify.app'
