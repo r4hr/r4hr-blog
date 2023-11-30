@@ -792,7 +792,7 @@ rh_pe %>%
             color = "white") +
   eje_x_n +
   estilov +
-  labs(title = "Mediana Salarial por Puesto",
+  labs(title = "Mediana Salarial por Función",
        subtitle = "Datos de Perú - En S/",
        x = NULL, y = NULL,
        caption = fuente)
@@ -802,10 +802,10 @@ rh_pe %>%
 
 ```{r}
 rh_pe %>% 
-  group_by(funcion) %>% 
+  group_by(rubro) %>% 
   summarise(mediana = median(sueldo_bruto)) %>%
   ungroup() %>% 
-  ggplot(aes(y = reorder(funcion, mediana), x = mediana)) +
+  ggplot(aes(y = reorder(rubro, mediana), x = mediana)) +
   geom_col(fill = "#C8102e") +
   geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
             hjust = 1.2,
@@ -813,7 +813,7 @@ rh_pe %>%
             color = "white") +
   eje_x_n +
   estilov +
-  labs(title = "Mediana Salarial por Puesto",
+  labs(title = "Mediana Salarial por Rubro",
        subtitle = "Datos de Perú - En S/",
        x = NULL, y = NULL,
        caption = fuente)
@@ -847,14 +847,474 @@ historico %>%
 
 ## Uruguay 🇺🇾
 
-Sarasa
+### Sueldos por Puesto
+
+```{r}
+
+# Armar un data frame histórico para Uruguay
+rh20uy <- rh20 %>% 
+  filter(pais == "Uruguay") 
+
+rh21uy <- rh21 %>% 
+  filter(pais == "Uruguay")
+
+rh22uy <- rh22 %>% 
+  filter(pais == "Uruguay")
+
+rh23uy <- rh23la_clean %>% 
+  filter(pais == "Uruguay") %>% 
+  mutate(anio = 2023) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto)
+
+# Evolucion
+historico <- rbind(rh20uy, rh21uy, rh22uy, rh23uy)
+
+#############################
+
+# Filtrar los sueldos extremos
+rh23la_clean <- rh23la %>% 
+  filter(puesto != "Pasante",
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  mutate(rubro = str_wrap(rubro, width = 30))
+
+# Filtrar por Perú ----
+rh_uy <- rh23la_clean %>% 
+  filter(pais == "Uruguay") %>% 
+  mutate(anio = 2023)
+
+# Gráfico
+rh_uy %>% 
+  group_by(puesto) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(x = fct_rev(puesto), y = mediana)) +
+  geom_col(fill = "#001489") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            vjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Mediana Salarial por Puesto",
+       subtitle = "Datos de Uruguay - En UYU",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Sueldo por Función
+
+```{r}
+rh_uy %>% 
+  group_by(funcion) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(funcion, mediana), x = mediana)) +
+  geom_col(fill = "#001489") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_x_n +
+  estilov +
+  labs(title = "Mediana Salarial por Función",
+       subtitle = "Datos de Uruguay - En UYU",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Sueldos por Rubro
+
+```{r}
+rh_uy %>% 
+  group_by(rubro) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(rubro, mediana), x = mediana)) +
+  geom_col(fill = "#001489") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_x_n +
+  estilov +
+  labs(title = "Mediana Salarial por Rubro",
+       subtitle = "Datos de Uruguay - En UYU",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Evolución
+
+La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.
+
+```{r}
+
+historico %>% 
+  group_by(anio) %>% 
+  summarise(promedio = mean(sueldo_bruto)) %>% 
+  ungroup %>% 
+  ggplot(aes(x = anio, y = promedio, group = 1)) +
+  geom_line(color = "#001489") +
+  geom_point(color = "#001489", size = 2) +
+  geom_text(aes(label = comma(promedio, big.mark = ".", decimal.mark = ",")),
+            vjust = -0.5,
+            color = "#001489") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Promedio Salarial por Año",
+       subtitle = "Datos de Uruguay - En UYU",
+       x = NULL, y = NULL,
+       caption = fuente) #+
+  #scale_y_continuous(limits = c(3000, 8000))
+```
+
 
 ## Argentina 🇦🇷
 
-Sarasa
+### Sueldos por Puesto
+
+```{r}
+
+# Preproceso de datos históricos
+rh23la_clean <- rh23la %>% 
+  filter(puesto != "Pasante",
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  mutate(rubro = str_wrap(rubro, width = 30))
+
+# Limpiar datos 2020
+df2020 <-  profiling_num(kiwi20$sueldo_dolar)
+p05_20 <- df2020[1,6]
+p95_20 <- df2020[1,10]
+
+rh20 <- kiwi20 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  select(anio, pais, puesto, funcion = funcion_rh, sueldo_bruto, sueldo_dolar) 
 
 
-``` {r}
-#
+# Limpiar datos 2021
+df2021 <- profiling_num(kiwi21$sueldo_dolar)
+p05_21 <- df2021[1,6]
+p95_21 <- df2021[1,10]
+
+rh21 <- kiwi21 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto, sueldo_dolar) 
+
+# Limpiar datos 2022
+df2022 <- profiling_num(kiwi22$sueldo_dolar)
+p05_22 <- df2021[1,6]
+p95_22 <- df2021[1,10]
+
+rh22 <- kiwi22 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  mutate(anio = 2022) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto, sueldo_dolar) 
+
+# Armar un data frame histórico para Argentina
+rh20ar <- rh20 %>% 
+  filter(pais == "Argentina") 
+
+rh21ar <- rh21 %>% 
+  filter(pais == "Argentina")
+
+rh22ar <- rh22 %>% 
+  filter(pais == "Argentina")
+
+rh23ar <- rh23la_clean %>% 
+  filter(pais == "Argentina") %>% 
+  mutate(anio = 2023) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto, sueldo_dolar)
+
+# Evolucion
+historico <- rbind(rh20ar, rh21ar, rh22ar, rh23ar)
+
+#############################
+
+# Filtrar los sueldos extremos
+rh23la_clean <- rh23la %>% 
+  filter(puesto != "Pasante",
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  mutate(rubro = str_wrap(rubro, width = 30))
+
+# Filtrar por Argentina ----
+rh_ar <- rh23la_clean %>% 
+  filter(pais == "Argentina") %>% 
+  mutate(anio = 2023)
+
+# Gráfico
+rh_ar %>% 
+  group_by(puesto) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(x = fct_rev(puesto), y = mediana)) +
+  geom_col(fill = "#6CACE4") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            vjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Mediana Salarial por Puesto",
+       subtitle = "Datos de Argentina - En ARS",
+       x = NULL, y = NULL,
+       caption = fuente)
 ```
+### Sueldos por Rubro
+
+```{r}
+rh_ar %>% 
+  filter(rubro %in% c("Tecnologías de información", "Otros",
+                      "Servicios de consultoría","Alimentación, bebidas",
+                      "Servicios de salud", "Construcción",
+                      "Comercio", "Industria metalúrgica,\nmetalmecánica",
+                      "Industrias químicas",
+                      "Agricultura, plantaciones,\notros sectores rurales"  )) %>% 
+  group_by(rubro) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(rubro, mediana), x = mediana)) +
+  geom_col(fill = "#6CACE4") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_x_n +
+  estilov +
+  labs(title = "Mediana Salarial por Rubro",
+       subtitle = "Datos de Argentina - En ARS",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+
+### Sueldo por Función
+
+```{r}
+rh_ar %>% 
+  group_by(funcion) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(funcion, mediana), x = mediana)) +
+  geom_point(color = azul) +
+  geom_segment(aes(x = 0, xend = mediana, y = funcion, yend = funcion), 
+               color = "#6CACE4") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = -0.2,
+            size = 2.8) +
+  scale_x_continuous(limits = c(0, 900000), 
+                     labels = comma_format(big.mark = ".",
+                                           decimal.mark = ";")) +
+  estilov +
+  labs(title = "Mediana Salarial por Funció",
+       subtitle = "Datos de Argentina - En AR$",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+
+### Evolución
+
+La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.
+
+```{r}
+historico %>% 
+  group_by(anio) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>% 
+  ungroup %>% 
+  ggplot(aes(x = anio, y = mediana, group = 1)) +
+  geom_line(color = "#6CACE4") +
+  geom_point(color = "#6CACE4", size = 2) +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            vjust = -0.5,
+            color = "#6CACE4") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Mediana Salarial por Año",
+       subtitle = "Datos de Argentina - En ARS",
+       x = NULL, y = NULL,
+       caption = fuente) +
+  scale_y_continuous(limits = c(0, 600000))
+```
+
+### Evolución por Función vs. Año Anterior
+
+```{r}
+historico %>% 
+  filter(anio %in% c(2022, 2023),
+         funcion %in% c("HRIS / Administración de sistemas de RH",
+                         "Generalista",
+                        "Reclutamiento y selección",
+                        "Administración de personal",
+                        "Payroll / Liquidación de sueldos",
+                        "Capacitación y desarrollo",
+                        "People analytics",
+                        "HRIS / Administración de sistemas de RH",
+                        "Comunicación interna",
+                        "Compensaciones y beneficios",
+                        "Diseño organizacional",
+                        "Relaciones laborales")) %>% 
+  group_by(funcion, anio) %>%
+  summarise(mediana = median(sueldo_bruto)) %>% 
+  ungroup %>% 
+  ggplot(aes(y = fct_rev(funcion), x = mediana, fill = factor(anio))) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            position = position_dodge(0.9),
+            hjust = 1.2,
+            size = 2, 
+            color = "white") +
+  theme(legend.position = "top") +
+  guides(fill = guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values = c(gris, "#6CACE4")) +
+  estilov +
+  eje_x_n +
+  labs(title = "Evolución Salarial por Función",
+       subtitle = "En AR$",
+       x = NULL, y = NULL,
+       caption = fuente,
+       fill = "Año")
+```
+
+### Comparación salarial por género
+
+En el gráfico a continuación podemos apreciar que los hombres cis tienen sueldos más altos que las mujeres cis.
+
+```{r}
+rh_ar %>% 
+  filter(genero %in% c("Hombre cis", "Mujer cis")) %>% 
+ggplot(aes(x = genero, y = sueldo_ft, fill = genero)) +
+  geom_boxplot() +
+  eje_y_n +
+  scale_fill_manual(values = c(verde, lila)) +
+  estiloh +
+  labs(title = "Distribución salarial por género",
+       x = NULL, y = NULL,
+       fill = "Género", 
+       caption = fuente) +
+  theme(legend.position = "none")
+```
+### Análisis por Género y Puesto
+
+Cuando analizamos la distribución salarial por puesto, apreciamos desigualdades que se repiten de años anteriores. Antes de profundizar, expliquemos brevemente cómo interpretar el gráfico que vemos a continuación que se llama boxplot.
+
+En primer lugar, la parte inferior de cada caja indica el valor del **primer cuartil**, es decir el límite donde se encuentra el 25% de los datos. Por otra parte, la parte superior de cada caja indica el **tercer cuartil**, o sea, el 75% de los datos. Esto implica que dentro de la caja nos encontramos con la mitad de los datos. La cantidad de casos dentro de cada mitad es la misma para cada caja.
+
+Un elemento muy importante dentro del gráfico es la línea que observamos dentro de cada caja que representa a la **mediana** que es el valor que divide a la mitad a los datos. Este es el valor que habitualmente utilizamos para comparar salarios porque representa el punto medio para cada grupo y además no es sensible a valores extremos como el promedio. **La mediana es el valor que vamos a usar para comparar los sueldos entre hombres y mujeres**.
+
+Los puntos que observamos en algunos casos indican valores extremos que denominamos **outliers**. Estos valores son atípicos. Las líneas que salen de las cajas indican los límites a partir de los cuales se determina que un valor es atípico o no.
+
+Por último, el tamaño de la caja también es importante porque nos da una idea de la **distribución** de los datos. Si la caja es chiquita quiere decir que los sueldos están en un rango de valores cercano. En cambio si la caja, o una de sus mitades, es larga, eso nos indica que los sueldos tienen un rango más amplio, o sea que los sueldos llegan a valores más altos o más bajos dependiendo el caso, y que se alejan más de la mediana.
+
+```{r}
+rh_ar %>% 
+  filter(genero %in% c("Hombre cis", "Mujer cis"),
+         !puesto %in% c("Director", "Administrativo")) %>% 
+ggplot(aes(x = fct_rev(puesto), y = sueldo_bruto, fill = genero)) +
+  geom_boxplot() +
+  estiloh +
+  scale_fill_manual(values = c(verde, lila)) +
+  eje_y_n +
+  labs(title = "Distribución Salarial según Identidad de Género",
+       subtitle = "En AR$",
+       fill = "Identidad de Género",
+       x = NULL, y = NULL,
+       caption = fuente) +
+  theme(legend.position = "top")
+```
+
+En el gráfico a continuación podemos apreciar la brecha salarial comparando la mediana salarial para hombres y mujeres en cada posición.
+
+```{r}
+brecha <- rh_ar %>% 
+  filter(genero %in% c("Mujer cis", "Hombre cis"), 
+         puesto %in% c("Gerente","Jefe", "HRBP","Responsable", "Analista")) %>% 
+  mutate(puesto = factor(puesto, levels = c("Analista",  
+                                            "HRBP", "Responsable", "Jefe",
+                                            "Gerente","Director"))) %>% 
+  group_by(genero, puesto) %>% 
+  summarise(media_salarial = median(sueldo_bruto, na.rm = TRUE)) %>% 
+  ungroup()
+
+
+brecha_graf <- brecha %>% 
+  pivot_wider(., names_from = genero, values_from = media_salarial) %>% 
+  mutate(brecha = percent((`Hombre cis`-`Mujer cis`)/`Hombre cis`, 1),
+         x = (`Hombre cis` + `Mujer cis`)/2)
+
+ggplot(brecha_graf, 
+       aes(x = `Mujer cis`, xend = `Hombre cis`, y = puesto, 
+           group = puesto, label = brecha)) +
+  geom_dumbbell(color = "#808080",
+                size_x = 3, size_xend = 3,
+                colour_x = colores[1],
+                colour_xend = colores[2]) +
+  geom_text(data = brecha_graf, 
+            aes(x, puesto, label = brecha), size = 3,
+            nudge_y = .2) +
+  labs(title = "Brecha salarial por puestos de RRHH",
+       subtitle = "Mediana en Argentina",
+       x = "",
+       y = NULL, 
+       caption = fuente) +
+  scale_x_continuous(labels = comma_format(big.mark = ".", decimal.mark = ",")) +
+  scale_color_manual(values = colores)
+```
+
+```{r}
+gt(rh_ar %>% 
+  filter(genero %in% c("Hombre cis", "Mujer cis"), 
+         !puesto %in% c("Director", "Administrativo")) %>% 
+  group_by(puesto, genero) %>% 
+  summarise(Rtas = n(),
+            Min = min(sueldo_bruto),
+            Mediana = median(sueldo_bruto),
+            Promedio = mean(sueldo_bruto),
+            Max = max(sueldo_bruto)
+            ) %>% 
+  ungroup() %>% 
+  pivot_longer(cols = c("Rtas", "Min", "Mediana", "Promedio", "Max"),
+               names_to = "Metrica",
+               values_to = "Valor") %>% 
+  pivot_wider(id_cols = c(puesto,genero),
+              names_from = Metrica,
+              values_from = Valor),
+  groupname_col = "puesto") %>% 
+  fmt_currency(columns = c(Min, Mediana, Promedio, Max),
+               currency = "ARS",
+               decimals = 0,
+               sep_mark = ".",
+               dec_mark = ",") %>% 
+  tab_header(title = "Resumen Salarial por Puesto y Género",
+             subtitle = "En AR$") %>% 
+  tab_spanner(label = "Métricas Salariales",
+              columns = c(Min, Mediana, Promedio, Max)) %>% 
+  tab_source_note(source_note = fuente) %>% 
+  cols_label(puesto = "Puesto",
+             genero = "Género") %>% 
+  tab_options(row_group.background.color = "#A3E4D7")
+```
+
+
 :::
+
+# Diversidad en RRHH
+
+## Liderazgo y género en RRHH
+## Diversidad en RRHH
+## Cuanta diversidad de identidades de género y orientaciones sexuales hay en RRHH
+## En qué rubros se da la mayor tasa de diversidad
+## Qué roles ejercen las personas diversas
+## Machismo
+## Discapacidad
+## Puestos
+## Contratación de personas con discapacidad
+## Edad
+## Nuevos Empleados
+
+
+# Freelancers
+
+# Otros análisis
+## Relación entre satisfacción y sueldos
+## Comunidades
+  
