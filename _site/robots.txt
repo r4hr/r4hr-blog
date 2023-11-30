@@ -1,1 +1,1 @@
-Sitemap: https://magenta-macaron-5f8a45.netlify.app/sitemap.xml
+Sitemap: https://r4hr.netlify.app/sitemap.xml

@@ -1,0 +1,860 @@
+---
+title: "4° Encuesta KIWI de Sueldos de RH"
+description: "Resultados de la 4° Edición de la Encuesta KIWI de Sueldos de RH realizada por R4HR, el Club de R para RRHH"
+date: "2023-11-30"
+author: "R4HR"
+categories: 
+  - sueldos
+  - kiwi
+format:
+  html:
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-summary: "Ver código"
+execute: 
+  warning: false
+  error: false
+  message: false
+draft: true
+---
+
+```{r inicio}
+
+# Liberías -----
+library(tidyverse)
+library(funModeling)
+library(gt)
+library(scales)
+library(extrafont)
+library(ggalt)
+library(kableExtra)
+library(wordcloud)
+library(networkD3)
+library(ggpmisc)
+library(data.table)
+library(ggeconodist)
+library(wordcloud2) 
+library(tidytext)
+library(igraph)
+library(ggraph)
+library(grid)
+
+# Configuraciones generales ----
+
+options(scipen = 999)   # Modifica la visualización de los ejes numérico a valores nominales
+
+loadfonts(quiet = TRUE) # Permite cargar en R otros tipos de fuentes.
+
+# Estilo limpio sin líneas de fondo
+estilo <- theme(panel.grid = element_blank(),
+                plot.background = element_rect(fill = "#FBFCFC"),
+                panel.background = element_blank(),
+                text = element_text(family = "Roboto"),
+                plot.title.position = "plot")
+
+# Estilo limpio con líneas de referencia verticales en gris claro
+estilov <- theme(panel.grid = element_blank(),
+                 plot.background = element_rect(fill = "#FBFCFC"),
+                 panel.background = element_blank(),
+                 panel.grid.major.x = element_line(color = "#AEB6BF"),
+                 text = element_text(family = "Roboto"),
+                 plot.title.position = "plot")
+
+# Estilo limpio con líneas de referencia horizontales en gris claro
+estiloh <- theme(panel.grid = element_blank(),
+                 plot.background = element_rect(fill = "#FBFCFC"),
+                 panel.background = element_blank(),
+                 panel.grid.major.y = element_line(color = "#AEB6BF"),
+                 text = element_text(family = "Roboto"),
+                 plot.title.position = "plot")
+
+genero <- c("#8624F5", "#1FC3AA", "#FFD129", "#75838F") #Violeta - Verde - Amarillo - Gris
+genero3 <- c("#8624F5","#FFD129", "#1FC3AA")
+
+colores <-  c("#8624F5", "#1FC3AA")
+
+azul <- "#344D7E"
+verde <-  "#1FC3AA"
+rosa1 <- "#B95192"
+rosa2 <- "#EE5777"
+naranja <- "#FF764C"
+amarillo <- "#FFD129"
+gris <- "#75838F"
+lila <- "#8624F5"
+rojo <- "#943126"
+
+col4 <- c(azul, lila, rosa1, rosa2)
+col5 <- c(azul, lila, rosa1, rosa2, naranja)
+col6 <- c(azul, lila, rosa1, rosa2, naranja, amarillo)
+
+# Creo un objeto con un texto que se va a repetir mucho a lo largo del análisis
+fuente <- "Fuente: Encuesta KIWI de Sueldos de RRHH 2023"
+
+# Creo objetos para formatear las etiquetas numéricas de los ejes x e y
+eje_x_n <- scale_x_continuous(labels = comma_format(big.mark = ".", decimal.mark = ","))
+
+eje_y_n <- scale_y_continuous(labels = comma_format(big.mark = ".", decimal.mark = ","))
+
+eje_x_p <- scale_x_continuous(labels = percent_format(accuracy = 1))
+
+eje_y_p <- scale_y_continuous(labels = percent_format(accuracy = 1))
+
+
+############################
+# Cargar datos -----
+rh23 <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/rh_2023.csv",
+                   delim = ";") %>% 
+  janitor::clean_names()
+
+# Freelancers
+freelo23 <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/freelancers_2023.csv", delim = ";") %>% 
+  janitor::clean_names()
+
+# Base Original
+kiwi <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/kiwi_2023.csv", delim = ";") %>% 
+  janitor::clean_names()
+
+
+##### 
+## Bases anteriores de relación de dependencia
+# 2020
+kiwi20 <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2020.csv", 
+                   delim = ";") %>% 
+  janitor::clean_names() %>% 
+  mutate(anio = 2020)
+
+# 2021
+kiwi21 <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2021.csv",
+                   delim = ";") %>% 
+  janitor::clean_names() %>% 
+  mutate(anio = 2021)
+
+# 2022
+kiwi22 <- read_delim("https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2022.csv",
+                   delim = ";") %>% 
+  janitor::clean_names() %>% 
+  mutate(anio = 2022)
+
+```
+
+```{r limpieza_datos}
+# Agrupar puestos
+rh23 <- rh23 %>% 
+  mutate(puesto = 
+           fct_collapse(puesto, 
+                        "Administrativo" = c("Administrativo", "Generalista"),
+                        "Responsable" = c("Responsable",
+                                          "Coordinador",
+                                          "Coordinador para 3 países",
+                                          "Coordinadora", 
+                                          "Supervisor"),
+                        "Gerente" = c("Gerente", "Team Leader")),
+         puesto = factor(puesto, levels = c("Director", "Gerente",
+                                            "Jefe", "Responsable",
+                                            "HRBP", "Analista",
+                                            "Administrativo",
+                                            "Pasante")))
+
+# Agrupar funciones
+rh23 <- rh23 %>% 
+  mutate(funcion =
+           fct_collapse(funcion,
+                        "Generalista" = c("Generalista",
+                                          "Auxiliar (tareas hard y soft)",
+                                          "Coordinadora",
+                                          "Dirección Gral del área",
+                                          "Gestión de personas en general",
+                                          "HRBP",
+                                          "Todas",
+                                          "Todo Generalista",
+                                          "Todo lo anterior",
+                                          "coordino el equipo en general",
+                                          "generalista",
+                                          "todo",
+                                          "varias de la lista: reclutamiento y seleccion, adm de personal, compensaciones y beneficios, capacitacion y desarrollo, comunicacion interna, diseño organizacional, tareas generalistas"),
+                        "Payroll / Liquidación de sueldos" = 
+                          c("Payroll / Liquidación de sueldos", 
+                            "Payroll, Talent acquisition, Talent Management,",
+                            "Analisis Libranzas"),
+                        "Administración de personal" = 
+                          c("Administración de personal",
+                            "Control Documentario"),
+                        "Reclutamiento y selección" = 
+                          c("Reclutamiento y selección",
+                            "Analista Soft (Empleos, Comunicaciones Internas, Capacitación y Desarrollo)",
+                            "Empleos y RRLL"),
+                        "RSE" = c("RSE", "Recursos humanos y relaciones con la comunidad"),
+                        "Diseño organizacional" = 
+                          c("Diseño organizacional",
+                            "Cultura",
+                            "Transformación de RH"),
+                        "Relaciones laborales" = c("Relaciones laborales",
+                                                   "Ser el nexo con empleados, entablar relaciones, acompañarlos en lo que necesiten")))
+
+# Limpieza tipo contratación
+rh23 <- rh23 %>% 
+  mutate(tipo_contratacion = fct_collapse(tipo_contratacion,
+                                          "Indeterminado" = c("Indeterminado",
+                                                              "Relac depend ncoa")))
+
+```
+
+# Introducción
+
+[R4HR Club de R para RRHH](https://r4hr.netlify.app/) es una comunidad de aprendizaje de programación de R para profesionales y estudiantes que trabajen o quieran trabajar en RRHH.
+
+Somos una comunidad que usa mayormente datos de ejemplo relacionados con RRHH, y que genera contenido en castellano para eliminar las barreras en el aprendizaje y facilitar que más personas adopten las herramientas de análisis de datos en sus trabajos.
+
+También podés ver todo el contenido que generamos en los siguientes links:
+
+`r icons::fontawesome("google-drive")` [Google Drive](https://drive.google.com/drive/folders/1Qck3z_t6XLRXb2vbN-00931DgdJZ0yse?usp=sharing)
+
+`r icons::fontawesome("youtube")` [YouTube](https://youtube.com/playlist?list=PLZuVytUJrxQlcqu6l-P3ou4vV2mRJU2Ka)
+
+`r icons::fontawesome("github")` [Github](https://github.com/r4hr/)
+
+`r icons::fontawesome("link")` También te invitamos a seguirnos en todas [nuestras redes sociales](https://linktr.ee/r4hrclub).
+
+Pueden acceder a los datos crudos desde [este link](https://docs.google.com/spreadsheets/d/1BCcBAoTkaTupBVr5TpLszvXLONNHOtx9zLOK9z_hKGk/edit?usp=sharing).
+
+```{r paises}
+# Respuestas en relación de dependencia
+pais_rd <- rh23 %>% 
+  group_by(pais) %>% 
+  tally() %>% 
+  ungroup()
+
+# Respuestas de freelancers
+pais_freelo <- freelo23 %>% 
+  group_by(pais) %>% 
+  tally() %>% 
+  ungroup
+
+# Uno los dataframes 
+paises_kiwi <- full_join(pais_freelo, pais_rd, by = "pais") %>% 
+    mutate(n.x = coalesce(n.x, 0),
+         n.y = coalesce(n.y, 0),
+         n = n.x + n.y)
+```
+
+# Motivaciones
+
+Una de las barreras a la hora de aprender People Analytics es que en RRHH trabajamos con datos sensibles, por eso es muy difícil acceder a sets de datos para practicar. Por eso, e inspirados en la Encuesta de [SysArmy](https://sysarmy.com/blog/posts/resultados-de-la-encuesta-de-sueldos-2020-2/), una comunidad de tecnología, que entre otras cosas, organiza eventos como **Nerdearla**, hicimos nuestra propia encuesta, relevando datos de profesionales que trabajan tanto bajo relación de dependencia como de manera freelance. El relevamiento de datos lo hicimos entre el 1 y el 31 de octubre de 2023.
+
+En esta edición recibimos `r nrow(rh23) + nrow(freelo23)` respuestas de `r nrow(paises_kiwi)` países diferentes.
+
+```{r tabla_rtas_pais}
+paises_kiwi %>%
+  arrange(-n, pais) %>% 
+  select(pais, n) %>% 
+  rename("País" = pais,
+         "Respuestas" = n) %>% 
+  kbl(caption = "Respuestas por País", ) %>% 
+  kable_styling(full_width = F, position = "center",
+                bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% 
+  footnote(general = fuente)
+```
+
+Del total de respuestas recibidas, `r nrow(rh23)` son de personas que trabajan en relación de dependencia en RRHH, mientras que `r nrow(freelo23)` personas trabajan de manera freelance.
+
+```{r respuestas_por_modalidad_trabajo}
+
+paises_kiwi <- paises_kiwi %>% 
+  group_by(pais) %>% 
+  summarise(total_freelo = sum(n.x),
+            total_rd = sum(n.y)) %>% 
+  ungroup() %>% 
+  pivot_longer(cols = c("total_freelo", "total_rd"),
+               names_to = "trabajo",
+               values_to = "rtas")
+
+kiwi %>% 
+  select(trabajo) %>% 
+  group_by(trabajo) %>% 
+  count() %>% 
+  ggplot(aes(x = n, y = trabajo)) +
+  geom_col(fill = azul) +
+  estilov +
+  geom_text(aes(label = n), # Indica la cantidad de decimales
+            size = 3,       # Cambia el tamaño de la letra
+            hjust = 1.2,    # Mueve la etiqueta para la izquierda
+            color = "white",
+            family = "Roboto") +
+  labs(title = "Respuestas por tipo de trabajador", 
+       x = "", y = "", 
+       caption = fuente)
+```
+
+Como aclaración, cuando nos referimos a la **identidad de género** de las personas, utilizamos los términos *Mujer cis/Mujer trans* y *Hombre cis/Hombre trans* para poder reflejar con mayor precisión el abánico de identidades y percepciones.
+
+> El térmiino *"cis"* hace referencia a que la persona se identifica con el mismo género con el que nació.
+
+Le agradecemos mucho a [Ivana Feldeberg](https://www.linkedin.com/in/ivana-feldfeber/) del [Observatorio de Datos con Perspectiva de Género](https://www.datagenero.org/) por el asesoramiento en este apartado.
+
+Dicho esto, las respuestas según la identidad de género de las personas que participaron es la siguiente:
+
+```{r respuestas_genero}
+#| fig-show: hold
+#| layout-ncol: 2
+
+# Gráfico para relación de dependencia----
+rh23 <- rh23 %>% 
+  mutate(genero = fct_collapse(genero,  
+                               "Hombre cis" = c("Hombre cis", "Hoimbre", "Hombre"),
+                               "Mujer cis" = c("Mujer cis", "Mujer")))
+
+div <- rh23 %>% 
+  select(genero) %>% 
+  mutate(genero = factor(genero, 
+                         levels = c("Mujer cis", "Hombre cis", "Prefiero no responder"))) %>% 
+  group_by(genero) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+div$ymax <- cumsum(div$freq)
+
+# Compute the bottom of each rectangle
+div$ymin <- c(0, head(div$ymax, n=-1))
+
+# Compute label position
+div$labelPosition <- (div$ymax + div$ymin) / 2
+
+# Compute a good label
+div$label <- paste0(div$genero, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=genero)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(lila, verde, amarillo)) +
+  theme_void() +
+  theme(legend.position = "top",
+        panel.background = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(family = "Roboto")) +
+  labs(title = "Cantidad de respuestas según identidad de género",
+       subtitle = "Relación de Dependencia",
+       fill = "Identidad de Género", 
+       caption = fuente)
+
+# Gráfico de freelancers ----
+# freelo23 <- freelo23 %>% 
+#   mutate(genero = fct_collapse(genero, "Mujer cis" = c("Mujer cis", "Mujer")))
+
+div <- freelo23 %>% 
+  select(genero) %>% 
+  group_by(genero) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+div$ymax <- cumsum(div$freq)
+
+# Compute the bottom of each rectangle
+div$ymin <- c(0, head(div$ymax, n=-1))
+
+# Compute label position
+div$labelPosition <- (div$ymax + div$ymin) / 2
+
+# Compute a good label
+div$label <- paste0(div$genero, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=genero)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(verde, lila)) +
+  theme_void() +
+  theme(legend.position = "top",
+        panel.background = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(family = "Roboto")) +
+  labs(title = "Cantidad de respuestas según identidad de género",
+       subtitle = "Freelancers",
+       fill = "Identidad de Género", 
+       caption = fuente)
+
+```
+
+En resumen, más de dos tercios de las personas que participaron de esta encuesta son mujeres cis. En esta edición no hemos recibidos respuestas de personas trans.
+
+```{r genero_participantes}
+# Corregir identidad de género
+kiwi <- kiwi %>% 
+    mutate(genero = fct_collapse(genero, "Mujer cis" = c("Mujer cis", "Mujer"),
+                               "Hombre cis" = c("Hombre cis", "Hombre", "Hoimbre")),
+         genero = factor(genero, levels = c("Mujer cis", "Hombre cis", "Prefiero no responder")))
+
+# Crear tabla
+kiwi %>% 
+  group_by(genero) %>% 
+  tally(sort = T) %>% 
+  mutate(Porcentaje = n/sum(n),
+         Porcentaje = percent(Porcentaje, accuracy = 0.1)) %>% 
+  janitor::adorn_totals() %>% 
+  rename("Identidad de Género" = genero, 
+         "Cantidad" = n) %>% 
+  kbl(caption = "Total de Participantes según\nIdentidad de Género") %>% 
+  kable_styling(full_width = F, position = "center",
+                bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% 
+  footnote(general = fuente, general_title = "")
+```
+
+# Análisis de remuneraciones
+
+## Remuneraciones por país
+
+En esta sección nos dedicaremos a comparar los sueldos entre los países. En primer lugar, hay que resaltar que los resultados no son representativos de los mercados de los países, sino que lo son de los datos recolectados.
+
+Por otra parte, la baja cantidad de respuestas recolectadas de otros países fuera de la Argentina, nos hace imposible, hacer un análisis comparado representativo de los puestos. Sin embargo, hay algunos datos interesantes para analizar.
+
+Primero, analicemos los sueldos de los trabajadores en relación de dependencia, de cuyos países hayamos recibido al menos 3 respuestas.
+
+```{r sueldo_pais1}
+sueldos_dolar <- rh23 %>% 
+  select(puesto, sueldo_dolar, pais, tipo_contratacion)
+
+# Eliminamos los sueldos que están dentro del rango entre los percentiles 5 y 95
+numericos <- profiling_num(sueldos_dolar)
+poda_p05 <- numericos[1,6]
+poda_p95 <- numericos[1,10]
+
+# Dado que los percentiles 5 y 95 están en U$488 y 4355 respectivamente, 
+# podamos todo lo que esté fuera de ese rango
+
+media_pais <- sueldos_dolar %>% 
+  filter(pais %in% c("Argentina", "Chile", "Perú", "Uruguay", "Colombia"),
+         between(sueldo_dolar,poda_p05,poda_p95)) %>% 
+  group_by(pais) %>% 
+  summarise(sueldop = list(mean_se(sueldo_dolar))) %>% 
+  unnest(cols = c(sueldop)) 
+ 
+sueldo_dolar_pais <- rh23 %>% 
+  select(pais, sueldo_dolar) %>% 
+  filter(between(sueldo_dolar, poda_p05, poda_p95),
+         pais %in% c("Argentina", "Chile", "Perú", "Uruguay", "Colombia"))
+
+# Gráfico
+ggplot(media_pais, aes(reorder(pais, -y), y =  y))+
+  geom_col(fill = azul, alpha = 0.85) +
+  geom_errorbar(aes(ymin = ymin,ymax = ymax), position = "dodge", color = "#333e47")+
+  geom_point(data = sueldo_dolar_pais, aes(x = pais, y = sueldo_dolar), 
+             alpha = 0.3, size = 2, color = "#75838F",
+             position = position_jitter(width = 0.15))+
+  geom_text(aes(label = comma(round(x=y, 0), big.mark = ".", 
+                              decimal.mark = ","),
+                vjust = 1.5, fontface = "bold"), 
+            size = 4, color = "white",
+            family = "Roboto")+
+  eje_y_n +
+  labs(title = "Salario promedio por país",
+       subtitle = "Sueldos de RRHH en U$S",
+       caption = paste0(fuente,"\nPaíses con 5 o más respuestas"),
+       x = NULL, y = NULL) + 
+  estiloh
+```
+
+Similar con lo visto en ediciones pasadas, *Uruguay* y *Chile* tienen los salarios de RRHH más altos en la región.
+
+```{r sueldo_puesto}
+# Crear un data frame sólo con países de Latinoamérica
+rh23la <- rh23 %>% 
+  filter(pais != "España")
+
+# Gráficos de sueldo promedio por puesto
+rh23la %>% 
+  select(puesto, sueldo_dolar) %>% 
+  filter(between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  group_by(puesto) %>% 
+  summarise(mediana_salarial = median(sueldo_dolar)) %>% 
+  ggplot(aes(x = mediana_salarial, y = fct_rev(puesto))) +
+  geom_col(fill = azul) +
+  geom_text(aes(label = comma(mediana_salarial, accuracy = 1,prefix = "USS ",
+                              decimal.mark = ",", big.mark = ".")),
+                color = "#FBFCFC",
+                hjust = 1.2,
+            fontface = "bold",
+            size = 3) +
+  estilov +
+  labs(title = "Mediana salarial por puesto", 
+       subtitle = "Sueldos de RRHH en U$S", 
+       x = "", y = "", 
+       caption = fuente) +
+  eje_x_n
+
+```
+
+La posición de **HRBP** presenta una complejidad, que es que dependiendo la empresa el rol es similar al de un Manager, o en otros casos es un Analista Especializado o Senior. Es por eso que encontramos entre los **HRBP** encontramos un suledo mínimo similar al de los analistas y salarios máximos mayores que el de los directores.
+
+```{r sueldo_puesto_tabla}
+gt(rh23la %>% 
+     select(puesto, sueldo_dolar) %>% 
+     filter(between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+     group_by(puesto) %>% 
+     summarise(minimo = min(sueldo_dolar),
+               mediana_salarial = median(sueldo_dolar),
+               maximo = max(sueldo_dolar),
+               cant = n())
+     ) %>% 
+  tab_header(title = "Mediana salarial por puestos", 
+             subtitle = "Sueldos en U$D") %>% 
+  tab_source_note(source_note = fuente) %>% 
+   fmt_currency(columns =  c("mediana_salarial", "minimo", "maximo"), decimals = 0,
+               sep_mark = ".", dec_mark = ",") %>% 
+  cols_label(puesto = "Posición",
+             minimo = "Mínimo",
+             mediana_salarial = "Mediana",
+             maximo = "Máximo",
+             cant = "Respuestas") 
+```
+
+## Anállisis por Funciones
+
+Entre las funciones mejor pagas, en esta edición encontrmos en el posio a **Diversidad e Inclusión**, **People Analytics**, y **RSE** cuentan con salarios más altos.
+
+```{r funcion1}
+# Calcular la mediana salarial 
+funcion_rh <- rh23la %>% 
+  filter(between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  group_by(funcion) %>% 
+  summarise(mediana = median(sueldo_dolar),
+            cant = n()) %>% 
+  arrange(-mediana)
+
+min_funcion <- round(min(funcion_rh$mediana))
+max_funcion <- round(max(funcion_rh$mediana))
+
+# Gráfico
+ggplot(funcion_rh, aes(x = mediana, y = reorder(funcion, mediana))) +
+  geom_point(color = azul, size = 3) +
+  geom_segment(aes(x = 0, xend = mediana, 
+                   y = funcion, yend = funcion),
+               color = azul) +
+  labs(title = "Mediana Salarial por Función en LATAM",
+       subtitle = "Sueldos de RRHH en U$S",
+       x = NULL, y = NULL,
+       caption = fuente) +
+  geom_text(aes(label = comma(mediana, accuracy = 1,prefix = "USS ",
+                              decimal.mark = ",", big.mark = ".")),
+                color = azul,
+                hjust = -.2,
+            fontface = "bold",
+            size = 3) +
+  estilov +
+  eje_x_n +
+  scale_x_continuous(limits = c(0, 2500)) 
+
+```
+
+Nuevamente es necesario aclarar que hay funciones donde no tenemos mucha cantidad de respuestas como **Controller** donde sólo tenemos un solo caso, pero la diferencia entre las funciones con mayores sueldos, y con los menores sueldos es muy amplia (U\$D `r max_funcion - min_funcion`).
+
+```{r}
+gt(rh23la %>% 
+     filter(between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+     select(funcion, sueldo_dolar) %>% 
+     group_by(funcion) %>% 
+     summarise(minimo = min(sueldo_dolar),
+               mediana_salarial = median(sueldo_dolar),
+               maximo = max(sueldo_dolar),
+               cant = n())
+     ) %>% 
+  tab_header(title = "Mediana salarial por Función", 
+             subtitle = "Sueldos en U$D") %>% 
+  tab_source_note(source_note = fuente) %>% 
+   fmt_currency(columns =  c("mediana_salarial", "minimo", "maximo"), decimals = 0,
+               sep_mark = ".", dec_mark = ",") %>% 
+  cols_label(funcion = "Función",
+             minimo = "Mínimo",
+             mediana_salarial = "Mediana",
+             maximo = "Máximo",
+             cant = "Respuestas") 
+```
+
+## Sueldos según el origen del capital
+
+Si dividimos los gráficos según el *Origen del Capital*, podemos apreciar que en líneas generales, la mediana salarial en empresas multinaciones es mayor que en las empresas nacionales. Solamente en las posiciones de **HRBP** y de **Gerente** se aprecia una paridad salarial respecto del origen del capital de la organización.
+
+```{r origen_capital}
+rh23la %>% 
+  select(origen_capital, puesto, sueldo_dolar) %>% 
+  filter(puesto != "Pasante", 
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  group_by(puesto, origen_capital) %>% 
+  summarise(mediana_salarial = median(sueldo_dolar)) %>% 
+  ggplot(aes(x = mediana_salarial, y = fct_rev(puesto), fill = origen_capital)) +
+  geom_col() +
+  geom_text(aes(label = round(x=mediana_salarial, 0), hjust = 1.2, fontface = "bold"),size = 3, color = "white") +
+  scale_fill_manual(values = c(verde, azul)) +
+  estilov +
+  eje_x_n +
+  facet_wrap(~origen_capital) +
+  labs(title = "Mediana salarial por puesto según origen del capital", 
+       subtitle = "Sueldos de RRHH en U$S", 
+       x = "", y = "", fill = "", 
+       caption = fuente) +
+  theme(legend.position = "top")
+```
+
+Veamos este gráfico de otra manera:
+
+```{r origen_capital_slope}
+slope_df <- rh23la %>% 
+  select(puesto, sueldo_dolar, origen_capital) %>% 
+  filter(between(sueldo_dolar, poda_p05, poda_p95),
+         puesto != "Pasante") %>% 
+  group_by(puesto, origen_capital) %>% 
+  summarise(mediana_salarial = round(median(sueldo_dolar)))
+
+CGPfunctions::newggslopegraph(dataframe = slope_df,
+                Times = origen_capital,
+                Measurement = mediana_salarial,
+                Grouping = puesto,
+                Title = "Diferencias entre sueldos de RRHH en empresas nacionales y multinacionales",
+                SubTitle = "Mediana Salarial. Sueldos en U$S",
+                Caption = fuente, WiderLabels = T)
+```
+
+## Análisis por rubro y origen del capital
+
+Para el análisis de los rubros de la empresa, vamos a filtrar los 5 rubros que tienen más respuestas. También eliminaremos del análisis el puesto de Director porque no se encuentra presente en todos los rubros.
+
+```{r rubros}
+#| fig-height: 15
+top_5_rubros <- rh23la %>% 
+  select(rubro) %>% 
+  group_by(rubro) %>% 
+  count(sort = TRUE) %>%
+  filter(n > 15) %>% 
+  pull(var = rubro)
+
+
+rh23la %>% 
+  mutate(rubro = str_wrap(rubro, width = 25)) %>% 
+  select(rubro, origen_capital, puesto, sueldo_dolar) %>% 
+  filter(puesto != "Pasante", puesto != "Director",
+         between(sueldo_dolar, poda_p05, poda_p95),
+         rubro %in% top_5_rubros) %>% 
+  group_by(rubro, puesto, origen_capital) %>% 
+  summarise(mediana_salarial = median(sueldo_dolar)) %>% 
+  ggplot(aes(x = mediana_salarial, y = fct_rev(puesto), 
+             fill = origen_capital)) +
+  geom_col() +
+  geom_text(aes(label = round(x=mediana_salarial, 0), 
+                hjust = 1.2, 
+                fontface = "bold"),
+            size = 3, 
+            color = "white") +
+  scale_fill_manual(values = c(verde, azul)) +
+  estilo +
+  eje_x_n +
+  facet_grid(rubro~origen_capital) +
+  labs(title = "Mediana salarial por puesto según origen del capital", 
+       subtitle = "Sueldos de RRHH en U$S", 
+       x = "", y = "", fill = "", 
+       caption = fuente) +
+  theme(legend.position = "top")
+```
+
+Para ver las medianas salariales por rubros junto con el desvío estándar, pueden ver la siguiente tabla:
+
+```{r rubros2}
+rh23la %>% 
+    select(rubro, sueldo_dolar) %>% 
+    filter(between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+    group_by(rubro) %>% 
+    summarise(mediana_salarial = round(median(sueldo_dolar)),
+              desvio_salarial = round(sd(sueldo_dolar)),
+              Respuestas = n()) %>% 
+  ungroup() %>% 
+    arrange(-mediana_salarial) %>% 
+  kbl(caption = "Mediana salarial por rubro. En U$S", 
+      col.names = c("Rubro", "Mediana Salarial","Desvío", "Respuestas")) %>% 
+  kable_styling(full_width = F, position = "center",
+              bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% 
+  scroll_box(height = "500px")
+
+```
+
+# Análisis por países
+
+En esta sección analizaremos la situación salarial de RRHH únicamente de tres países: *Argentina, Perú y Uruguay* únicamente, por la cantidad de respuestas. Del resto de los países tenemos menos de 5 respuestas, por lo que es imposible realizar un análisis serio.
+
+::: panel-tabset
+## Perú 🇵🇪
+
+### Sueldos por Puesto
+
+```{r}
+
+# Preproceso de datos históricos
+rh23la_clean <- rh23la %>% 
+  filter(puesto != "Pasante",
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  mutate(rubro = str_wrap(rubro, width = 30))
+
+# Limpiar datos 2020
+df2020 <-  profiling_num(kiwi20$sueldo_dolar)
+p05_20 <- df2020[1,6]
+p95_20 <- df2020[1,10]
+
+rh20 <- kiwi20 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  select(anio, pais, puesto, funcion = funcion_rh, sueldo_bruto) 
+
+
+# Limpiar datos 2021
+df2021 <- profiling_num(kiwi21$sueldo_dolar)
+p05_21 <- df2021[1,6]
+p95_21 <- df2021[1,10]
+
+rh21 <- kiwi21 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto) 
+
+# Limpiar datos 2022
+df2022 <- profiling_num(kiwi22$sueldo_dolar)
+p05_22 <- df2021[1,6]
+p95_22 <- df2021[1,10]
+
+rh22 <- kiwi22 %>% 
+  filter(between(sueldo_dolar, p05_20, p95_20)) %>% 
+  mutate(anio = 2022) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto) 
+
+# Armar un data frame histórico para Perú
+rh20pe <- rh20 %>% 
+  filter(pais == "Perú") 
+
+rh21pe <- rh21 %>% 
+  filter(pais == "Perú")
+
+rh22pe <- rh22 %>% 
+  filter(pais == "Perú")
+
+rh23pe <- rh23la_clean %>% 
+  filter(pais == "Perú") %>% 
+  mutate(anio = 2023) %>% 
+  select(anio, pais, puesto, funcion, sueldo_bruto)
+
+# Evolucion
+historico <- rbind(rh20pe, rh21pe, rh22pe, rh23pe)
+
+#############################
+
+# Filtrar los sueldos extremos
+rh23la_clean <- rh23la %>% 
+  filter(puesto != "Pasante",
+         between(sueldo_dolar, poda_p05, poda_p95)) %>% 
+  mutate(rubro = str_wrap(rubro, width = 30))
+
+# Filtrar por Perú ----
+rh_pe <- rh23la_clean %>% 
+  filter(pais == "Perú") %>% 
+  mutate(anio = 2023)
+
+# Gráfico
+rh_pe %>% 
+  group_by(puesto) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(x = fct_rev(puesto), y = mediana)) +
+  geom_col(fill = "#C8102E") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            vjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Mediana Salarial por Puesto",
+       subtitle = "Datos de Perú - En S/",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Sueldo por Función
+
+```{r}
+rh_pe %>% 
+  group_by(funcion) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(funcion, mediana), x = mediana)) +
+  geom_col(fill = "#C8102E") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_x_n +
+  estilov +
+  labs(title = "Mediana Salarial por Puesto",
+       subtitle = "Datos de Perú - En S/",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Sueldos por Rubro
+
+```{r}
+rh_pe %>% 
+  group_by(funcion) %>% 
+  summarise(mediana = median(sueldo_bruto)) %>%
+  ungroup() %>% 
+  ggplot(aes(y = reorder(funcion, mediana), x = mediana)) +
+  geom_col(fill = "#C8102e") +
+  geom_text(aes(label = comma(mediana, big.mark = ".", decimal.mark = ",")),
+            hjust = 1.2,
+            size = 3, 
+            color = "white") +
+  eje_x_n +
+  estilov +
+  labs(title = "Mediana Salarial por Puesto",
+       subtitle = "Datos de Perú - En S/",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+### Evolución
+
+La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.
+
+```{r}
+
+historico %>% 
+  group_by(anio) %>% 
+  summarise(promedio = mean(sueldo_bruto)) %>% 
+  ungroup %>% 
+  ggplot(aes(x = anio, y = promedio, group = 1)) +
+  geom_line(color = "#C8102e") +
+  geom_point(color = "#C8102e", size = 2) +
+  geom_text(aes(label = comma(promedio, big.mark = ".", decimal.mark = ",")),
+            vjust = -0.5,
+            color = "#C8102e") +
+  eje_y_n +
+  estiloh +
+  labs(title = "Promedio Salarial por Año",
+       subtitle = "Datos de Perú - En S/",
+       x = NULL, y = NULL,
+       caption = fuente) +
+  scale_y_continuous(limits = c(3000, 8000))
+```
+
+
+## Uruguay 🇺🇾
+
+Sarasa
+
+## Argentina 🇦🇷
+
+Sarasa
+
+
+``` {r}
+#
+```
+:::
