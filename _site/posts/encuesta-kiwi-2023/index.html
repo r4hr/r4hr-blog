@@ -95,6 +95,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(images/banner.png);
+background-size: cover;
+      }
+</style>
 
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -271,91 +278,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>estilo <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FBFCFC"</span>),</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Roboto"</span>),</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Estilo limpio con líneas de referencia verticales en gris claro</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>estilov <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FBFCFC"</span>),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#AEB6BF"</span>),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                 <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Roboto"</span>),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Estilo limpio con líneas de referencia horizontales en gris claro</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>estiloh <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FBFCFC"</span>),</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#AEB6BF"</span>),</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>                 <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Roboto"</span>),</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Estilo limpio con líneas de referencia verticales en gris claro</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>estilov <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FBFCFC"</span>),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#AEB6BF"</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Estilo limpio con líneas de referencia horizontales en gris claro</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>estiloh <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FBFCFC"</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#AEB6BF"</span>),</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>genero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#8624F5"</span>, <span class="st">"#1FC3AA"</span>, <span class="st">"#FFD129"</span>, <span class="st">"#75838F"</span>) <span class="co">#Violeta - Verde - Amarillo - Gris</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>genero3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#8624F5"</span>,<span class="st">"#FFD129"</span>, <span class="st">"#1FC3AA"</span>)</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>genero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#8624F5"</span>, <span class="st">"#1FC3AA"</span>, <span class="st">"#FFD129"</span>, <span class="st">"#75838F"</span>) <span class="co">#Violeta - Verde - Amarillo - Gris</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>genero3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#8624F5"</span>,<span class="st">"#FFD129"</span>, <span class="st">"#1FC3AA"</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>colores <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"#8624F5"</span>, <span class="st">"#1FC3AA"</span>)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>azul <span class="ot">&lt;-</span> <span class="st">"#344D7E"</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>verde <span class="ot">&lt;-</span>  <span class="st">"#1FC3AA"</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>rosa1 <span class="ot">&lt;-</span> <span class="st">"#B95192"</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>rosa2 <span class="ot">&lt;-</span> <span class="st">"#EE5777"</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>naranja <span class="ot">&lt;-</span> <span class="st">"#FF764C"</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>amarillo <span class="ot">&lt;-</span> <span class="st">"#FFD129"</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>gris <span class="ot">&lt;-</span> <span class="st">"#75838F"</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>lila <span class="ot">&lt;-</span> <span class="st">"#8624F5"</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>rojo <span class="ot">&lt;-</span> <span class="st">"#943126"</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>col5 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2, naranja)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>col6 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2, naranja, amarillo)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>colores <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"#8624F5"</span>, <span class="st">"#1FC3AA"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>azul <span class="ot">&lt;-</span> <span class="st">"#344D7E"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>verde <span class="ot">&lt;-</span>  <span class="st">"#1FC3AA"</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>rosa1 <span class="ot">&lt;-</span> <span class="st">"#B95192"</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>rosa2 <span class="ot">&lt;-</span> <span class="st">"#EE5777"</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>naranja <span class="ot">&lt;-</span> <span class="st">"#FF764C"</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>amarillo <span class="ot">&lt;-</span> <span class="st">"#FFD129"</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>gris <span class="ot">&lt;-</span> <span class="st">"#75838F"</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>lila <span class="ot">&lt;-</span> <span class="st">"#8624F5"</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>rojo <span class="ot">&lt;-</span> <span class="st">"#943126"</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>col5 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2, naranja)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>col6 <span class="ot">&lt;-</span> <span class="fu">c</span>(azul, lila, rosa1, rosa2, naranja, amarillo)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo un objeto con un texto que se va a repetir mucho a lo largo del análisis</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>fuente <span class="ot">&lt;-</span> <span class="st">"Fuente: Encuesta KIWI de Sueldos de RRHH 2023"</span></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo un objeto con un texto que se va a repetir mucho a lo largo del análisis</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>fuente <span class="ot">&lt;-</span> <span class="st">"Fuente: Encuesta KIWI de Sueldos de RRHH 2023"</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo objetos para formatear las etiquetas numéricas de los ejes x e y</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>eje_x_n <span class="ot">&lt;-</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>))</span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo objetos para formatear las etiquetas numéricas de los ejes x e y</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>eje_x_n <span class="ot">&lt;-</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>))</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>eje_y_n <span class="ot">&lt;-</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>))</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>eje_x_p <span class="ot">&lt;-</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>))</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>eje_y_n <span class="ot">&lt;-</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>))</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>eje_x_p <span class="ot">&lt;-</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>))</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>eje_y_p <span class="ot">&lt;-</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>))</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>eje_y_p <span class="ot">&lt;-</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>))</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="do">############################</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos -----</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>rh23 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/rh_2023.csv"</span>,</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Freelancers</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>freelo23 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/freelancers_2023.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Base Original</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>kiwi <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/kiwi_2023.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="do">##### </span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="do">## Bases anteriores de relación de dependencia</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="co"># 2020</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>kiwi20 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2020.csv"</span>, </span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2020</span>)</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co"># 2021</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>kiwi21 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2021.csv"</span>,</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2021</span>)</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>kiwi22 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2022.csv"</span>,</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="do">############################</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos -----</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>rh23 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/rh_2023.csv"</span>,</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Freelancers</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>freelo23 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/freelancers_2023.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Base Original</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>kiwi <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2023/main/data/kiwi_2023.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="do">##### </span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="do">## Bases anteriores de relación de dependencia</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co"># 2020</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>kiwi20 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2020.csv"</span>, </span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2020</span>)</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co"># 2021</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>kiwi21 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2021.csv"</span>,</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2021</span>)</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="co"># 2022</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>kiwi22 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/r4hr/kiwi2022/main/data/rh_2022.csv"</span>,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>                   <span class="at">delim =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anio =</span> <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -872,23 +876,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output-display">
 
-<div id="wlrnhjwofp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wlrnhjwofp table {
+<div id="bjpqcyltcx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bjpqcyltcx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wlrnhjwofp thead, #wlrnhjwofp tbody, #wlrnhjwofp tfoot, #wlrnhjwofp tr, #wlrnhjwofp td, #wlrnhjwofp th {
+#bjpqcyltcx thead, #bjpqcyltcx tbody, #bjpqcyltcx tfoot, #bjpqcyltcx tr, #bjpqcyltcx td, #bjpqcyltcx th {
   border-style: none;
 }
 
-#wlrnhjwofp p {
+#bjpqcyltcx p {
   margin: 0;
   padding: 0;
 }
 
-#wlrnhjwofp .gt_table {
+#bjpqcyltcx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -914,12 +918,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_caption {
+#bjpqcyltcx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wlrnhjwofp .gt_title {
+#bjpqcyltcx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -931,7 +935,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#wlrnhjwofp .gt_subtitle {
+#bjpqcyltcx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -943,7 +947,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#wlrnhjwofp .gt_heading {
+#bjpqcyltcx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -955,13 +959,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_bottom_border {
+#bjpqcyltcx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_col_headings {
+#bjpqcyltcx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -976,7 +980,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_col_heading {
+#bjpqcyltcx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -996,7 +1000,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#wlrnhjwofp .gt_column_spanner_outer {
+#bjpqcyltcx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1008,15 +1012,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#wlrnhjwofp .gt_column_spanner_outer:first-child {
+#bjpqcyltcx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlrnhjwofp .gt_column_spanner_outer:last-child {
+#bjpqcyltcx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlrnhjwofp .gt_column_spanner {
+#bjpqcyltcx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1028,11 +1032,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#wlrnhjwofp .gt_spanner_row {
+#bjpqcyltcx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wlrnhjwofp .gt_group_heading {
+#bjpqcyltcx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1058,7 +1062,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#wlrnhjwofp .gt_empty_group_heading {
+#bjpqcyltcx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1073,15 +1077,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#wlrnhjwofp .gt_from_md > :first-child {
+#bjpqcyltcx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlrnhjwofp .gt_from_md > :last-child {
+#bjpqcyltcx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlrnhjwofp .gt_row {
+#bjpqcyltcx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1100,7 +1104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#wlrnhjwofp .gt_stub {
+#bjpqcyltcx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1113,7 +1117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#wlrnhjwofp .gt_stub_row_group {
+#bjpqcyltcx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1127,15 +1131,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#wlrnhjwofp .gt_row_group_first td {
+#bjpqcyltcx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wlrnhjwofp .gt_row_group_first th {
+#bjpqcyltcx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wlrnhjwofp .gt_summary_row {
+#bjpqcyltcx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1145,16 +1149,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#wlrnhjwofp .gt_first_summary_row {
+#bjpqcyltcx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_first_summary_row.thick {
+#bjpqcyltcx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wlrnhjwofp .gt_last_summary_row {
+#bjpqcyltcx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1164,7 +1168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_grand_summary_row {
+#bjpqcyltcx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1174,7 +1178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#wlrnhjwofp .gt_first_grand_summary_row {
+#bjpqcyltcx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1184,7 +1188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_last_grand_summary_row_top {
+#bjpqcyltcx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1194,11 +1198,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_striped {
+#bjpqcyltcx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlrnhjwofp .gt_table_body {
+#bjpqcyltcx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1207,7 +1211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_footnotes {
+#bjpqcyltcx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1221,7 +1225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_footnote {
+#bjpqcyltcx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1230,7 +1234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#wlrnhjwofp .gt_sourcenotes {
+#bjpqcyltcx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1244,7 +1248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#wlrnhjwofp .gt_sourcenote {
+#bjpqcyltcx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1252,63 +1256,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#wlrnhjwofp .gt_left {
+#bjpqcyltcx .gt_left {
   text-align: left;
 }
 
-#wlrnhjwofp .gt_center {
+#bjpqcyltcx .gt_center {
   text-align: center;
 }
 
-#wlrnhjwofp .gt_right {
+#bjpqcyltcx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlrnhjwofp .gt_font_normal {
+#bjpqcyltcx .gt_font_normal {
   font-weight: normal;
 }
 
-#wlrnhjwofp .gt_font_bold {
+#bjpqcyltcx .gt_font_bold {
   font-weight: bold;
 }
 
-#wlrnhjwofp .gt_font_italic {
+#bjpqcyltcx .gt_font_italic {
   font-style: italic;
 }
 
-#wlrnhjwofp .gt_super {
+#bjpqcyltcx .gt_super {
   font-size: 65%;
 }
 
-#wlrnhjwofp .gt_footnote_marks {
+#bjpqcyltcx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wlrnhjwofp .gt_asterisk {
+#bjpqcyltcx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wlrnhjwofp .gt_indent_1 {
+#bjpqcyltcx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wlrnhjwofp .gt_indent_2 {
+#bjpqcyltcx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wlrnhjwofp .gt_indent_3 {
+#bjpqcyltcx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wlrnhjwofp .gt_indent_4 {
+#bjpqcyltcx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wlrnhjwofp .gt_indent_5 {
+#bjpqcyltcx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1448,23 +1452,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output-display">
 
-<div id="bthdzffshc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bthdzffshc table {
+<div id="nvqpbmctcs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nvqpbmctcs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bthdzffshc thead, #bthdzffshc tbody, #bthdzffshc tfoot, #bthdzffshc tr, #bthdzffshc td, #bthdzffshc th {
+#nvqpbmctcs thead, #nvqpbmctcs tbody, #nvqpbmctcs tfoot, #nvqpbmctcs tr, #nvqpbmctcs td, #nvqpbmctcs th {
   border-style: none;
 }
 
-#bthdzffshc p {
+#nvqpbmctcs p {
   margin: 0;
   padding: 0;
 }
 
-#bthdzffshc .gt_table {
+#nvqpbmctcs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1490,12 +1494,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_caption {
+#nvqpbmctcs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bthdzffshc .gt_title {
+#nvqpbmctcs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1507,7 +1511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#bthdzffshc .gt_subtitle {
+#nvqpbmctcs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1519,7 +1523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#bthdzffshc .gt_heading {
+#nvqpbmctcs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1531,13 +1535,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_bottom_border {
+#nvqpbmctcs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_col_headings {
+#nvqpbmctcs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1552,7 +1556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_col_heading {
+#nvqpbmctcs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1572,7 +1576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#bthdzffshc .gt_column_spanner_outer {
+#nvqpbmctcs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1584,15 +1588,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#bthdzffshc .gt_column_spanner_outer:first-child {
+#nvqpbmctcs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bthdzffshc .gt_column_spanner_outer:last-child {
+#nvqpbmctcs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bthdzffshc .gt_column_spanner {
+#nvqpbmctcs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1604,11 +1608,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#bthdzffshc .gt_spanner_row {
+#nvqpbmctcs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bthdzffshc .gt_group_heading {
+#nvqpbmctcs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1634,7 +1638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#bthdzffshc .gt_empty_group_heading {
+#nvqpbmctcs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1649,15 +1653,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#bthdzffshc .gt_from_md > :first-child {
+#nvqpbmctcs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bthdzffshc .gt_from_md > :last-child {
+#nvqpbmctcs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bthdzffshc .gt_row {
+#nvqpbmctcs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1676,7 +1680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#bthdzffshc .gt_stub {
+#nvqpbmctcs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1689,7 +1693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bthdzffshc .gt_stub_row_group {
+#nvqpbmctcs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1703,15 +1707,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#bthdzffshc .gt_row_group_first td {
+#nvqpbmctcs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bthdzffshc .gt_row_group_first th {
+#nvqpbmctcs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bthdzffshc .gt_summary_row {
+#nvqpbmctcs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1721,16 +1725,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bthdzffshc .gt_first_summary_row {
+#nvqpbmctcs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_first_summary_row.thick {
+#nvqpbmctcs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bthdzffshc .gt_last_summary_row {
+#nvqpbmctcs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1740,7 +1744,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_grand_summary_row {
+#nvqpbmctcs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1750,7 +1754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bthdzffshc .gt_first_grand_summary_row {
+#nvqpbmctcs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1760,7 +1764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_last_grand_summary_row_top {
+#nvqpbmctcs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1770,11 +1774,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_striped {
+#nvqpbmctcs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bthdzffshc .gt_table_body {
+#nvqpbmctcs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1783,7 +1787,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_footnotes {
+#nvqpbmctcs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1797,7 +1801,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_footnote {
+#nvqpbmctcs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1806,7 +1810,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bthdzffshc .gt_sourcenotes {
+#nvqpbmctcs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1820,7 +1824,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bthdzffshc .gt_sourcenote {
+#nvqpbmctcs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1828,63 +1832,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bthdzffshc .gt_left {
+#nvqpbmctcs .gt_left {
   text-align: left;
 }
 
-#bthdzffshc .gt_center {
+#nvqpbmctcs .gt_center {
   text-align: center;
 }
 
-#bthdzffshc .gt_right {
+#nvqpbmctcs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bthdzffshc .gt_font_normal {
+#nvqpbmctcs .gt_font_normal {
   font-weight: normal;
 }
 
-#bthdzffshc .gt_font_bold {
+#nvqpbmctcs .gt_font_bold {
   font-weight: bold;
 }
 
-#bthdzffshc .gt_font_italic {
+#nvqpbmctcs .gt_font_italic {
   font-style: italic;
 }
 
-#bthdzffshc .gt_super {
+#nvqpbmctcs .gt_super {
   font-size: 65%;
 }
 
-#bthdzffshc .gt_footnote_marks {
+#nvqpbmctcs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bthdzffshc .gt_asterisk {
+#nvqpbmctcs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bthdzffshc .gt_indent_1 {
+#nvqpbmctcs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bthdzffshc .gt_indent_2 {
+#nvqpbmctcs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bthdzffshc .gt_indent_3 {
+#nvqpbmctcs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bthdzffshc .gt_indent_4 {
+#nvqpbmctcs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bthdzffshc .gt_indent_5 {
+#nvqpbmctcs .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2984,23 +2988,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output-display">
 
-<div id="bcbwmzfrdi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bcbwmzfrdi table {
+<div id="ofnfbmzyww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ofnfbmzyww table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bcbwmzfrdi thead, #bcbwmzfrdi tbody, #bcbwmzfrdi tfoot, #bcbwmzfrdi tr, #bcbwmzfrdi td, #bcbwmzfrdi th {
+#ofnfbmzyww thead, #ofnfbmzyww tbody, #ofnfbmzyww tfoot, #ofnfbmzyww tr, #ofnfbmzyww td, #ofnfbmzyww th {
   border-style: none;
 }
 
-#bcbwmzfrdi p {
+#ofnfbmzyww p {
   margin: 0;
   padding: 0;
 }
 
-#bcbwmzfrdi .gt_table {
+#ofnfbmzyww .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3026,12 +3030,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_caption {
+#ofnfbmzyww .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bcbwmzfrdi .gt_title {
+#ofnfbmzyww .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3043,7 +3047,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#bcbwmzfrdi .gt_subtitle {
+#ofnfbmzyww .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3055,7 +3059,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#bcbwmzfrdi .gt_heading {
+#ofnfbmzyww .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3067,13 +3071,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_bottom_border {
+#ofnfbmzyww .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_col_headings {
+#ofnfbmzyww .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3088,7 +3092,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_col_heading {
+#ofnfbmzyww .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3108,7 +3112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#bcbwmzfrdi .gt_column_spanner_outer {
+#ofnfbmzyww .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3120,15 +3124,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#bcbwmzfrdi .gt_column_spanner_outer:first-child {
+#ofnfbmzyww .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bcbwmzfrdi .gt_column_spanner_outer:last-child {
+#ofnfbmzyww .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bcbwmzfrdi .gt_column_spanner {
+#ofnfbmzyww .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3140,11 +3144,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#bcbwmzfrdi .gt_spanner_row {
+#ofnfbmzyww .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bcbwmzfrdi .gt_group_heading {
+#ofnfbmzyww .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3170,7 +3174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#bcbwmzfrdi .gt_empty_group_heading {
+#ofnfbmzyww .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #A3E4D7;
@@ -3185,15 +3189,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#bcbwmzfrdi .gt_from_md > :first-child {
+#ofnfbmzyww .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bcbwmzfrdi .gt_from_md > :last-child {
+#ofnfbmzyww .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bcbwmzfrdi .gt_row {
+#ofnfbmzyww .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3212,7 +3216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#bcbwmzfrdi .gt_stub {
+#ofnfbmzyww .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3225,7 +3229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bcbwmzfrdi .gt_stub_row_group {
+#ofnfbmzyww .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3239,15 +3243,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#bcbwmzfrdi .gt_row_group_first td {
+#ofnfbmzyww .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bcbwmzfrdi .gt_row_group_first th {
+#ofnfbmzyww .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bcbwmzfrdi .gt_summary_row {
+#ofnfbmzyww .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3257,16 +3261,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bcbwmzfrdi .gt_first_summary_row {
+#ofnfbmzyww .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_first_summary_row.thick {
+#ofnfbmzyww .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bcbwmzfrdi .gt_last_summary_row {
+#ofnfbmzyww .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3276,7 +3280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_grand_summary_row {
+#ofnfbmzyww .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3286,7 +3290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bcbwmzfrdi .gt_first_grand_summary_row {
+#ofnfbmzyww .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3296,7 +3300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_last_grand_summary_row_top {
+#ofnfbmzyww .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3306,11 +3310,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_striped {
+#ofnfbmzyww .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bcbwmzfrdi .gt_table_body {
+#ofnfbmzyww .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3319,7 +3323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_footnotes {
+#ofnfbmzyww .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3333,7 +3337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_footnote {
+#ofnfbmzyww .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3342,7 +3346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bcbwmzfrdi .gt_sourcenotes {
+#ofnfbmzyww .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3356,7 +3360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#bcbwmzfrdi .gt_sourcenote {
+#ofnfbmzyww .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3364,63 +3368,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#bcbwmzfrdi .gt_left {
+#ofnfbmzyww .gt_left {
   text-align: left;
 }
 
-#bcbwmzfrdi .gt_center {
+#ofnfbmzyww .gt_center {
   text-align: center;
 }
 
-#bcbwmzfrdi .gt_right {
+#ofnfbmzyww .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bcbwmzfrdi .gt_font_normal {
+#ofnfbmzyww .gt_font_normal {
   font-weight: normal;
 }
 
-#bcbwmzfrdi .gt_font_bold {
+#ofnfbmzyww .gt_font_bold {
   font-weight: bold;
 }
 
-#bcbwmzfrdi .gt_font_italic {
+#ofnfbmzyww .gt_font_italic {
   font-style: italic;
 }
 
-#bcbwmzfrdi .gt_super {
+#ofnfbmzyww .gt_super {
   font-size: 65%;
 }
 
-#bcbwmzfrdi .gt_footnote_marks {
+#ofnfbmzyww .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bcbwmzfrdi .gt_asterisk {
+#ofnfbmzyww .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bcbwmzfrdi .gt_indent_1 {
+#ofnfbmzyww .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bcbwmzfrdi .gt_indent_2 {
+#ofnfbmzyww .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bcbwmzfrdi .gt_indent_3 {
+#ofnfbmzyww .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bcbwmzfrdi .gt_indent_4 {
+#ofnfbmzyww .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bcbwmzfrdi .gt_indent_5 {
+#ofnfbmzyww .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3542,6 +3546,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Diversidad en RRHH</h1>
 <section id="liderazgo-y-género-en-rrhh" class="level2">
 <h2 class="anchored" data-anchor-id="liderazgo-y-género-en-rrhh">Liderazgo y género en RRHH</h2>
+<p>Analicemos las proporciones de hombres y de mujeres en puesto de liderazgo.</p>
+<div class="cell">
+<details>
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: Test hipotesis liderazgo</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hide</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>div <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pais <span class="sc">==</span> <span class="st">"Argentina"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genero =</span> <span class="fu">factor</span>(genero, </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Mujer cis"</span>, <span class="st">"Hombre cis"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>n)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>lideres <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pais <span class="sc">==</span> <span class="st">"Argentina"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(genero, puesto) </span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Propoción de líderes hombres y mujeres</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>lideres_genero <span class="ot">&lt;-</span> lideres <span class="sc">%&gt;%</span> </span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genero <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Mujer cis"</span>, <span class="st">"Hombre cis"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genero) <span class="sc">%&gt;%</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gente_a_cargo =</span> <span class="fu">if_else</span>(puesto <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Responsable"</span>, <span class="st">"Jefe"</span>, <span class="st">"Gerente"</span>, </span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">"Supervisor"</span>, <span class="st">"Director"</span>),<span class="dv">1</span>,<span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lider =</span> <span class="fu">sum</span>(gente_a_cargo)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(div) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(genero, lider, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcion =</span> <span class="fu">percent</span>(lider<span class="sc">/</span>n))</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de hipótesis para validar diferencias de resultados</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Hay que verificar si la proporción de líderes hombres es mayor que la proporción de líderes mujeres</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo un dataframe para analizar proporciones de hombres y de mujeres en puestos de liderazgo y de no-liderazgo</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>test_lider <span class="ot">&lt;-</span> lideres_genero <span class="sc">%&gt;%</span> </span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">no_lider =</span> n <span class="sc">-</span> lider) <span class="sc">%&gt;%</span>        <span class="co"># Columna de no líderes</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(genero, lider, no_lider) <span class="sc">%&gt;%</span>     <span class="co"># selecciono columnas de interés</span></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(lider, no_lider), <span class="co"># Hago un dataset largo para analizar después</span></span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"es_lider"</span>, <span class="at">values_to =</span> <span class="st">"conteo"</span>)</span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Del total de respuestas me interesa sólo ver cuáles son los hombres con puesto de liderazgo</span></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>test_lider<span class="sc">$</span>cat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraigo el mu para decidir si la diferencia es significativa y pasarlo a la fórmula del test.</span></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>prop_mujer_lid <span class="ot">&lt;-</span> <span class="fu">pull</span>(lideres_genero[<span class="dv">1</span>,<span class="dv">2</span>]<span class="sc">/</span>lideres_genero[<span class="dv">1</span>,<span class="dv">3</span>])</span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizo el test de hipótesis.</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="co"># H0 = Las proporciones de líderes hombres y mujeres son iguales</span></span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a><span class="co"># H1 = La proporción de hombres líderes es mayor que la proporción de mujeres líderes.</span></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>resultados_test <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">t.test</span>(test_lider<span class="sc">$</span>cat, <span class="at">mu =</span> prop_mujer_lid, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>valor_test <span class="ot">&lt;-</span> <span class="cf">if</span>(resultados_test[<span class="dv">1</span>,<span class="dv">3</span>] <span class="sc">&gt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la diferencia es estadísticamente significativa, y la proporción de hombres en puestos de liderazgo es mayor que el de las mujeres"</span>)</span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"la diferencia no es estadísticamente significativa, y la proporción de hombres no es estadísticamente mayor que el de las mujeres en puestos de liderazgo"</span>)</span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "la diferencia es estadísticamente significativa, y la proporción de hombres en puestos de liderazgo es mayor que el de las mujeres"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>lideres_genero <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porc_lider =</span> lider<span class="sc">/</span>n, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">porc_no_lider =</span> <span class="dv">1</span> <span class="sc">-</span> porc_lider) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(porc_lider, porc_no_lider),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"es_lider"</span>, </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"valores"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">es_lider =</span> <span class="fu">factor</span>(es_lider, </span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"porc_no_lider"</span>, <span class="st">"porc_lider"</span>), </span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No Líder"</span>, <span class="st">"Líder"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> genero, <span class="at">y =</span> valores, <span class="at">fill =</span> es_lider))<span class="sc">+</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)<span class="sc">+</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  estilo <span class="sc">+</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  eje_y_p <span class="sc">+</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(gris, azul)) <span class="sc">+</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de Líderes según género"</span>,</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>, </span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente) <span class="sc">+</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">percent</span>(valores)),</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/Gráfico de proporción de líderes por género-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>De acuerdo a las respuestas recolectadas <strong>2 de cada 3</strong> participantes son mujeres.</p>
+<p>Para los puestos de liderazgo consideramos las personas en los puestos de <em>Director, Gerente, Jefe, y Responsable.</em></p>
+<p>Del total de <strong>mujeres</strong>, 65 respuestas, 31 ocupan un puesto de liderazgo (47.7%).</p>
+<p>Del total de <strong>hombres</strong>, 189 respuestas, 75 ocupan un puesto de liderazgo (39.7%).</p>
+<p>Con un <em>p-value</em> igual a 0.785 podemos afirmar que <strong>la diferencia es estadísticamente significativa, y la proporción de hombres en puestos de liderazgo es mayor que el de las mujeres</strong>.</p>
+<p>A pesar de que en Recursos Humanos en Argentina, las mujeres cis representan la mayor cantidad de empleados bajo relación de dependencia, y además se forman en mayor proporción que los varones en posgrados, proporcionalmente en comparación con los hombres cis, acceden a menos posiciones de liderazgo.</p>
 </section>
 <section id="diversidad-en-rrhh-1" class="level2">
 <h2 class="anchored" data-anchor-id="diversidad-en-rrhh-1">Diversidad en RRHH</h2>

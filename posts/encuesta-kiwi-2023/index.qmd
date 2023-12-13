@@ -3,6 +3,7 @@ title: "4° Encuesta KIWI de Sueldos de RH"
 description: "Resultados de la 4° Edición de la Encuesta KIWI de Sueldos de RH realizada por R4HR, el Club de R para RRHH"
 date: "2023-11-30"
 author: "R4HR"
+title-block-banner: images/banner.png
 categories: 
   - sueldos
   - kiwi
@@ -12,6 +13,7 @@ format:
     toc-location: left
     code-fold: true
     code-summary: "Ver código"
+    code-copy: hover
 execute: 
   warning: false
   error: false
@@ -50,7 +52,6 @@ loadfonts(quiet = TRUE) # Permite cargar en R otros tipos de fuentes.
 estilo <- theme(panel.grid = element_blank(),
                 plot.background = element_rect(fill = "#FBFCFC"),
                 panel.background = element_blank(),
-                text = element_text(family = "Roboto"),
                 plot.title.position = "plot")
 
 # Estilo limpio con líneas de referencia verticales en gris claro
@@ -58,7 +59,6 @@ estilov <- theme(panel.grid = element_blank(),
                  plot.background = element_rect(fill = "#FBFCFC"),
                  panel.background = element_blank(),
                  panel.grid.major.x = element_line(color = "#AEB6BF"),
-                 text = element_text(family = "Roboto"),
                  plot.title.position = "plot")
 
 # Estilo limpio con líneas de referencia horizontales en gris claro
@@ -66,7 +66,6 @@ estiloh <- theme(panel.grid = element_blank(),
                  plot.background = element_rect(fill = "#FBFCFC"),
                  panel.background = element_blank(),
                  panel.grid.major.y = element_line(color = "#AEB6BF"),
-                 text = element_text(family = "Roboto"),
                  plot.title.position = "plot")
 
 genero <- c("#8624F5", "#1FC3AA", "#FFD129", "#75838F") #Violeta - Verde - Amarillo - Gris
@@ -1300,7 +1299,107 @@ gt(rh_ar %>%
 # Diversidad en RRHH
 
 ## Liderazgo y género en RRHH
+
+Analicemos las proporciones de hombres y de mujeres en puesto de liderazgo.
+
+```{r}
+#|label: Test hipotesis liderazgo
+#| results: hide
+
+div <- rh23la %>%
+  filter(pais == "Argentina") %>% 
+select(genero) %>% 
+  mutate(genero = factor(genero, 
+                         levels = c("Mujer cis", "Hombre cis"))) %>% 
+  group_by(genero) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+lideres <- rh23la %>% 
+  filter(pais == "Argentina") %>% 
+ select(genero, puesto) 
+
+# Propoción de líderes hombres y mujeres
+lideres_genero <- lideres %>% 
+  filter(genero %in% c("Mujer cis", "Hombre cis")) %>% 
+  group_by(genero) %>%
+  mutate(gente_a_cargo = if_else(puesto %in% c("Responsable", "Jefe", "Gerente", 
+                                               "Supervisor", "Director"),1,0)) %>%
+  summarise(lider = sum(gente_a_cargo)) %>% 
+  left_join(div) %>% 
+  select(genero, lider, n) %>% 
+  mutate(proporcion = percent(lider/n))
+
+# Test de hipótesis para validar diferencias de resultados
+# Hay que verificar si la proporción de líderes hombres es mayor que la proporción de líderes mujeres
+# Creo un dataframe para analizar proporciones de hombres y de mujeres en puestos de liderazgo y de no-liderazgo
+test_lider <- lideres_genero %>% 
+  mutate(no_lider = n - lider) %>%        # Columna de no líderes
+  select(genero, lider, no_lider) %>%     # selecciono columnas de interés
+  pivot_longer(cols = c(lider, no_lider), # Hago un dataset largo para analizar después
+               names_to = "es_lider", values_to = "conteo")
+
+# Del total de respuestas me interesa sólo ver cuáles son los hombres con puesto de liderazgo
+test_lider$cat <- c(0,0,1,0)
+
+# Extraigo el mu para decidir si la diferencia es significativa y pasarlo a la fórmula del test.
+prop_mujer_lid <- pull(lideres_genero[1,2]/lideres_genero[1,3])
+
+# Realizo el test de hipótesis.
+# H0 = Las proporciones de líderes hombres y mujeres son iguales
+# H1 = La proporción de hombres líderes es mayor que la proporción de mujeres líderes.
+resultados_test <- broom::tidy(t.test(test_lider$cat, mu = prop_mujer_lid, alternative = "greater"))
+
+valor_test <- if(resultados_test[1,3] > 0.05) {
+  print("la diferencia es estadísticamente significativa, y la proporción de hombres en puestos de liderazgo es mayor que el de las mujeres")
+  } else {
+    print("la diferencia no es estadísticamente significativa, y la proporción de hombres no es estadísticamente mayor que el de las mujeres en puestos de liderazgo")
+  }
+```
+
+```{r}
+#| label: Gráfico de proporción de líderes por género
+
+
+# Gráfico
+lideres_genero %>% 
+  mutate(porc_lider = lider/n, 
+         porc_no_lider = 1 - porc_lider) %>% 
+  pivot_longer(cols = c(porc_lider, porc_no_lider),
+               names_to = "es_lider", 
+               values_to = "valores") %>% 
+  mutate(es_lider = factor(es_lider, 
+                           levels = c("porc_no_lider", "porc_lider"), 
+                           labels = c("No Líder", "Líder"))) %>% 
+  ggplot(aes(x= genero, y = valores, fill = es_lider))+
+  geom_col(position = "fill")+
+  estilo +
+  eje_y_p +
+  scale_fill_manual(values = c(gris, azul)) +
+  labs(title = "Proporción de Líderes según género",
+       x = "", y = "", fill = "", 
+       caption = fuente) +
+  geom_text(aes(label = percent(valores)),
+            position = position_stack(vjust = 0.5))
+```
+
+De acuerdo a las respuestas recolectadas **2 de cada 3** participantes son mujeres.
+
+Para los puestos de liderazgo consideramos las personas en los puestos de *Director, Gerente, Jefe, y Responsable.*
+
+Del total de **mujeres**, `r lideres_genero[2,3]` respuestas, `r lideres_genero[2,2]` ocupan un puesto de liderazgo (`r lideres_genero[2, 4]`).
+
+Del total de **hombres**, `r lideres_genero[1, 3]` respuestas, `r lideres_genero[1,2]` ocupan un puesto de liderazgo (`r lideres_genero[1, 4]`).
+
+Con un *p-value* igual a `r round(resultados_test[1,3],3)` podemos afirmar que **`r valor_test`**.
+
+
+A pesar de que en Recursos Humanos en Argentina, las mujeres cis representan la mayor cantidad de empleados bajo relación de dependencia, y además se forman en mayor proporción que los varones en posgrados, proporcionalmente en comparación con los hombres cis, acceden a menos posiciones de liderazgo.
+
 ## Diversidad en RRHH
+
+
 ## Cuanta diversidad de identidades de género y orientaciones sexuales hay en RRHH
 ## En qué rubros se da la mayor tasa de diversidad
 ## Qué roles ejercen las personas diversas
