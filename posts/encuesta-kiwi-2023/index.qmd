@@ -1399,10 +1399,401 @@ A pesar de que en Recursos Humanos en Argentina, las mujeres cis representan la 
 
 ## Diversidad en RRHH
 
+```{r}
+# Cargar los datos 2020 y 2021
+k20 <- googlesheets4::read_sheet("1833xEeRIy1DLke4eHKfEThjjgx01YGX9yQaU6vv15K0", 
+                     skip = 5) %>% 
+  janitor::clean_names()
 
-## Cuanta diversidad de identidades de género y orientaciones sexuales hay en RRHH
-## En qué rubros se da la mayor tasa de diversidad
-## Qué roles ejercen las personas diversas
+k21 <- googlesheets4::read_sheet("1LDdXlIwrcsyuywbcS4gdc-1p6wBXfEfL2Y6sNBj-4GM",
+                    skip = 5) %>% 
+  janitor::clean_names()
+
+k22 <- googlesheets4::read_sheet("1KeB-sXRMmDhzgEPWLDVNUHgpgroVNsLO2UWE0RLLCVw",
+                                 skip = 5) %>% 
+  janitor::clean_names()
+
+# Seleccionar las columnas de ambos data frames.
+k20 <- k20 %>% 
+  select(identidad_genero = genero, 
+         diversidad_sexual = te_identificas_como_lgbt_lesbiana_gay_bisexual_transexual_otra_minoria_sexual,
+         rubro = rubro_de_la_empresa,
+         origen_del_capital,
+         puesto = en_que_puesto_trabajas,
+         nivel_formacion = maximo_nivel_de_formacion,
+         discapacidad,
+         trabajo) %>% 
+  mutate(sufrio_acoso = 99,
+         management_femenino = 99,
+         machismo = 99,
+         edicion = 2020) # Añado una columna con un valor = 1 porque esta pregunta no existía en la edición 2020 de la Encuesta
+
+k21 <- k21 %>% 
+  select(identidad_genero = identidad_de_genero,
+         diversidad_sexual = te_identificas_como_lgbtiq_lesbiana_gay_bisexual_transexual_otra_minoria_sexual,
+         rubro = rubro_de_la_empresa,
+         origen_del_capital,
+         puesto = en_que_puesto_trabajas,
+         nivel_formacion = maximo_nivel_de_formacion,
+         discapacidad = tenes_alguna_discapacidad,
+         trabajo,
+         sufrio_acoso = sufriste_alguna_situacion_de_acoso_abuso_o_de_discriminacion_en_algun_trabajo,
+         management_femenino = que_porcentaje_aproximado_del_management_de_tu_empresa_son_mujeres_entiendase_posiciones_de_jefatura_de_gerencia_o_de_direccion) %>% 
+  mutate(machismo = 99,
+         edicion = 2021)
+
+k22 <- k22 %>% 
+  select(identidad_genero = identidad_de_genero,
+         diversidad_sexual = te_identificas_como_lgbtiq_lesbiana_gay_bisexual_transexual_otra_minoria_sexual,
+         rubro = rubro_de_la_empresa,
+         origen_del_capital,
+         puesto = en_que_puesto_trabajas ,
+         nivel_formacion = maximo_nivel_de_formacion,
+         discapacidad = en_lo_que_va_del_ano_han_contratado_en_tu_empresa_a_personas_con_discapacidad ,
+         trabajo,
+         sufrio_acoso = sufriste_alguna_situacion_de_acoso_abuso_o_de_discriminacion_en_algun_trabajo,
+         management_femenino = que_porcentaje_aproximado_del_management_de_tu_empresa_son_mujeres_entiendase_posiciones_de_jefatura_de_gerencia_o_de_direccion,
+         machismo = sentis_que_tu_entorno_laboral_es_machista) %>% 
+  mutate(edicion = 2022)
+
+k23 <- kiwi %>% 
+  select(identidad_genero = genero,
+         diversidad_sexual,
+         rubro,
+         origen_del_capital = origen_capital,
+         puesto, 
+         nivel_formacion,
+         discapacidad,
+         trabajo,
+         sufrio_acoso,
+         management_femenino = diversidad_management,
+         machismo) %>% 
+  mutate(edicion = 2023)
+
+# Unir los dataframes en uno sólo
+div_rh <- rbind(k20, k21, k22, k23)
+
+# Como ya tengo unificados ambos datasets puedo borrar las versiones individuales para ahorrar memoria
+rm(k20, k21, k22, k23)
+
+```
+
+En la edición 2020, nos referíamos a la identidad de género de una manera diferente a la que lo hicimos en la edición del 2021, así que la siguiente parte consiste en consolidar los datos de todas las ediciones.
+
+```{r datos_genero}
+
+# Verificar las distintas formas de referirse al género
+unique(div_rh$identidad_genero)
+```
+
+En los datos encontramos 6 formas diferentes de referirse a los hombres cis, y 5 formas diferentes de referirse a las mujeres cis, así que el siguiente paso es unificar estos valores para simplificar el análisis y la interpretación de los resultados.
+
+> El sufijo *cis* hace referencia a las personas que se identifican con el mismo género asignado al nacer.
+
+```{r}
+div_rh <- div_rh %>% 
+    mutate(identidad_genero = 
+             fct_collapse(identidad_genero,
+                          "Hombre cis" = c("Masculino",
+                                           "Hombre cis",
+                                           "Hombre",
+                                           "Hombre hetero. Que es cis?",
+                                           "Hombre heterosexual",
+                                           "Varon"),
+                          "Mujer cis" = c("Femenino",
+                                          "Mujer cis",
+                                          "mujer",
+                                          "Mujer heterosexual",
+                                          "Mujer"),
+                          "Género diverso" = c("Género diverso (género diverso / género fluido /otras minorías)",
+                                               "Mujer trans",
+                                               "No binario",
+                                               "Gay")))
+
+# Ver resultados del proceso anterior
+unique(div_rh$identidad_genero)
+
+```
+```{r}
+div_rh <- div_rh %>% 
+  mutate(rubro = fct_collapse(rubro, "Agro" = c("Agricultura, plantaciones, otros sectores rurales", "Agricultura; plantaciones,otros sectores rurales"),
+                              "Alimentos" = c("Alimentación, bebidas", "Alimentación; bebidas; tabaco"),
+                              "Bancos y Finanzas" = c("Bancos, banca online", "Bancos; banca online;", "Servicios financieros seguros", "Servicios financieros; seguros"),
+                              "Autopartista" = c("Fabricación de material de transporte", "Terminales automotrices, fábricas autopartistas, y afines"), 
+                              "Hotelería" = "Hotelería, restauración, turismo",
+                              "Metalurgia" = c("Industria metalúrgica, metalmecánica", "Producción de metales básicos"), 
+                              "Medios" = c("Medios de comunicación, cultura, gráficos", "Medios de comunicación; cultura; gráficos"),
+                              "Minería" = c("Minería", "Minería (carbón, otra minería)"),
+                              "Oil & Gas" = c("Petróleo y producción de gas, refinación de petróleo", "Petróleo y producción de gas; refinación de petróleo"), 
+                              "Consultoría" = "Servicios de consultoría",
+                              "Correos" = c("Servicios de correos y de telecomunicaciones", "Medios de comunicación; cultura; gráficos"),
+                              "Correos" = c("Servicios de correos y de telecomunicaciones", "Servicios de correos, y de telecomunicaciones"),
+                              "Servicios Públicos" = c("Servicios públicos (agua, gas, electricidad)", "Servicios públicos (agua;gas; electricidad)"),
+                              "Silvicultura" = "Silvicultura; madera; celulosa; papel",
+                              "Tecnología" = c("Tecnologías de información", "Tecnologías de Información, Sistemas, y afines"), 
+                              "Textil" = c("Textiles, vestido, cuero, calzado", "Textiles; vestido; cuero; calzado"),
+                              "Transporte" = c("Transporte (incluyendo aviación civil, ferrocarriles por carretera)", "Transporte (incluyendo aviación civil; ferrocarriles por carretera)", "Transporte marítimo, puertos", "Transporte marítimo; puertos;"
+                                               )))
+
+# Añadimos a los freelancers como servicios de consultoría dentro de la columna Rubro
+div_rh <- div_rh %>% 
+  mutate(rubro = if_else(trabajo == "Freelance", "Consultoría Freelance", as.character(rubro)))
+
+# Limpieza Puesto
+# Descartamos posiciones no relacionadas con RRHH
+div_rh <- div_rh %>% 
+  filter(!puesto %in% c("Juzgado Civil y Comercial", "Líder Ágil",
+                        "Cuidado", "Asesor", "Jefe de Proyecto",
+                        "-", "Inspección de calidad", "Jefe de Proyecto",
+                        "Representante", "Técnico", "Asesoramiento", "-")) %>% 
+  mutate(puesto = str_trim(puesto, side = "both")) # Elimina espacios vacíos antes y después de cada palabra
+
+
+# Reemplazar los valores NA por Consultor Freelance
+div_rh <- div_rh %>% 
+  mutate(puesto = if_else(is.na(puesto), "Consultor Freelance", puesto))
+
+
+# Unificación de Puestos
+div_rh <- div_rh %>% 
+  mutate(puesto = fct_collapse(puesto, "Gerente" = c("Gerente",
+                                                     "Superintendente", 
+                                                     "Director",
+                                                     "Director ( escalafón municipal)"),
+                         "HRBP" = c("HRBP",
+                                    "Senior Consultoría", "specialist",
+                                    "especialista",
+                                    "Specialist",
+                                    "Especialista de selección por un lado (única persona en estas tareas) y HRBP de 2 equipos por otro",
+                                    "Especialista en selección IT", 
+                                    "Recruiter"),
+                        "Responsable" = c("Responsable",
+                                          "Coordinación",
+                                          "coordinación",
+                                          "Coordinador para 3 países",
+                                          "Coordinador de Payroll",
+                                          "Encargado",
+                                          "Coordinadora",
+                                          "Supervisor",
+                                          "Líder Ágil",
+                                          "Líder de selección",
+                                          "Team Leader"),
+                        "Administrativo" = c("Administrativo",
+                                             "Asistente",
+                                             "Asistente RRHH",
+                                             "Aux", "Auxiliar",
+                                             "consultor jr",
+                                             "El cargo es Asistente de CH, pero leo adelante Comunicación Interna, RSE, Capacitacion",
+                                             "Payroll Assistant"),
+                        "Analista" = c("Analista", 
+                                       "Analista semi senior",
+                                       "Asesoramiento", 
+                                       "Consultor", 
+                                       "Capacitador", 
+                                       "Consultor Ejecutivo",
+                                       "consultor jr",
+                                       "Desarrollador",
+                                       "Generalista",
+                                       "Profesional RRHH",
+                                       "Programador",
+                                       "Reclutador",
+                                       "Recruiter",
+                                       "Recruiter IT",
+                                       "Reclutadora", 
+                                       "Selectora",
+                                       "Senior",
+                                       "Senior Recruiter",
+                                       "Senior Consultoría",
+                                       "Sourcer (Recruiter)",
+                                       "Sourcer Specialist",
+                                       "talent",
+                                       "Talent Acquisition",
+                                       "IT RECRUITER",
+                                       "Auditor",
+                                       "Tech Recruiter",
+                                       "Analista de People Operations",
+                                       "Specialist")))
+  
+
+```
+
+### Cuanta diversidad de identidades de género y orientaciones sexuales hay en RRHH
+
+En este punto creo que es importante aclarar que entre una edición y otra de la Encuesta KIWI hicimos cambios en el diseño del formulario, y por ejemplo, las preguntas sobre orientación sexual sólo se las hicimos a las personas que trabajan en relación de dependencia, con lo cual no tenemos una continuidad en los datos sobre el total de las personas que participaron, especialmente de quienes trabajan de manera freelance.
+
+En primer lugar, veamos cuántas personas trabajan en RRHH según su identidad de género:
+
+```{r diversidad_1}
+gt(
+div_rh %>% 
+  group_by(edicion, identidad_genero) %>% 
+  count(sort = TRUE) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = edicion, values_from = n) %>% 
+  mutate(`2020` = coalesce(`2020`, 0),
+         `2021` = coalesce(`2021`, 0),
+         `2022` = coalesce(`2022`, 0),
+         `2023` = coalesce(`2023`, 0),
+         Total = `2020` + `2021` + `2022` + `2023`,
+         Porcentaje = round(Total/sum(Total),3))
+) %>% 
+  fmt_percent(columns = Porcentaje,
+              decimals = 1) %>% 
+  tab_header(title = "Identidad de Género por Edición") %>% 
+  tab_source_note(source_note = fuente) %>% 
+  cols_label(identidad_genero = "Identidad de Género")
+```
+
+Según la muestra que obtuvimos, **menos del 1% de las personas que trabajan en RRHH son personas no binarias.** Como para quede más claro veamóslo con un gráfico.
+
+```{r diversidad_2}
+div_rh %>% 
+  group_by(identidad_genero) %>% 
+  count(sort = TRUE) %>% 
+  ungroup() %>% 
+  ggplot(aes(y = reorder(identidad_genero, n), x = n, 
+             fill = identidad_genero)) +
+  geom_col() +
+  estilov +
+  geom_text(aes(label = n, hjust = -0.2),
+            size = 3.5,
+            color = c(gris, gris,  "black", "black"))+
+  scale_fill_manual(values = c(gris, verde, gris, verde, gris)) +
+  scale_x_continuous(limits = c(0, 1600)) +
+  labs(title = "Cantidad de respuestas según Identidad de Género",
+       x = "", y = "",
+       caption = fuente) +
+  theme(legend.position = "none")
+  
+```
+Por decirlo amablemente: Hay muchas oportunidades de mejora acá.
+
+Y ahora veamos la cantidad de respuestas según la orientación sexual de las personas que participaron de la encuesta. Dado que en la edición 2021 esta era una sección voluntaria, la cantidad de respuestas va a ser distinta que en la tabla anterior. Además, fue algo que no le preguntamos a las personas que trabajan de manera independiente.
+
+La pregunta que hicimos fue **¿Te identificás como LGBTIQ+ (lesbiana, gay, bisexual, transexual, otra minoría sexual)?.** He aquí las respuestas:
+
+```{r diversidad_sexual}
+
+gt(div_rh %>% 
+  filter(!is.na(diversidad_sexual)) %>% 
+  group_by(edicion, diversidad_sexual) %>% 
+  count(sort = TRUE) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = edicion, 
+              values_from = n) %>% 
+  mutate(Total = `2020` + `2021` + `2022` + `2023`,
+         Porcentaje = Total/sum(Total))
+) %>% 
+  fmt_percent(columns = Porcentaje,
+              decimals = 1) %>% 
+  tab_header(title = "Diversidad Sexual por Edición") %>% 
+  tab_source_note(source_note = fuente) %>% 
+  cols_label(diversidad_sexual = "Eres de algún\nColectivo LBGTQ+")
+  
+```
+
+Al menos respecto de esta pregunta, tenemos una mayor representación de diversidades sexuales. Nuevamente, esta muestra no es representativa de todas las personas que trabajan en RRHH, pero esperamos que permita discutir el tema.
+
+
+```{r diversidad_sexual_plot}
+div_rh %>% 
+  filter(!is.na(diversidad_sexual)) %>%
+  group_by(identidad_genero, diversidad_sexual) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  ggplot(aes(y = identidad_genero, x = n, fill = diversidad_sexual )) +
+  geom_col(position = "fill") +
+  geom_text(aes(label = n), position = position_fill(vjust = 0.5), size = 2.5) +
+  estilov +
+  theme(legend.position = "top") +
+  guides(fill = guide_legend(reverse = T)) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(title = "Diversidad Sexual según Identidad de Género",
+       subtitle = "Pregunta: ¿Te identificás como LGBTIQ+?", 
+       fill = "Eres de algún Colectivo LGBTIQ+",
+       x = NULL, y = NULL, caption = fuente) +
+  scale_fill_manual(values = c(azul, gris, verde))
+```
+
+El tamaño de las barras reflejan la proporción de cada respuesta según la identidad de género de cada participante. Por ejemplo, en el caso de las personas que se identifican como *Hombres cis*, 51 personas se identifican como parte de la comunidad LGBTIQ+ (un 11.4%). 45 *Mujeres cis* (4.1%) pertenecen a este colectivo.
+
+### En qué rubros se da la mayor tasa de diversidad
+
+Ahora analicemos los rubros. Dado que no tenemos muchas personas con diversas identidades de género, listaremos todos los rubros.
+
+```{r rubros01}
+gt(div_rh %>% 
+  filter(identidad_genero == "Género diverso") %>% 
+  select(Rubro = rubro) %>% 
+  group_by(Rubro) %>% 
+  tally(sort = T, name = "Respuestas") %>% 
+    janitor::adorn_totals()
+)
+```
+
+Ahora, repliquemos el análisis con la pregunta **¿Te identificás como LGBTIQ+ (lesbiana, gay, bisexual, transexual, otra minoría sexual)?.**
+
+```{r rubros_colectivo}
+gt(
+div_rh %>% 
+  filter(diversidad_sexual == "Si") %>% 
+  select(Rubro = rubro) %>% 
+  group_by(Rubro) %>% 
+  tally(sort = T, name = "Respuestas") %>% 
+  janitor::adorn_totals()
+)
+```
+
+Entre los primeros rubros (fuera de *Otros*) nos encontramos con actividades relacionadas con servicios. Recién en el 5° puesto nos encontramos con el primer rubro relacionado con trabajo de mano de obra intensivo (*Construcción*).
+
+### Qué roles ejercen las personas diversas
+
+Por último, veamos en qué roles se desempeñan las personas que pertenecen a algún colectivo de diversidad dentro de RRHH.
+
+```{r roles}
+# Crear un flag para posiciones de manager (Gerente, Jefe o Responsable)
+div_rh <- div_rh %>% 
+  mutate(manager = if_else(puesto %in% c("Gerente", "Jefe", "Responsable"),
+                           1, 0))
+
+# Si el valor de la columna identidad_genero es igual a Género diverso o el valor de la columna diversidad_sexual es igual a Si, entonces el valor en la nueva columna llamada diversa es 1, de lo contrario poner 0.
+div_rh <- div_rh %>% 
+  mutate(diversa = if_else(identidad_genero == "Género diverso" | diversidad_sexual == "Si",
+                           1, 0))
+
+managers_porcentaje <- div_rh %>% 
+  filter(diversa == 1) %>% 
+  group_by(manager) %>% 
+  count() %>% 
+  ungroup() %>% 
+  mutate(porcentaje = n/sum(n))
+
+puestos_porcentaje <- div_rh %>% 
+  filter(diversa == 1) %>% 
+  group_by(puesto) %>% 
+  count(sort = T) %>% 
+  ungroup() %>% 
+  mutate(porcentaje = n/sum(n))
+
+# Visualización
+ggplot(puestos_porcentaje, aes(x = n, y = reorder(puesto, n))) +
+  geom_col(fill = verde) +
+  geom_text(aes(label = n), 
+            hjust = 1.3,
+            size = 4) +
+  estilov +
+  labs(title = "Roles que ocupan las personas diversas",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+Algo interesante de este gráfico es que un `r scales::percent(pull(managers_porcentaje[2,3]))` ocupan algún puesto jerárquico (definidos como `Gerente`, `Jefe`, o `Responsable`) lo cual nos parece algo positivo.
+
+Sólo 6 personas, un `r scales::percent(pull(puestos_porcentaje[6,3]))`, trabajan por su cuenta como `Consultor Freelance`, el cual es un dato alentador mirándolo desde el punto de vista de la formalidad laboral y la estabilidad.
+
+Estos son datos que están sesgados por la muestra de datos, pero la hipótesis inicial que teníamos era que el porcentaje de freelancers sería mayor en este caso.
+
+
 ## Machismo
 ## Discapacidad
 ## Puestos
