@@ -18,7 +18,7 @@ execute:
   warning: false
   error: false
   message: false
-draft: true
+  dpi: 600
 ---
 
 ```{r inicio}
@@ -1794,17 +1794,1142 @@ Sólo 6 personas, un `r scales::percent(pull(puestos_porcentaje[6,3]))`, trabaja
 Estos son datos que están sesgados por la muestra de datos, pero la hipótesis inicial que teníamos era que el porcentaje de freelancers sería mayor en este caso.
 
 
-## Machismo
+### Acoso en el trabajo
+Ahora comparemos las respuestas a la pregunta **¿Sufriste alguna situación de acoso, abuso o de discriminación en algún trabajo?.** Primero, analicemos los resultados según si la persona pertenece a algún colectivo de diversidad o no.
+
+```{r discriminacion}
+div_rh %>% 
+  mutate(sufrio_acoso = 
+           fct_collapse(sufrio_acoso,
+                        "Si" = c("Si", "agresión verbal.", "Mobbing",
+                                              "no en el actual", "Alguna vez sufrí maltrato psicológico",
+                                              "Lo máximo fue \"sos lesbiana porque no te maquillas\"",
+                                              "Sí claro, abuso de autoridad",
+                                              "Sí. Son sutiles pero están.",
+                                              "no en el actual" ,
+                                              "No. Pero si muchos comentarios marchistas durante mi carrera. No ahora.",
+                                              "en un trabajo anterior, acoso psicológico y misoginia",
+                                              "no, pero he sido testigo"))) %>% 
+  filter(sufrio_acoso %in% c("Si", "No"), 
+         !is.na(diversa)) %>% 
+  group_by(diversa, sufrio_acoso) %>% 
+  summarise(cantidad = n()) %>%
+  mutate(porcentaje = cantidad/sum(cantidad)) %>% 
+  ggplot(aes(x = factor(diversa), y = cantidad, fill = sufrio_acoso)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = paste0(cantidad, " (", scales::percent(porcentaje, accuracy = 1), ")")),
+            position = position_dodge(0.9), vjust = -0.3, size = 3) +
+  estiloh +
+  labs(title = "Personas que sufrieron acoso, abuso o discriminación\nsegún colectivo de diversidad",  subtitle = "0: Personas no diversas - 1: Personas diversas",
+       x = NULL, y = NULL, caption = fuente,
+       fill = "Sufrió acoso, abuso o discriminación") +
+  theme(legend.position = "top") +
+  scale_fill_manual(values = c(naranja, gris)) +
+  scale_y_continuous(limits = c(0,250))
+
+```
+
+El 40% de las personas diversas, ya sea por su identidad de género o por su orientación sexual sufrieron alguna situación de acoso, abuso, o discriminación, frente a un 28% de las personas cis y heterosexuales.
+
+Ahora desagreguemos el gráfico anterior según la identidad de género de las personas:
+
+```{r}
+div_rh %>% 
+  mutate(sufrio_acoso = fct_collapse(sufrio_acoso,
+                                     "Si" = c("Si", "agresión verbal.", "Mobbing",
+                                              "no en el actual", "Alguna vez sufrí maltrato psicológico",
+                                              "Lo máximo fue \"sos lesbiana porque no te maquillas\"",
+                                              "Sí claro, abuso de autoridad",
+                                              "Sí. Son sutiles pero están.",
+                                              "no en el actual" ,
+                                              "No. Pero si muchos comentarios marchistas durante mi carrera. No ahora.",
+                                              "en un trabajo anterior, acoso psicológico y misoginia",
+                                              "no, pero he sido testigo"))) %>% 
+  filter(sufrio_acoso %in% c("Si", "No")) %>% 
+  group_by(identidad_genero, sufrio_acoso) %>% 
+  summarise(cantidad = n()) %>%
+  mutate(porcentaje = cantidad/sum(cantidad)) %>% 
+  ggplot(aes(x = identidad_genero, y = cantidad, fill = sufrio_acoso)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = paste0(cantidad, " (", scales::percent(porcentaje, accuracy = 1), ")")),
+            position = position_dodge(0.9), vjust = -0.3, size = 3) +
+  estiloh +
+  labs(title = "Personas que sufrieron acoso, abuso o discriminación\nsegún su identidad de género",  subtitle = "0: Personas no diversas - 1: Personas diversas",
+       x = NULL, y = NULL, caption = fuente,
+       fill = "Sufrió acoso, abuso o discriminación") +
+  theme(legend.position = "top") +
+  scale_fill_manual(values = c(naranja, gris)) +
+  scale_y_continuous(limits = c(0,2500))
+```
+
+En este último gráfico podemos apreciar las distintas realidades de las personas. **Un tercio de las mujeres cis** **sufrió al menos una vez alguna situación de acoso, abuso o discriminación** versus un 15% de los hombres cis. Más allá de la cantidad de respuestas recibidas, las tendencias son claras.
+
+### Machismo
+
+La siguiente pregunta, **¿Sentís que tu entorno laboral es machista?**, la realizamos por primera vez en 2022, así que en primer lugar comparemos los resultados en función de si las personas son diversas o no.
+
+```{r macho_1}
+# Creamos un dataframe específico para este análisis.
+machismo <- div_rh %>% 
+  filter(!is.na(diversa),
+         machismo %in% c("No es un entorno machista",
+                         "Si pero no es tanto",
+                         "Si, es muy machista")) %>% 
+  mutate(machismo = factor(machismo, 
+                           levels = c("No es un entorno machista",
+                                      "Si pero no es tanto",
+                                      "Si, es muy machista")))
+
+machismo_score <- machismo %>%
+  mutate(diversa = factor(diversa)) %>% 
+  group_by(diversa, machismo) %>% 
+  summarise(respuestas = n()) %>% 
+  mutate(porcentaje = respuestas/sum(respuestas)) 
+
+ggplot(machismo_score, aes(y = diversa, x = respuestas, fill = machismo)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c(azul, rosa1, rosa2)) +
+  geom_text(aes(label = scales::percent(porcentaje, accuracy = 1)), position = position_fill(vjust = 0.5), size = 3) +
+  estilo +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  theme(legend.position = "top",
+        legend.text = element_text(size = 5),
+        legend.background = element_rect(colour = "#FCFCFC")) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(title = "¿Sentís que tu entorno laboral es machista?",
+       subtitle = "0: Personas no diversas - 1: Personas diversas",
+       x = NULL, y = NULL, caption = fuente,
+       fill = "Respuesta:")
+```
+Entre las personas diversas encontramos respuestas con mayor cantidad de respuestas en los extremos, `r percent(pull(machismo_score[4,4]))` no sienten que su entorno sea machista, y un `r percent(pull(machismo_score[6,4]))` sienten que es muy machista.
+
+Entre las personas heteronormativas un `r percent(pull(machismo_score[2,4]))` que su entorno no es tan machista.
+
+Analizando las respuestas según la identidad de género, no sorprende que las mujeres tengan una percepción mayor que los hombres sobre si el entorno laboral es machista.
+
+```{r}
+machismo_genero <- machismo %>%
+  filter(identidad_genero != "Mujer trans") %>% 
+  group_by(identidad_genero, machismo) %>% 
+  summarise(respuestas = n()) %>% 
+  mutate(porcentaje = respuestas/sum(respuestas)) 
+
+ggplot(machismo_genero, aes(y = identidad_genero, x = respuestas, fill = machismo)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c(azul, rosa1, rosa2)) +
+  geom_text(aes(label = scales::percent(porcentaje, accuracy = 1)), position = position_fill(vjust = 0.5), size = 3) +
+  estilo +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  theme(legend.position = "top",
+        legend.text = element_text(size = 5),
+        legend.background = element_rect(colour = "#FCFCFC")) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(title = "¿Sentís que tu entorno laboral es machista?",
+       x = NULL, y = NULL, caption = fuente,
+       fill = "Respuesta:")
+```
+
 ## Discapacidad
-## Puestos
-## Contratación de personas con discapacidad
-## Edad
-## Nuevos Empleados
+
+```{r discapacidad_1}
+disc_rh <- div_rh %>%
+  filter(!is.na(discapacidad)) %>% 
+  mutate(discapacidad = 
+           fct_collapse(discapacidad, 
+                        "Sin discapacidad" = 
+                          c("No tengo ninguna discapacidad",
+                            "NO", "No")),
+    tiene_discapacidad = if_else(discapacidad %in% c("Sin discapacidad", "Prefiero no responder"), 0, 1))
+```
+
+Veamos cuántas personas con alguna discapacidad participaron de la edición actual:
+
+```{r}
+kiwi <- kiwi %>% 
+  mutate(discapacidad = 
+           fct_collapse(discapacidad,
+                        "Sin discapacidad" = 
+                          c("No tengo ninguna discapacidad",
+                            "NO", "No")),
+         tiene_discapacidad = factor(if_else(discapacidad == "Sin discapacidad", 0, 1)))
+
+div <- kiwi %>% 
+  filter(!is.na(discapacidad)) %>% 
+  select(tiene_discapacidad) %>% 
+  group_by(tiene_discapacidad) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+div$ymax <- cumsum(div$freq)
+
+# Compute the bottom of each rectangle
+div$ymin <- c(0, head(div$ymax, n=-1))
+
+# Compute label position
+div$labelPosition <- (div$ymax + div$ymin) / 2
+
+# Compute a good label
+div$label <- paste0(div$genero, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=tiene_discapacidad)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(gris, naranja)) +
+  theme_void() +
+  theme(legend.position = "top",
+        panel.background = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(family = "Roboto")) +
+  labs(title = "Respuestas según discapacidad",
+       subtitle = "1: Tiene alguna discapacidad - 0: Sin discapacidad",
+       fill = "Discapacidad", 
+       caption = fuente)
+```
+
+```{r}
+gt(kiwi %>% 
+  filter(!is.na(discapacidad)) %>% 
+  group_by(tiene_discapacidad) %>% 
+  tally(name = "Respuestas") %>% 
+  ungroup() %>% 
+  mutate(Porcentaje = Respuestas/sum(Respuestas),
+         tiene_discapacidad = factor(tiene_discapacidad,
+                                      levels = c(0, 1),
+                                      labels = c("No", "Si")))) %>% 
+  cols_label(tiene_discapacidad = "Con Discapacidad") %>% 
+  summary_rows(groups = c("Respuestas", "Porcentaje"), 
+               fns = list(Total = "sum")) %>% 
+  fmt_percent(columns = Porcentaje,
+              decimals = 1) %>% 
+  tab_header(title = md("**Respuestas según discapacidad**"),
+             subtitle = "Relación de Dependencia") %>% 
+  tab_source_note(source_note = fuente)
+
+```
+En la actual edición contamos sólo con un 5% de colegas con alguna discapacidad trabajando en RRHH, las cuales son las siguientes:
+
+```{r}
+kiwi %>% 
+  filter(!is.na(discapacidad),
+         tiene_discapacidad == 1) %>% 
+  group_by(discapacidad) %>% 
+  summarise(cant = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = cant, y = reorder(discapacidad, cant))) +
+  geom_col(fill = naranja) +
+  estilov +
+  labs(title = "Tipos de Discapacidad",
+       subtitle = "Relación de Dependencia",
+       x = NULL, y = NULL,
+       caption = fuente)
+```
+
+
+Veamos cómo fue la evolución de esta respuesta a lo largo de las ediciones de esta encuesta.
+
+```{r}
+disc_rh %>% 
+  filter(tiene_discapacidad == 1) %>% 
+  group_by(edicion) %>% 
+  summarise(cant = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = factor(edicion), y = cant)) +
+  geom_col(fill = naranja) +
+  geom_text(aes(label = cant),
+            vjust = 1.2,
+            size = 3) +
+  estiloh +
+  labs(title = "Respuestas de Personas con Discapacidad",
+       subtitle = "Relación de Dependencia",
+       x = NULL, y = NULL,
+       caption = fuente)
+
+```
+### Puestos
+
+Si bien la mayor cantidad de personas con discapacidad históricamente se desempeñan en roles de Analista, es interesante apreciar que en total tenemos prácticamente la misma cantidad (18) en roles de liderazgo (Gerente, Jefe o Resposable).
+
+Esto nos parece positivo porque es una muestra no sólo de diversidad, sino también de inclusión. Consideramos que no sólo es importante contratar personas con discapacidad, sino también darles las oportunidades de desarrollo que le daríamos a cualquier persona de la compañía.
+
+```{r disc_puesto}
+gt(disc_rh %>% 
+  filter(!is.na(discapacidad),
+         !is.na(puesto),
+         tiene_discapacidad == 1) %>% 
+  group_by(edicion, puesto) %>% 
+  summarise(cant = n()) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = edicion,
+                values_from = cant) %>% 
+  mutate(across(c(`2020`:`2023`),
+                ~coalesce(.x, 0)),
+         Total = `2020`+`2021`+`2022`,`2023`) %>% 
+  janitor::adorn_totals()) %>% 
+  cols_label(puesto = "Puesto") %>%  
+  tab_header(title = "Puestos de Personas con Discapacidad") %>% 
+  tab_source_note(source_note = fuente)
+```
+
+### Contratación de personas con discapacidad
+
+En esta edición incluimos la pregunta **En lo que va del año, ¿han contratado en tu empresa a personas con discapacidad?** para analizar si las empresas están activamente tomando acciones de inclusión.
+
+
+```{r}
+kiwi %>% 
+  filter(!is.na(contrata_discapacidad)) %>% 
+  group_by(contrata_discapacidad) %>% 
+  summarise(cant = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = contrata_discapacidad, y = cant, fill = contrata_discapacidad)) +
+  geom_col() +
+  geom_text(aes(label = cant),
+            vjust = 1.2, 
+            color = "white",
+            size = 3) +
+  scale_fill_manual(values = c(gris, gris, naranja)) +
+  estiloh +
+  labs(title = "Contrataron personas con discapacidad",
+       x = NULL, y = NULL,
+       caption = fuente) +
+  theme(legend.position = "none")
+
+contrata_disc <- kiwi %>% 
+  filter(!is.na(contrata_discapacidad)) %>% 
+  group_by(contrata_discapacidad) %>% 
+  summarise(cant = n()) %>% 
+  ungroup() %>% 
+  mutate(porcentaje = cant/sum(cant))
+```
+
+En esta edición, `r pull(contrata_disc[3,2])` (un `r percent(pull(contrata_disc[3,3]))`) afirmaron que en sus empresas han contratado personas con discapacidad en sus organizaciones. Esto nos lleva a la siguientes preguntas: estas compañías, ¿son nacionales o multinacionales?, ¿Qué tamaño tienen las empresas?
 
 
 # Freelancers
 
-# Otros análisis
-## Relación entre satisfacción y sueldos
-## Comunidades
+En este relevamiento participan colegas que trabajan en relación de dependencia y también de manera freelance. Este es el análisis desarrollado en base a las respuestas de las personas que trabajan de manera independiente o en sus propias empresas.
+
+## Respuestas  por país
+
+En el caso de las personas freelance, la mayoría de las respuestas obtenidas fueron de Argentina.
+Por eso reiteramos, que los resultados no son representativos de los países. 
+
+
+```{r  echo=FALSE  }
+paises <- freelo23 %>% 
+  select(pais) %>% 
+  mutate(cuenta = 1) %>% 
+  group_by(pais) %>% 
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(-Cuenta) %>% 
+  janitor::adorn_totals()
+
+gt(paises) %>% 
+  tab_header(title = "Cantidad de respuestas por país",
+             subtitle = "Freelance") %>% 
+  tab_source_note(source_note = fuente) %>% 
+  cols_label(pais = "País")
+
+```
+
+## Respuestas por Género 
+
+La participación según el género de las personas freelance,  es la siguiente:
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE }
+
+
+## Limpieza variable genero ----
+freelo23 <- freelo23 %>% 
+  mutate(genero = factor(genero, levels = c("Mujer cis", "Hombre cis")))
+
+
+div <- freelo23 %>% 
+  select(genero) %>% 
+  filter(genero!="NA")%>%  # se saca, porque no es representativo
+  filter(genero!="Prefiero no responder")%>%  # se saca, porque no es representativo
+  group_by(genero) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+div$ymax <- cumsum(div$freq)
+
+# Compute the bottom of each rectangle
+div$ymin <- c(0, head(div$ymax, n=-1))
+
+# Compute label position
+div$labelPosition <- (div$ymax + div$ymin) / 2
+
+# Compute a good label
+div$label <- paste0(div$genero, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=genero)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c("#8624F5",  "#1FC3AA", "#FFD129","#75838F")) +
+  theme_void() +
+  theme(legend.position = "right",
+        panel.background = element_blank(),
+        text = element_text(family = "Roboto")) +
+  labs(title = "Cantidad de respuestas según género",
+       subtitle = "Freelance",
+       fill = "Género", 
+       caption = fuente)
+
+```
+
+Podemos observar que la mayoría de las respuestas fueron de  Mujeres cis, manteniendo la misma tendencia que las personas en relación de dependencia. 
+
+```{r echo=FALSE, message=FALSE}
+
+freelo23 %>% 
+  select(genero) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(genero) %>%
+  summarise(Cuenta = sum(cuenta)) %>%
+  ungroup() %>% 
+  arrange(-Cuenta)%>%
+  janitor::adorn_totals() %>% 
+  rename("Género"=genero) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+```
+
+## Respuestas por Educación 
+
+En esta sección queremos indagar si hay relación entre la formación y la exportacion de los servicios, y si impacta también el tipo de universidad, pública o privada, en dichas prestaciónes. 
+Primero veamos  como se distribuye la muestra entre profesionales provenientes de universidades públicas y privadas de los diferentes paises:
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+# Nota: Ver como agregar la tabla de referencias al grafico-
+
+freelo23 %>% 
+  select(pais, tipo_universidad) %>% 
+  ggplot(aes(y = pais, fill = tipo_universidad)) +
+  geom_bar(position = "fill") + 
+  scale_fill_manual(values = c(gris, verde, azul)) +
+  labs(title = "Distribución de respuestas por tipo de universidad por país",
+       caption = fuente,
+       fill = "Tipo Universidad",
+       x = "", y = "") +
+  estilo +
+  theme(legend.position = "top") +
+  eje_x_p
+
+```
+
+
+Limitandonos al país con mayor cantidad de respuestas, Argentina, en los  siguientes graficos podemos observar  que  la distribución   por tipo de Universidad es  muy pareja , quedando un valor  minimo y poco representativo  para quienen no fueron a la Universidad: 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+freelo23 %>% 
+  select(pais, tipo_universidad) %>%
+  filter (pais=="Argentina")%>% 
+  ggplot(aes(x = tipo_universidad)) + 
+  geom_bar(position = "dodge", fill = "#6CACE4") +
+  theme(axis.text.x = element_text(angle = 360)) + 
+  labs(x="",y="") +
+  estiloh +
+  labs(title = "Distribución de respuestas por tipo de universidad",
+       subtitle = "Solo Argentina",
+       caption = fuente)
+
+
+```
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+
+## Tipo de Universidad  
+
+educ <- freelo23 %>% 
+  select(tipo_universidad) %>%  
+  group_by(tipo_universidad) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+educ$ymax <- cumsum(educ$freq)
+
+# Compute the bottom of each rectangle
+educ$ymin <- c(0, head(educ$ymax, n=-1))
+
+# Compute label position
+educ$labelPosition <- (educ$ymax + educ$ymin) / 2
+
+# Compute a good label
+educ$label <- paste0(educ$tipo_universidad, "\n Cant: ", educ$n)
+
+# Make the plot
+ggplot(educ, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=tipo_universidad)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(gris, verde, azul)) +
+  theme_void() +
+  theme(legend.position = "right",
+        panel.background = element_blank(),
+        text = element_text(family = "Roboto")) +
+  labs(title = "Tipo de Universidad",
+       fill = "Tipo de Universidad", 
+       caption = fuente) +
+  theme(legend.position = "left")
+```
+
+
+
+Nos interesaba indagar cuál era el nivel de formación  de los encuestados.
+
+En la siguiente tabla podemos ver que la mayoría tiene estudios  Universitarios completos: 
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+freelo23 %>% 
+  select(nivel_formacion) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(nivel_formacion) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(-Cuenta)%>% 
+  select(nivel_formacion,Cuenta) %>% 
+  rename("Nivel de Formación"=nivel_formacion) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+```
+
+Cuando  analizamos educación, nos resultó  interesante analizar la distribución por género y nivel educativo.
+
+En el siguiente gráfico podemos observar que las mujeres tienen mayor nivel de formación que los hombres:
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+freelo23 %>% 
+  select(pais, nivel_formacion, genero) %>%
+  filter(genero != "Prefiero no responder") %>% # sacar porque no es representativo
+  filter(nivel_formacion != "NA") %>%           # sacar porque no es representativo
+  mutate(nivel_formacion = factor(nivel_formacion,
+                                  levels = c("Terciario en curso", "Terciario completo", "Universitario abandonado", "Universitario en curso", "Universitario completo", "Diplomado de posgrado en curso","Diplomado de posgrado completo", "Maestría o superior en curso", "Maestría o superior completa"))) %>% 
+  group_by(nivel_formacion) %>% 
+  ggplot(aes (y= nivel_formacion, fill = genero)) + 
+  geom_bar(position = "fill") +
+  labs(x="",y="") +
+  eje_x_p +
+  scale_fill_manual(values = colores) +
+  estilo +
+  theme(legend.position = "top") +
+  labs(title = "Máximo nivel educativo alcanzado por género",
+       subtitle = "Distribución por frecuencias absolutas",
+       caption = fuente, 
+       fill = "Género")
+
+```
+
+
+Veamos los mismos resultados, en terminos relativos: 
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+#Esta bien la proporcion?? ver!! 
+
+fr_fem <- freelo23 %>% 
+  filter(genero == "Mujer cis") %>% 
+  group_by(genero, nivel_formacion) %>% 
+  mutate(nivel_formacion = factor(nivel_formacion,
+                                  levels = c("Terciario en curso", "Terciario completo", "Universitario abandonado", "Universitario en curso", "Universitario completo", "Diplomado de posgrado en curso","Diplomado de posgrado completo", "Maestría o superior en curso", "Maestría o superior completa"))) %>% 
+  group_by(nivel_formacion) %>% 
+  summarise(n = n()) %>% 
+  mutate(frecuencia = round(n/sum(n),2),
+         genero = "Mujer cis") 
+
+
+fr_mas <- freelo23 %>% 
+  filter(genero == "Hombre cis") %>% 
+  group_by(genero, nivel_formacion) %>% 
+  mutate(nivel_formacion = factor(nivel_formacion,
+                                  levels = c("Terciario en curso", "Terciario completo", "Universitario abandonado", "Universitario en curso", "Universitario completo", "Diplomado de posgrado en curso","Diplomado de posgrado completo", "Maestría o superior en curso", "Maestría o superior completa"))) %>% 
+  group_by(nivel_formacion) %>% 
+  summarise(n = n()) %>% 
+  mutate(frecuencia = round(n/sum(n),2),
+         genero = "Hombre cis") 
+
+fr_total <- rbind(fr_fem, fr_mas )
+
+ggplot(fr_total, aes(x = nivel_formacion, y = frecuencia, fill = genero)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90), 
+        legend.position = "none") + 
+  labs(x="",y="") +
+  scale_fill_manual(values = colores) +
+  facet_wrap(~genero, ncol = 2) +
+  estiloh +
+  labs(title = "Proporción de nivel educativo máximo por género",
+       subtitle = "Freelance",
+       x = "", y = "Proporción", 
+       caption = fuente) +
+  eje_y_p
+
+
+```
+
+
+Respecto a las  carreras, vemos que la tendencia de las mismas se corresponden con los resultados obtenidos en las personas en relación de dependencia: 
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+carrerasfr <- freelo23 %>% 
+  select(nivel_formacion, carrera_grado, tipo_universidad, pais, genero) %>% 
+  mutate(carrera_grado = factor(carrera_grado))
+
+carrerasfr <- carrerasfr %>% 
+  mutate(carrera_grado = fct_collapse(carrera_grado, 
+                                    "RRHH / RRLL / RRTT" = c("RRHH / RRLL / RRTT", "Y ahora Relaciones Laborales")),
+         carrera_grado = fct_collapse(carrera_grado, 
+                                      "Psicología" = c("Psicología")),
+         carrera_grado = fct_collapse(carrera_grado, 
+                                      "Administración de Empresas" = c("Administración de Empresas")),
   
+         carrera_grado = fct_lump(carrera_grado, 
+                                  prop = 0.02, 
+                                  other_level = "Otros"),
+           carrera_grado = factor(carrera_grado, levels = c("RRHH / RRLL / RRTT", "Psicología", "Administración de Empresas", "Otros")))
+
+
+ggplot(carrerasfr, aes(x = carrera_grado)) +
+  geom_bar(position = "dodge", fill = azul) +
+  theme(axis.text.x = element_text(angle = 360)) + 
+  labs(x="",y="") +
+  estiloh +
+  labs(title = "Principales carreras estudiadas",
+       subtitle = "Freelance",
+       caption = fuente)
+```
+
+## Respuestas por Condición fiscal
+
+La condidición fiscal de  los encuestados la podemos observar en la siguiente tabla:
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+fiscofr <- freelo23 %>% 
+  select(registro_fiscal, medio_pago_exterior) %>% 
+  mutate(registro_fiscal = factor(registro_fiscal))%>%
+  mutate(registro_fiscal = fct_collapse(registro_fiscal, 
+                                      "Monotributista" = "Monotributista"),
+         registro_fiscal = fct_collapse(registro_fiscal, 
+                                        "Contractor" = "Contractor"),
+         registro_fiscal = fct_collapse(registro_fiscal, 
+                                        "Responsable inscripto" = "Responsable inscripto"),
+          registro_fiscal = fct_collapse(registro_fiscal, 
+                                        "SA" = "SA"),
+         registro_fiscal = fct_collapse(registro_fiscal, 
+                                        "Otros" = c("No estoy registrada por el momento","Spa","tengo un contrato mixto rel dependencia y  freelance")),
+         carrera_grado = factor(registro_fiscal,
+                                levels = c("Monotributista", "Contractor", "Responsable inscripto","SA", "Otros")))
+
+
+fiscofr %>% 
+  select(registro_fiscal) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(registro_fiscal) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(-Cuenta)%>% 
+  rename("Registro Fiscal"=registro_fiscal) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+```
+
+##  Respuestas por Exportación de  Servicio
+
+Como vemos a continuación,  la mayoría no exporta sus servicios: 
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+exp <- freelo23 %>% 
+  select(exporta) %>% 
+ filter(exporta!="NA") %>% 
+  group_by(exporta) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+exp$ymax <- cumsum(exp$freq)
+
+# Compute the bottom of each rectangle
+exp$ymin <- c(0, head(exp$ymax, n=-1))
+
+# Compute label position
+exp$labelPosition <- (exp$ymax + div$ymin) / 2
+
+# Compute a good label
+exp$label <- paste0(exp$exporta, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(exp, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=exporta)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(gris, azul)) +
+  theme_void() +
+  theme(legend.position = "right",
+        panel.background = element_blank(),
+        text = element_text(family = "Roboto")) +
+  labs(title = "Exporta Servicios",
+       fill = "", 
+       caption = fuente)
+```
+
+
+Focalizandonos entre quienes exportan, podemos ver cuál es el servicio prestado: 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+sv_fr <- freelo23 %>% 
+  filter(servicio_principal != "NA")%>% 
+  filter(servicio_principal != "Start up del area de HR inpmentacion de politicas y procesos, busqueda y seleccion, asesoramiento en general del area")%>% 
+  select(servicio_principal, exporta)# %>%
+#  filter(exporta=="Si")#%>%
+# mutate(servicio_principal = factor(servicio_principal,
+#                               levels = c("Payroll / Liquidación de sueldos", "Diseño organizacional", "Capacitación", "Comunicación interna","People Analytics","HR Generalista")))
+
+ggplot(sv_fr, (aes(y = fct_rev(servicio_principal), fill = exporta))) + 
+  geom_bar(position = "dodge") +
+  labs(x="",y="") +
+  estilov +
+  scale_fill_manual(values = c(gris, verde)) +
+  labs(title = "Respuestas según Servicio Exportado",
+       subtitle = "Freelance",
+       x = "", fill = "Exporta",
+       caption = fuente)
+```
+
+
+En relación a los medios de pago utilizados por quienes exportan, sus respuestas fueron las siguientes: 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+mp_fr <-freelo23 %>%
+  mutate(medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                        "Payoneer" = c("Payoneer")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                        "Transferencia" = c("Transferencia a tu cuenta")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                        "PayPal" = c("PayPal")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                            "Bitcoin" = c("Bitcoin")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                            "Western Union" = c("Western Union")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                            "Prex" = c("Prex")),
+         medio_pago_exterior = fct_collapse(medio_pago_exterior, 
+                                            "NO" = c("-","0","N/A","no","No","No aplica","No exporti por ahora","no exporto","No exporto" ,"No exporto servicios","No exporto.","No trabajo para afuera aún","Xxxx")),
+         carrera_grado = factor(medio_pago_exterior,
+                                levels = c("Payoneer", "Transferencia", "PayPal", "Bitcoin","Western Union","Prex","NO")))
+
+
+
+mp_fr %>% 
+  filter(medio_pago_exterior!="NO")%>% 
+  mutate(cuenta = 1) %>% 
+  group_by(medio_pago_exterior) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(-Cuenta)%>% 
+  select(medio_pago_exterior,Cuenta) %>% 
+  rename("Medios de Pago Exterior"=medio_pago_exterior) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+```
+
+## Respuestas por  Antigüedad
+
+Respecto a los años de experiencia como freelance, podemos observar que la mayoría tiene menos de dos años.
+
+Un interrogante que nos surge en si la inserción en esta modalidad fue una decisión de carrera voluntaria o impulsada por las consecuencias de la pandemia. Carecemos de elementos para responder esa pregunta, por eso nos limitamos a  presentar las respuestas obtenidas: 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+ant_fr<- freelo23 %>% 
+  mutate(rango_ant =case_when(
+    anios_freelance < 2 ~ "Menos de 2 años",
+    anios_freelance < 6 ~ "Entre 2 y 5 años",
+    anios_freelance < 11 ~ "Entre 5 y 10 años",
+    anios_freelance = T ~ "Más de 10 años"),
+    rango_ant = fct_relevel(rango_ant, c("Menos de 2 años", "Entre 2 y 5 años",
+                                                       "Entre 5 y 10 años", "Más de 10 años")))
+ ant_fr %>%
+  select(rango_ant) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(rango_ant) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(rango_ant)%>% 
+  rename("Años de Experiencia"=rango_ant) %>% 
+ # rename("Exporta"=exporta) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+```
+
+## Respuestas por  Búsquedas
+
+Nos interesa saber cuantos se dedican a realizar trabajos de selección de talentos. 
+
+Podemos observar que un 66% de las personas encuestadas en esta categoria se dedican a la tarea de búsqueda. 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+freelo23 %>% 
+  select(servicio_busqueda) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(servicio_busqueda) %>%
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n),
+         freq = percent(freq, accuracy = 1)) %>% 
+  arrange(-n)%>% 
+rename("Serv. Búsqueda"=servicio_busqueda) %>%
+   kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+```
+
+Sabiendo el crecimiento y auge de las búsquedas en el sector de IT, veamos cuál es la participación de las mismas entre las personas que hacen recruiting. 
+
+Como se observa en el siguiente gráfico, la mayoría de las búsquedas se concentran que en el sector IT. 
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+it_fr<- freelo23 %>% 
+  select(busqueda_it, servicio_busqueda) %>% 
+  filter(servicio_busqueda=="Si") 
+
+
+ggplot(it_fr, (aes(x = busqueda_it, fill = servicio_busqueda))) + 
+  geom_bar(position = "dodge") +
+  labs(x="",y="") +
+  estilov +
+  scale_fill_manual(values = c(verde)) +
+  coord_flip() +
+  scale_y_continuous(labels = number_format(accuracy = 1)) +
+  labs(title = "Servicio de Búsqueda",
+       subtitle = "Freelance",
+       x = "", fill = "IT",
+       caption = fuente)
+```
+
+
+## Respuesta por garantía de trabajo
+
+Las garantías de reposición de vacantes se refieren a la protección que se brinda a cada cliente en el caso de que la persona contratada   se marche de la empresa.
+
+Veamos entre los que  prestan  el servicio de recruiting, quienes ofrecen garantía de permanencia del candidato. 
+
+
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+
+gtia <- freelo23 %>% 
+#  select(garantia,servicio_busqueda) %>% 
+  filter(servicio_busqueda=="Si") %>% 
+  mutate(garantia=fct_collapse(garantia, "Si" = c("1 mes","2 meses", "3 meses")),
+         garantia=fct_collapse(garantia, "No" = c("No ofrezco garantía")),
+          garantia = factor(garantia, levels =c("Si","No" )))
+
+
+gtia2 <- gtia %>% 
+  filter(!is.na(garantia)) %>% 
+  select(garantia) %>% 
+  group_by(garantia) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+gtia2$ymax <- cumsum(gtia2$freq)
+
+# Compute the bottom of each rectangle
+gtia2$ymin <- c(0, head(gtia2$ymax, n=-1))
+
+# Compute label position
+gtia2$labelPosition <- (gtia2$ymax + gtia2$ymin) / 2
+
+# Compute a good label
+gtia2$label <- paste0(gtia2$garantia, "\n Cant: ", gtia2$n)
+
+# Make the plot
+ggplot(gtia2, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=garantia)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c( verde, gris)) +
+  theme_void() +
+  theme(legend.position = "right",
+        panel.background = element_blank(),
+        text = element_text(family = "Roboto")) +
+  labs(title = "Garantía de Permanencia",
+       fill = "", 
+       caption = fuente) +
+  theme(legend.position = "left")
+
+
+
+
+```
+
+
+
+En la siguiente tabla podemos observar que los plazos de garantía suelen ir desde un mes hasta los tres meses. Pero un número importante, no ofrece garantia por el  servicio contratado.
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+gtia2 <- freelo23 %>% 
+#  select(garantia,servicio_busqueda) %>% 
+  filter(servicio_busqueda=="Si") %>% 
+  mutate( garantia=fct_collapse(garantia, "No" = c("No ofrezco garantía")),
+          garantia = factor(garantia, levels =c("Si","No" )))
+
+                                                      
+
+
+```
+
+## Respuestas por Base de Coeficiente
+
+
+Otro punto para destacar es el precio del servicio de quienes hacen recruiting.
+
+Podemos ver que la gran mayoría  cobra   por dicho servicio, un porcentaje de  remuneración mensual del ingresante, dejando para muy pocos casos el ingreso anual del mismo.
+
+
+Una pregunta abierta que nos queda, es cuáles son las posiciones mejores pagas para los recruiters. Sin embargo, dicho análisis escapa de los objetivos de la presente encuesta.  
+
+```{r  echo=FALSE , message= FALSE,  warning = FALSE}
+
+coef_fr<- freelo23 %>% 
+  mutate(base_coeficiente=fct_collapse(base_coeficiente, "Mensual" = "Remuneración mensual del ingresante"),
+         base_coeficiente=fct_collapse(base_coeficiente, "Anual" = "Remuneración anual del ingresante"),
+          base_coeficiente = factor(base_coeficiente, levels =c("Mensual","Anual" )))
+
+
+ coef_fr %>%
+  select(servicio_busqueda,base_coeficiente) %>%
+  filter(servicio_busqueda=="Si") %>% 
+  mutate(cuenta = 1) %>% 
+  group_by(base_coeficiente) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  arrange(-Cuenta)%>% 
+  rename("Remuneración del Ingresante"=base_coeficiente) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+
+```
+
+La mayoría cobra un porcentaje  que va del  20% al 30% de  las remuneraciones mensuales de los ingresantes, como podemos ver en el siguiente cuadro:
+
+
+```{r echo=FALSE , message= FALSE,  warning = FALSE}
+
+## armo las categorias
+
+#freelo21$coeficiente #consulto categorias
+
+n_coef<- freelo23 %>% 
+  select(servicio_busqueda,coeficiente,base_coeficiente) %>% 
+  filter(servicio_busqueda=="Si") %>% 
+  filter(base_coeficiente=="Remuneración mensual del ingresante") %>% 
+  filter(coeficiente>10)%>%  #Filtro entre 0-100 (decido eliminar 1.2,1.5,2.0 y otros, porque no es clara su categorizacion)
+  filter(coeficiente<101) %>% 
+  mutate(coeficiente =case_when(
+      coeficiente < 11 ~ "10%",
+    coeficiente < 21 ~ "20%",
+    coeficiente < 31 ~ "30%",
+        coeficiente < 41 ~ "40%",
+    coeficiente < 51 ~ "50%",
+    coeficiente < 61 ~ "60%",
+    coeficiente < 71 ~ "70%",
+    coeficiente < 81 ~ "80%",
+    coeficiente < 91 ~ "90%",
+    coeficiente <101 ~ "100%",
+    coeficiente = T ~ "Otros"),
+    coeficiente = fct_relevel(coeficiente, c("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%","Otros")))
+  
+# agrupo las categorias en una tabla.
+
+ n_coef<- n_coef %>%
+  select(coeficiente) %>%
+  mutate(cuenta = 1) %>% 
+  group_by(coeficiente) %>%
+  summarise(Cuenta = sum(cuenta)) %>% 
+  #arrange(-Cuenta)%>% 
+  rename("Porcentaje"=coeficiente)
+ 
+ n_coef$TIP <- c("% Sobre la Remuneración Mensual") # al pasar el cursor se ve
+ 
+ #Tabla
+
+n_coef %>% 
+  mutate(Cuenta=text_spec(Cuenta, "html", tooltip=TIP)) %>% 
+    select(Porcentaje,Cuenta) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+
+
+```
+
+
+# Comunidades
+
+R4HR es una comunidad abierta y gratuita. ¿Qué quiere decir esto? Que es es un espacio donde cualquier persona puede participar de la comunidad, sepa de R o no sepa nada, y además no hay que pagar nada por formar parte. También es un espacio seguro en el que cuidamos que haya acoso, insultos o abusos.
+
+Las comunidades son una gran forma de construir conocimiento, de aprender, de generar relaciones, para resolver consultas, y también, por qué no, de hacer buenos amigos. Así que en esta sección nos proponemos ver cuáles son las comunidades más frecuentadas por las personas que participaron de la Encuesta.
+
+```{r comunidad}
+comunidad <- rh23 %>% 
+  select(pais, provincia, comunidad, comunidades)
+
+div <- comunidad %>% 
+  select(comunidad) %>% 
+  filter(!is.na(comunidad)) %>% 
+  group_by(comunidad) %>% 
+  summarise (n = n()) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  arrange(-n)
+
+# Compute the cumulative percentages (top of each rectangle)
+div$ymax <- cumsum(div$freq)
+
+# Compute the bottom of each rectangle
+div$ymin <- c(0, head(div$ymax, n=-1))
+
+# Compute label position
+div$labelPosition <- (div$ymax + div$ymin) / 2
+
+# Compute a good label
+div$label <- paste0(div$comunidad, "\n Cant: ", div$n)
+
+# Make the plot
+ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=comunidad)) +
+  geom_rect() +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(2, 4)) +# Try to remove that to see how to make a pie chart
+  scale_fill_manual(values = c(gris, azul)) +
+  theme_void() +
+  theme(legend.position = "top",
+        panel.background = element_blank(),
+        plot.title.position = "plot",
+        text = element_text(family = "Roboto")) +
+  labs(title = "Participás de Alguna Comunidad",
+       fill = "Respuesta", 
+       caption = fuente)
+```
+
+Del total de respuestas, `r percent(pull(div[2,3]))` (`r pull(div[2,2])`) participan de alguna comunidad. Estas son las comunidades mencionadas.
+
+En la tabla a continuación ponemos todas las comunidades que nos nombraron. No ponemos la cantidad de respuestas que obtuvo cada una porque no es una competencia. 
+
+> Tené en cuenta lo siguiente: Para crear una comunidad sólo hace falta tener ganas de hacerlo. Lo mejor de las comunidades es que hay mucha gente dispuesta a compartir.
+
+```{r comunidades}
+comunidad <- comunidad %>% 
+  filter(!is.na(comunidades), 
+         comunidad == "Si") %>% 
+  select(pais, comunidades)
+
+comunidad <- comunidad %>% 
+  mutate(comunidades = str_replace(comunidades, "whats app|Whatsapp|Wsapp|wsp|whatsapp|grupos de whats app|Grupo de WhatsApp|W.App|grupos wsapp", "WhatsApp"),
+         comunidades = str_replace(comunidades, "Adrha|Adhra|ADHRA|ADRHRA", "ADRHA"),
+         comunidades = str_replace(comunidades, "Sclak de reclutamiento Latam", "Recruitment Latam"),
+         comunidades = str_replace(comunidades, "Data 4 hr|Data4hr|DATA4HR", "Data 4HR"),
+         comunidades = str_replace(comunidades, "Bench.Club|Benchclub|Bench", "Bench Club"),
+         comunidades = str_replace(comunidades, "Aprhnoa", "APRHNOA"),
+         comunidades = str_replace(comunidades, "Bench ClubClub", "Bench Club"),
+         comunidades = str_replace(comunidades, "Aparh", "APARH"),
+         comunidades = str_replace(comunidades, "slack tech recruiters arg|tech.recruiters.arg|Tech Recruiter|Recruitment Latam - en Slack", "Tech Recruiters Arg"),
+         comunidades = str_replace(comunidades, "LinkdIn|Linkedin", "LinkedIn"),
+         comunidades = str_replace(comunidades, "Uba", "UBA"),
+         comunidades = str_replace(comunidades, "Interempresa Cordoba|Recursos Humanos Inter Empresas CBA", "RRHH Interempresas"),
+         comunidades = str_replace(comunidades, "grupo", "Grupo"),
+         comunidades = str_replace(comunidades, "Capital humano Talento femenino", "Capital Humano Talento Femenino"),
+         comunidades = str_replace(comunidades, "Tendencia de Recursos Humanos Bolivia", "Tendencias en Recursos Humanos Bolivia"),
+         comunidades = str_replace(comunidades, "PAS", "People Analytics Spain"),
+         comunidades = str_replace(comunidades, "Grupos de Whatsapp", "Grupos de WhatsApp"),
+         comunidades = str_replace(comunidades, "Grupos Whatsapp", "Grupos de WhatsApp")) 
+
+# # Reemplazo manual de comunidades
+# comunidad[2,2] <- "Grupos de WhatsApp, ADRHA"
+# comunidad[6,2] <- "Bench Club, ADRHA"
+# comunidad[7,2] <- "Grupos de WhatsApp"
+# comunidad[9,2] <- "Grupos en LinkedIn, Grupos de WhatsApp"
+# comunidad[12,2] <- "Grupos de WhatsApp"
+# comunidad[13,2] <- "Grupo de WhatsApp Córdoba"
+# comunidad[14,2] <- "Club de R para RH, Grupo de WhatsApp Córdoba"
+# comunidad[17,2] <- "Club de R para RH"
+# comunidad[21,2] <- "Grupos de WhatsApp, Grupo Local, LinkedIn"
+# comunidad[22,2] <- "Grupos de LinkedIn"
+# comunidad[25,2] <- "Grupos de WhatsApp, LinkedIn"
+# comunidad[28,2] <- "Instagram, Grupos de WhatsApp"
+# comunidad[29,2] <- "ADRHA, Comunidad HR"
+# comunidad[42,2] <- "ADRHA, LinkedIn"
+# comunidad[48,2] <- "Tendencias en Recursos Humanos Bolivia, ASOBOGH"
+# comunidad[53,2] <- "Comunidad HR, Grupos de diferentes Universidades"
+# comunidad[59,2] <- "Grupos de Whatsapp, LinkedIn"
+# comunidad[64,2] <- "Red de RRHH, Grupo de WhatsApp Mar del Plata"
+# comunidad[69,2] <- "Grupo de Colegas RRHH (Consultora MJG) Buenos Aires y Latinoamerica"
+# comunidad[70,2] <- "ADRHA, Grupos Regionales"
+# comunidad[73,2] <- "Club de R para RH, Data 4HR, RRHH Interempresas, Reclutadores CBA"
+# comunidad[80,2] <- "Compensaciones, Bench Club"
+# comunidad[83,2] <- "Total Rewards Compensaciones"
+
+# Separamos las comunidades en columnas y luego pivoteamos para agruparlas
+comunidad %>% 
+  separate(col = comunidades, into = c("c1", "c2", "c3", "c4"), 
+           sep = ",", fill = "right", remove = TRUE) %>% 
+  mutate(across(c("c1", "c2", "c3", "c4"), str_trim)) %>% 
+  pivot_longer(cols = c(c1:c4),
+    names_to = "columna",
+    values_to = "comunidad") %>% 
+  filter(!is.na(comunidad)) %>% 
+  filter(comunidad != "etc") %>% 
+  group_by(pais, comunidad) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  select(-n) %>% 
+  rename("País" = pais,
+         "Comunidad" = comunidad) %>% 
+  kable("html", escape=F) %>% 
+  kable_styling(full_width = TRUE, 
+                bootstrap_options = 
+                  c("striped","hover","condensed" )) %>% 
+  row_spec(0, bold=T, color="white", background = azul)
+```
