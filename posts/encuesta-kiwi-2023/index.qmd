@@ -201,10 +201,20 @@ rh23 <- rh23 %>%
 
 # Introducción
 
+
+:::::: {.columns}
+
+::: {.column}
+![](images/kiwi4.png){width="360"}
+:::
+
+::: {.column}
 [R4HR Club de R para RRHH](https://r4hr.netlify.app/) es una comunidad de aprendizaje de programación de R para profesionales y estudiantes que trabajen o quieran trabajar en RRHH.
 
 Somos una comunidad que usa mayormente datos de ejemplo relacionados con RRHH, y que genera contenido en castellano para eliminar las barreras en el aprendizaje y facilitar que más personas adopten las herramientas de análisis de datos en sus trabajos.
 
+:::
+::::::
 También podés ver todo el contenido que generamos en los siguientes links:
 
 `r icons::fontawesome("google-drive")` [Google Drive](https://drive.google.com/drive/folders/1Qck3z_t6XLRXb2vbN-00931DgdJZ0yse?usp=sharing)
@@ -843,7 +853,6 @@ historico %>%
   scale_y_continuous(limits = c(3000, 8000))
 ```
 
-
 ## Uruguay 🇺🇾
 
 ### Sueldos por Puesto
@@ -967,7 +976,6 @@ historico %>%
   #scale_y_continuous(limits = c(3000, 8000))
 ```
 
-
 ## Argentina 🇦🇷
 
 ### Sueldos por Puesto
@@ -1058,6 +1066,7 @@ rh_ar %>%
        x = NULL, y = NULL,
        caption = fuente)
 ```
+
 ### Sueldos por Rubro
 
 ```{r}
@@ -1085,7 +1094,6 @@ rh_ar %>%
        caption = fuente)
 ```
 
-
 ### Sueldo por Función
 
 ```{r}
@@ -1109,7 +1117,6 @@ rh_ar %>%
        x = NULL, y = NULL,
        caption = fuente)
 ```
-
 
 ### Evolución
 
@@ -1192,6 +1199,7 @@ ggplot(aes(x = genero, y = sueldo_ft, fill = genero)) +
        caption = fuente) +
   theme(legend.position = "none")
 ```
+
 ### Análisis por Género y Puesto
 
 Cuando analizamos la distribución salarial por puesto, apreciamos desigualdades que se repiten de años anteriores. Antes de profundizar, expliquemos brevemente cómo interpretar el gráfico que vemos a continuación que se llama boxplot.
@@ -1292,8 +1300,6 @@ gt(rh_ar %>%
              genero = "Género") %>% 
   tab_options(row_group.background.color = "#A3E4D7")
 ```
-
-
 :::
 
 # Diversidad en RRHH
@@ -1393,7 +1399,6 @@ Del total de **mujeres**, `r lideres_genero[2,3]` respuestas, `r lideres_genero[
 Del total de **hombres**, `r lideres_genero[1, 3]` respuestas, `r lideres_genero[1,2]` ocupan un puesto de liderazgo (`r lideres_genero[1, 4]`).
 
 Con un *p-value* igual a `r round(resultados_test[1,3],3)` podemos afirmar que **`r valor_test`**.
-
 
 A pesar de que en Recursos Humanos en Argentina, las mujeres cis representan la mayor cantidad de empleados bajo relación de dependencia, y además se forman en mayor proporción que los varones en posgrados, proporcionalmente en comparación con los hombres cis, acceden a menos posiciones de liderazgo.
 
@@ -1514,6 +1519,7 @@ div_rh <- div_rh %>%
 unique(div_rh$identidad_genero)
 
 ```
+
 ```{r}
 div_rh <- div_rh %>% 
   mutate(rubro = fct_collapse(rubro, "Agro" = c("Agricultura, plantaciones, otros sectores rurales", "Agricultura; plantaciones,otros sectores rurales"),
@@ -1666,6 +1672,7 @@ div_rh %>%
   theme(legend.position = "none")
   
 ```
+
 Por decirlo amablemente: Hay muchas oportunidades de mejora acá.
 
 Y ahora veamos la cantidad de respuestas según la orientación sexual de las personas que participaron de la encuesta. Dado que en la edición 2021 esta era una sección voluntaria, la cantidad de respuestas va a ser distinta que en la tabla anterior. Además, fue algo que no le preguntamos a las personas que trabajan de manera independiente.
@@ -1693,7 +1700,6 @@ gt(div_rh %>%
 ```
 
 Al menos respecto de esta pregunta, tenemos una mayor representación de diversidades sexuales. Nuevamente, esta muestra no es representativa de todas las personas que trabajan en RRHH, pero esperamos que permita discutir el tema.
-
 
 ```{r diversidad_sexual_plot}
 div_rh %>% 
@@ -1793,8 +1799,8 @@ Sólo 6 personas, un `r scales::percent(pull(puestos_porcentaje[6,3]))`, trabaja
 
 Estos son datos que están sesgados por la muestra de datos, pero la hipótesis inicial que teníamos era que el porcentaje de freelancers sería mayor en este caso.
 
-
 ### Acoso en el trabajo
+
 Ahora comparemos las respuestas a la pregunta **¿Sufriste alguna situación de acoso, abuso o de discriminación en algún trabajo?.** Primero, analicemos los resultados según si la persona pertenece a algún colectivo de diversidad o no.
 
 ```{r discriminacion}
@@ -1901,6 +1907,7 @@ ggplot(machismo_score, aes(y = diversa, x = respuestas, fill = machismo)) +
        x = NULL, y = NULL, caption = fuente,
        fill = "Respuesta:")
 ```
+
 Entre las personas diversas encontramos respuestas con mayor cantidad de respuestas en los extremos, `r percent(pull(machismo_score[4,4]))` no sienten que su entorno sea machista, y un `r percent(pull(machismo_score[6,4]))` sienten que es muy machista.
 
 Entre las personas heteronormativas un `r percent(pull(machismo_score[2,4]))` que su entorno no es tan machista.
@@ -2010,6 +2017,7 @@ gt(kiwi %>%
   tab_source_note(source_note = fuente)
 
 ```
+
 En la actual edición contamos sólo con un 5% de colegas con alguna discapacidad trabajando en RRHH, las cuales son las siguientes:
 
 ```{r}
@@ -2027,7 +2035,6 @@ kiwi %>%
        x = NULL, y = NULL,
        caption = fuente)
 ```
-
 
 Veamos cómo fue la evolución de esta respuesta a lo largo de las ediciones de esta encuesta.
 
@@ -2049,6 +2056,7 @@ disc_rh %>%
        caption = fuente)
 
 ```
+
 ### Puestos
 
 Si bien la mayor cantidad de personas con discapacidad históricamente se desempeñan en roles de Analista, es interesante apreciar que en total tenemos prácticamente la misma cantidad (18) en roles de liderazgo (Gerente, Jefe o Resposable).
@@ -2077,7 +2085,6 @@ gt(disc_rh %>%
 ### Contratación de personas con discapacidad
 
 En esta edición incluimos la pregunta **En lo que va del año, ¿han contratado en tu empresa a personas con discapacidad?** para analizar si las empresas están activamente tomando acciones de inclusión.
-
 
 ```{r}
 kiwi %>% 
@@ -2108,16 +2115,13 @@ contrata_disc <- kiwi %>%
 
 En esta edición, `r pull(contrata_disc[3,2])` (un `r percent(pull(contrata_disc[3,3]))`) afirmaron que en sus empresas han contratado personas con discapacidad en sus organizaciones. Esto nos lleva a la siguientes preguntas: estas compañías, ¿son nacionales o multinacionales?, ¿Qué tamaño tienen las empresas?
 
-
 # Freelancers
 
 En este relevamiento participan colegas que trabajan en relación de dependencia y también de manera freelance. Este es el análisis desarrollado en base a las respuestas de las personas que trabajan de manera independiente o en sus propias empresas.
 
-## Respuestas  por país
+## Respuestas por país
 
-En el caso de las personas freelance, la mayoría de las respuestas obtenidas fueron de Argentina.
-Por eso reiteramos, que los resultados no son representativos de los países. 
-
+En el caso de las personas freelance, la mayoría de las respuestas obtenidas fueron de Argentina. Por eso reiteramos, que los resultados no son representativos de los países.
 
 ```{r  echo=FALSE  }
 paises <- freelo23 %>% 
@@ -2136,10 +2140,9 @@ gt(paises) %>%
 
 ```
 
-## Respuestas por Género 
+## Respuestas por Género
 
-La participación según el género de las personas freelance,  es la siguiente:
-
+La participación según el género de las personas freelance, es la siguiente:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE }
 
@@ -2187,7 +2190,7 @@ ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=genero)) +
 
 ```
 
-Podemos observar que la mayoría de las respuestas fueron de  Mujeres cis, manteniendo la misma tendencia que las personas en relación de dependencia. 
+Podemos observar que la mayoría de las respuestas fueron de Mujeres cis, manteniendo la misma tendencia que las personas en relación de dependencia.
 
 ```{r echo=FALSE, message=FALSE}
 
@@ -2205,11 +2208,9 @@ freelo23 %>%
   row_spec(0, bold=T, color="white", background = azul)
 ```
 
-## Respuestas por Educación 
+## Respuestas por Educación
 
-En esta sección queremos indagar si hay relación entre la formación y la exportacion de los servicios, y si impacta también el tipo de universidad, pública o privada, en dichas prestaciónes. 
-Primero veamos  como se distribuye la muestra entre profesionales provenientes de universidades públicas y privadas de los diferentes paises:
-
+En esta sección queremos indagar si hay relación entre la formación y la exportacion de los servicios, y si impacta también el tipo de universidad, pública o privada, en dichas prestaciónes. Primero veamos como se distribuye la muestra entre profesionales provenientes de universidades públicas y privadas de los diferentes paises:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2230,9 +2231,7 @@ freelo23 %>%
 
 ```
 
-
-Limitandonos al país con mayor cantidad de respuestas, Argentina, en los  siguientes graficos podemos observar  que  la distribución   por tipo de Universidad es  muy pareja , quedando un valor  minimo y poco representativo  para quienen no fueron a la Universidad: 
-
+Limitandonos al país con mayor cantidad de respuestas, Argentina, en los siguientes graficos podemos observar que la distribución por tipo de Universidad es muy pareja , quedando un valor minimo y poco representativo para quienen no fueron a la Universidad:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2292,11 +2291,9 @@ ggplot(educ, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=tipo_universidad)) +
   theme(legend.position = "left")
 ```
 
+Nos interesaba indagar cuál era el nivel de formación de los encuestados.
 
-
-Nos interesaba indagar cuál era el nivel de formación  de los encuestados.
-
-En la siguiente tabla podemos ver que la mayoría tiene estudios  Universitarios completos: 
+En la siguiente tabla podemos ver que la mayoría tiene estudios Universitarios completos:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2313,7 +2310,7 @@ freelo23 %>%
   row_spec(0, bold=T, color="white", background = azul)
 ```
 
-Cuando  analizamos educación, nos resultó  interesante analizar la distribución por género y nivel educativo.
+Cuando analizamos educación, nos resultó interesante analizar la distribución por género y nivel educativo.
 
 En el siguiente gráfico podemos observar que las mujeres tienen mayor nivel de formación que los hombres:
 
@@ -2339,8 +2336,7 @@ freelo23 %>%
 
 ```
 
-
-Veamos los mismos resultados, en terminos relativos: 
+Veamos los mismos resultados, en terminos relativos:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2386,8 +2382,7 @@ ggplot(fr_total, aes(x = nivel_formacion, y = frecuencia, fill = genero)) +
 
 ```
 
-
-Respecto a las  carreras, vemos que la tendencia de las mismas se corresponden con los resultados obtenidos en las personas en relación de dependencia: 
+Respecto a las carreras, vemos que la tendencia de las mismas se corresponden con los resultados obtenidos en las personas en relación de dependencia:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2421,7 +2416,7 @@ ggplot(carrerasfr, aes(x = carrera_grado)) +
 
 ## Respuestas por Condición fiscal
 
-La condidición fiscal de  los encuestados la podemos observar en la siguiente tabla:
+La condidición fiscal de los encuestados la podemos observar en la siguiente tabla:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2456,9 +2451,10 @@ fiscofr %>%
 
 ```
 
-##  Respuestas por Exportación de  Servicio
+## Respuestas por Exportación de Servicio
 
-Como vemos a continuación,  la mayoría no exporta sus servicios: 
+Como vemos a continuación, la mayoría no exporta sus servicios:
+
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
 exp <- freelo23 %>% 
@@ -2496,9 +2492,7 @@ ggplot(exp, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=exporta)) +
        caption = fuente)
 ```
 
-
-Focalizandonos entre quienes exportan, podemos ver cuál es el servicio prestado: 
-
+Focalizandonos entre quienes exportan, podemos ver cuál es el servicio prestado:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2522,9 +2516,7 @@ ggplot(sv_fr, (aes(y = fct_rev(servicio_principal), fill = exporta))) +
        caption = fuente)
 ```
 
-
-En relación a los medios de pago utilizados por quienes exportan, sus respuestas fueron las siguientes: 
-
+En relación a los medios de pago utilizados por quienes exportan, sus respuestas fueron las siguientes:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2563,12 +2555,11 @@ mp_fr %>%
 
 ```
 
-## Respuestas por  Antigüedad
+## Respuestas por Antigüedad
 
 Respecto a los años de experiencia como freelance, podemos observar que la mayoría tiene menos de dos años.
 
-Un interrogante que nos surge en si la inserción en esta modalidad fue una decisión de carrera voluntaria o impulsada por las consecuencias de la pandemia. Carecemos de elementos para responder esa pregunta, por eso nos limitamos a  presentar las respuestas obtenidas: 
-
+Un interrogante que nos surge en si la inserción en esta modalidad fue una decisión de carrera voluntaria o impulsada por las consecuencias de la pandemia. Carecemos de elementos para responder esa pregunta, por eso nos limitamos a presentar las respuestas obtenidas:
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2594,12 +2585,11 @@ ant_fr<- freelo23 %>%
 
 ```
 
-## Respuestas por  Búsquedas
+## Respuestas por Búsquedas
 
-Nos interesa saber cuantos se dedican a realizar trabajos de selección de talentos. 
+Nos interesa saber cuantos se dedican a realizar trabajos de selección de talentos.
 
-Podemos observar que un 66% de las personas encuestadas en esta categoria se dedican a la tarea de búsqueda. 
-
+Podemos observar que un 66% de las personas encuestadas en esta categoria se dedican a la tarea de búsqueda.
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2618,10 +2608,9 @@ rename("Serv. Búsqueda"=servicio_busqueda) %>%
 
 ```
 
-Sabiendo el crecimiento y auge de las búsquedas en el sector de IT, veamos cuál es la participación de las mismas entre las personas que hacen recruiting. 
+Sabiendo el crecimiento y auge de las búsquedas en el sector de IT, veamos cuál es la participación de las mismas entre las personas que hacen recruiting.
 
-Como se observa en el siguiente gráfico, la mayoría de las búsquedas se concentran que en el sector IT. 
-
+Como se observa en el siguiente gráfico, la mayoría de las búsquedas se concentran que en el sector IT.
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2644,14 +2633,11 @@ ggplot(it_fr, (aes(x = busqueda_it, fill = servicio_busqueda))) +
        caption = fuente)
 ```
 
-
 ## Respuesta por garantía de trabajo
 
-Las garantías de reposición de vacantes se refieren a la protección que se brinda a cada cliente en el caso de que la persona contratada   se marche de la empresa.
+Las garantías de reposición de vacantes se refieren a la protección que se brinda a cada cliente en el caso de que la persona contratada se marche de la empresa.
 
-Veamos entre los que  prestan  el servicio de recruiting, quienes ofrecen garantía de permanencia del candidato. 
-
-
+Veamos entre los que prestan el servicio de recruiting, quienes ofrecen garantía de permanencia del candidato.
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2704,9 +2690,7 @@ ggplot(gtia2, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=garantia)) +
 
 ```
 
-
-
-En la siguiente tabla podemos observar que los plazos de garantía suelen ir desde un mes hasta los tres meses. Pero un número importante, no ofrece garantia por el  servicio contratado.
+En la siguiente tabla podemos observar que los plazos de garantía suelen ir desde un mes hasta los tres meses. Pero un número importante, no ofrece garantia por el servicio contratado.
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2723,13 +2707,11 @@ gtia2 <- freelo23 %>%
 
 ## Respuestas por Base de Coeficiente
 
-
 Otro punto para destacar es el precio del servicio de quienes hacen recruiting.
 
-Podemos ver que la gran mayoría  cobra   por dicho servicio, un porcentaje de  remuneración mensual del ingresante, dejando para muy pocos casos el ingreso anual del mismo.
+Podemos ver que la gran mayoría cobra por dicho servicio, un porcentaje de remuneración mensual del ingresante, dejando para muy pocos casos el ingreso anual del mismo.
 
-
-Una pregunta abierta que nos queda, es cuáles son las posiciones mejores pagas para los recruiters. Sin embargo, dicho análisis escapa de los objetivos de la presente encuesta.  
+Una pregunta abierta que nos queda, es cuáles son las posiciones mejores pagas para los recruiters. Sin embargo, dicho análisis escapa de los objetivos de la presente encuesta.
 
 ```{r  echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2754,8 +2736,7 @@ coef_fr<- freelo23 %>%
 
 ```
 
-La mayoría cobra un porcentaje  que va del  20% al 30% de  las remuneraciones mensuales de los ingresantes, como podemos ver en el siguiente cuadro:
-
+La mayoría cobra un porcentaje que va del 20% al 30% de las remuneraciones mensuales de los ingresantes, como podemos ver en el siguiente cuadro:
 
 ```{r echo=FALSE , message= FALSE,  warning = FALSE}
 
@@ -2807,7 +2788,6 @@ n_coef %>%
 
 ```
 
-
 # Comunidades
 
 R4HR es una comunidad abierta y gratuita. ¿Qué quiere decir esto? Que es es un espacio donde cualquier persona puede participar de la comunidad, sepa de R o no sepa nada, y además no hay que pagar nada por formar parte. También es un espacio seguro en el que cuidamos que haya acoso, insultos o abusos.
@@ -2856,7 +2836,7 @@ ggplot(div, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=comunidad)) +
 
 Del total de respuestas, `r percent(pull(div[2,3]))` (`r pull(div[2,2])`) participan de alguna comunidad. Estas son las comunidades mencionadas.
 
-En la tabla a continuación ponemos todas las comunidades que nos nombraron. No ponemos la cantidad de respuestas que obtuvo cada una porque no es una competencia. 
+En la tabla a continuación ponemos todas las comunidades que nos nombraron. No ponemos la cantidad de respuestas que obtuvo cada una porque no es una competencia.
 
 > Tené en cuenta lo siguiente: Para crear una comunidad sólo hace falta tener ganas de hacerlo. Lo mejor de las comunidades es que hay mucha gente dispuesta a compartir.
 
