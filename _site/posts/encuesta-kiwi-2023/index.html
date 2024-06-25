@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,8 +97,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <style>
@@ -102,9 +110,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 background-size: cover;
       }
 </style>
-
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -113,10 +122,10 @@ background-size: cover;
 <body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">R4HR - Club de R para RRHH</span>
     </a>
@@ -128,33 +137,33 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">Quienes Somos</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Quienes Somos</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/r4hr" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/r4hr"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/club_rrhh" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/club_rrhh"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://linkedin.com/company/r4hr" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://linkedin.com/company/r4hr"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.youtube.com/@R4HRClub" rel="" target=""><i class="bi bi-youtube" role="img">
+    <a class="nav-link" href="https://www.youtube.com/@R4HRClub"> <i class="bi bi-youtube" role="img">
 </i> 
- <span class="menu-text">YouTube</span></a>
+<span class="menu-text">YouTube</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -198,7 +207,7 @@ background-size: cover;
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -246,7 +255,7 @@ background-size: cover;
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -256,8 +265,9 @@ background-size: cover;
 
 
 
+
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Liberías -----</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -373,7 +383,7 @@ background-size: cover;
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupar puestos</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rh23 <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
@@ -464,7 +474,7 @@ background-size: cover;
 <p>También te invitamos a seguirnos en todas <a href="https://linktr.ee/r4hrclub">nuestras redes sociales</a>.</p>
 <p>Pueden acceder a los datos crudos desde <a href="https://docs.google.com/spreadsheets/d/1BCcBAoTkaTupBVr5TpLszvXLONNHOtx9zLOK9z_hKGk/edit?usp=sharing">este link</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Respuestas en relación de dependencia</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pais_rd <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
@@ -491,7 +501,7 @@ background-size: cover;
 <p>Una de las barreras a la hora de aprender People Analytics es que en RRHH trabajamos con datos sensibles, por eso es muy difícil acceder a sets de datos para practicar. Por eso, e inspirados en la Encuesta de <a href="https://sysarmy.com/blog/posts/resultados-de-la-encuesta-de-sueldos-2020-2/">SysArmy</a>, una comunidad de tecnología, que entre otras cosas, organiza eventos como <strong>Nerdearla</strong>, hicimos nuestra propia encuesta, relevando datos de profesionales que trabajan tanto bajo relación de dependencia como de manera freelance. El relevamiento de datos lo hicimos entre el 1 y el 31 de octubre de 2023.</p>
 <p>En esta edición recibimos 309 respuestas de 10 países diferentes.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>paises_kiwi <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>n, pais) <span class="sc">%&gt;%</span> </span>
@@ -504,6 +514,7 @@ background-size: cover;
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">general =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <caption>Respuestas por País</caption>
@@ -571,9 +582,10 @@ background-size: cover;
 
 </div>
 </div>
+</div>
 <p>Del total de respuestas recibidas, 280 son de personas que trabajan en relación de dependencia en RRHH, mientras que 29 personas trabajan de manera freelance.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>paises_kiwi <span class="ot">&lt;-</span> paises_kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
@@ -601,7 +613,11 @@ background-size: cover;
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/respuestas_por_modalidad_trabajo-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/respuestas_por_modalidad_trabajo-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Como aclaración, cuando nos referimos a la <strong>identidad de género</strong> de las personas, utilizamos los términos <em>Mujer cis/Mujer trans</em> y <em>Hombre cis/Hombre trans</em> para poder reflejar con mayor precisión el abánico de identidades y percepciones.</p>
@@ -610,8 +626,7 @@ background-size: cover;
 </blockquote>
 <p>Le agradecemos mucho a <a href="https://www.linkedin.com/in/ivana-feldfeber/">Ivana Feldeberg</a> del <a href="https://www.datagenero.org/">Observatorio de Datos con Perspectiva de Género</a> por el asesoramiento en este apartado.</p>
 <p>Dicho esto, las respuestas según la identidad de género de las personas que participaron es la siguiente:</p>
-<div>
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico para relación de dependencia----</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rh23 <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
@@ -695,20 +710,19 @@ background-size: cover;
 <span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Identidad de Género"</span>, </span>
 <span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="index_files/figure-html/respuestas_genero-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="index_files/figure-html/respuestas_genero-2.png" class="img-fluid" width="672"></p>
-</div>
 </div>
 </div>
 </div>
 <p>En resumen, más de dos tercios de las personas que participaron de esta encuesta son mujeres cis. En esta edición no hemos recibidos respuestas de personas trans.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Corregir identidad de género</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>kiwi <span class="ot">&lt;-</span> kiwi <span class="sc">%&gt;%</span> </span>
@@ -731,6 +745,7 @@ background-size: cover;
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">general =</span> fuente, <span class="at">general_title =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <caption>Total de Participantes según Identidad de Género</caption>
@@ -776,6 +791,7 @@ background-size: cover;
 
 </div>
 </div>
+</div>
 </section>
 <section id="análisis-de-remuneraciones" class="level1">
 <h1>Análisis de remuneraciones</h1>
@@ -785,7 +801,7 @@ background-size: cover;
 <p>Por otra parte, la baja cantidad de respuestas recolectadas de otros países fuera de la Argentina, nos hace imposible, hacer un análisis comparado representativo de los puestos. Sin embargo, hay algunos datos interesantes para analizar.</p>
 <p>Primero, analicemos los sueldos de los trabajadores en relación de dependencia, de cuyos países hayamos recibido al menos 3 respuestas.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sueldos_dolar <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(puesto, sueldo_dolar, pais, tipo_contratacion)</span>
@@ -830,12 +846,16 @@ background-size: cover;
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  estiloh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/sueldo_pais1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sueldo_pais1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Similar con lo visto en ediciones pasadas, <em>Uruguay</em> y <em>Chile</em> tienen los salarios de RRHH más altos en la región.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data frame sólo con países de Latinoamérica</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rh23la <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
@@ -863,12 +883,16 @@ background-size: cover;
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  eje_x_n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/sueldo_puesto-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sueldo_puesto-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La posición de <strong>HRBP</strong> presenta una complejidad, que es que dependiendo la empresa el rol es similar al de un Manager, o en otros casos es un Analista Especializado o Senior. Es por eso que encontramos entre los <strong>HRBP</strong> encontramos un suledo mínimo similar al de los analistas y salarios máximos mayores que el de los directores.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(puesto, sueldo_dolar) <span class="sc">%&gt;%</span> </span>
@@ -891,7 +915,7 @@ background-size: cover;
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">cant =</span> <span class="st">"Respuestas"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="odjiodmart" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#odjiodmart table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1332,71 +1356,89 @@ background-size: cover;
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">Mediana salarial por puestos</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Sueldos en U$D</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Posición">Posición</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mínimo">Mínimo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mediana">Mediana</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Máximo">Máximo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Respuestas">Respuestas</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="puesto" class="gt_row gt_center">Director</td>
-<td headers="minimo" class="gt_row gt_right">$1.631</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$2.174</td>
-<td headers="maximo" class="gt_row gt_right">$2.718</td>
-<td headers="cant" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Gerente</td>
-<td headers="minimo" class="gt_row gt_right">$1.495</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$2.640</td>
-<td headers="maximo" class="gt_row gt_right">$4.213</td>
-<td headers="cant" class="gt_row gt_right">22</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Jefe</td>
-<td headers="minimo" class="gt_row gt_right">$1.087</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.895</td>
-<td headers="maximo" class="gt_row gt_right">$4.349</td>
-<td headers="cant" class="gt_row gt_right">18</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Responsable</td>
-<td headers="minimo" class="gt_row gt_right">$734</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.631</td>
-<td headers="maximo" class="gt_row gt_right">$4.050</td>
-<td headers="cant" class="gt_row gt_right">56</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">HRBP</td>
-<td headers="minimo" class="gt_row gt_right">$687</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.468</td>
-<td headers="maximo" class="gt_row gt_right">$4.111</td>
-<td headers="cant" class="gt_row gt_right">20</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Analista</td>
-<td headers="minimo" class="gt_row gt_right">$544</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.174</td>
-<td headers="maximo" class="gt_row gt_right">$4.077</td>
-<td headers="cant" class="gt_row gt_right">118</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Administrativo</td>
-<td headers="minimo" class="gt_row gt_right">$489</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$883</td>
-<td headers="maximo" class="gt_row gt_right">$1.712</td>
-<td headers="cant" class="gt_row gt_right">14</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Pasante</td>
-<td headers="minimo" class="gt_row gt_right">$508</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$508</td>
-<td headers="maximo" class="gt_row gt_right">$508</td>
-<td headers="cant" class="gt_row gt_right">1</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="5">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal">Mediana salarial por puestos</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Sueldos en U$D</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Posición" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Posición</th>
+<th id="Mínimo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mínimo</th>
+<th id="Mediana" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mediana</th>
+<th id="Máximo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Máximo</th>
+<th id="Respuestas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Respuestas</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Director</td>
+<td class="gt_row gt_right" headers="minimo">$1.631</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$2.174</td>
+<td class="gt_row gt_right" headers="maximo">$2.718</td>
+<td class="gt_row gt_right" headers="cant">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Gerente</td>
+<td class="gt_row gt_right" headers="minimo">$1.495</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$2.640</td>
+<td class="gt_row gt_right" headers="maximo">$4.213</td>
+<td class="gt_row gt_right" headers="cant">22</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Jefe</td>
+<td class="gt_row gt_right" headers="minimo">$1.087</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.895</td>
+<td class="gt_row gt_right" headers="maximo">$4.349</td>
+<td class="gt_row gt_right" headers="cant">18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Responsable</td>
+<td class="gt_row gt_right" headers="minimo">$734</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.631</td>
+<td class="gt_row gt_right" headers="maximo">$4.050</td>
+<td class="gt_row gt_right" headers="cant">56</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">HRBP</td>
+<td class="gt_row gt_right" headers="minimo">$687</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.468</td>
+<td class="gt_row gt_right" headers="maximo">$4.111</td>
+<td class="gt_row gt_right" headers="cant">20</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Analista</td>
+<td class="gt_row gt_right" headers="minimo">$544</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.174</td>
+<td class="gt_row gt_right" headers="maximo">$4.077</td>
+<td class="gt_row gt_right" headers="cant">118</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Administrativo</td>
+<td class="gt_row gt_right" headers="minimo">$489</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$883</td>
+<td class="gt_row gt_right" headers="maximo">$1.712</td>
+<td class="gt_row gt_right" headers="cant">14</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Pasante</td>
+<td class="gt_row gt_right" headers="minimo">$508</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$508</td>
+<td class="gt_row gt_right" headers="maximo">$508</td>
+<td class="gt_row gt_right" headers="cant">1</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="5" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -1405,7 +1447,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="anállisis-por-funciones">Anállisis por Funciones</h2>
 <p>Entre las funciones mejor pagas, en esta edición encontrmos en el posio a <strong>Diversidad e Inclusión</strong>, <strong>People Analytics</strong>, y <strong>RSE</strong> cuentan con salarios más altos.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la mediana salarial </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>funcion_rh <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
@@ -1439,12 +1481,16 @@ background-size: cover;
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2500</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/funcion1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/funcion1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Nuevamente es necesario aclarar que hay funciones donde no tenemos mucha cantidad de respuestas como <strong>Controller</strong> donde sólo tenemos un solo caso, pero la diferencia entre las funciones con mayores sueldos, y con los menores sueldos es muy amplia (U$D 946).</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(<span class="fu">between</span>(sueldo_dolar, poda_p05, poda_p95)) <span class="sc">%&gt;%</span> </span>
@@ -1467,7 +1513,7 @@ background-size: cover;
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">cant =</span> <span class="st">"Respuestas"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="siypmiaxaa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#siypmiaxaa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1908,101 +1954,131 @@ background-size: cover;
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">Mediana salarial por Función</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Sueldos en U$D</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Función">Función</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mínimo">Mínimo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mediana">Mediana</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Máximo">Máximo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Respuestas">Respuestas</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="funcion" class="gt_row gt_center">Administración de personal</td>
-<td headers="minimo" class="gt_row gt_right">$544</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.631</td>
-<td headers="maximo" class="gt_row gt_right">$2.718</td>
-<td headers="cant" class="gt_row gt_right">24</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Payroll / Liquidación de sueldos</td>
-<td headers="minimo" class="gt_row gt_right">$489</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.250</td>
-<td headers="maximo" class="gt_row gt_right">$2.297</td>
-<td headers="cant" class="gt_row gt_right">23</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Reclutamiento y selección</td>
-<td headers="minimo" class="gt_row gt_right">$544</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.223</td>
-<td headers="maximo" class="gt_row gt_right">$4.077</td>
-<td headers="cant" class="gt_row gt_right">52</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Generalista</td>
-<td headers="minimo" class="gt_row gt_right">$508</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.618</td>
-<td headers="maximo" class="gt_row gt_right">$4.349</td>
-<td headers="cant" class="gt_row gt_right">100</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Capacitación y desarrollo</td>
-<td headers="minimo" class="gt_row gt_right">$642</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.693</td>
-<td headers="maximo" class="gt_row gt_right">$4.077</td>
-<td headers="cant" class="gt_row gt_right">15</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Compensaciones y beneficios</td>
-<td headers="minimo" class="gt_row gt_right">$815</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.688</td>
-<td headers="maximo" class="gt_row gt_right">$3.729</td>
-<td headers="cant" class="gt_row gt_right">6</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Comunicación interna</td>
-<td headers="minimo" class="gt_row gt_right">$598</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.079</td>
-<td headers="maximo" class="gt_row gt_right">$1.359</td>
-<td headers="cant" class="gt_row gt_right">6</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Controller</td>
-<td headers="minimo" class="gt_row gt_right">$1.395</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.395</td>
-<td headers="maximo" class="gt_row gt_right">$1.395</td>
-<td headers="cant" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Diseño organizacional</td>
-<td headers="minimo" class="gt_row gt_right">$1.000</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.374</td>
-<td headers="maximo" class="gt_row gt_right">$3.805</td>
-<td headers="cant" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Diversidad e inclusión</td>
-<td headers="minimo" class="gt_row gt_right">$1.332</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$2.025</td>
-<td headers="maximo" class="gt_row gt_right">$2.717</td>
-<td headers="cant" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">HRIS / Administración de sistemas de RH</td>
-<td headers="minimo" class="gt_row gt_right">$1.070</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.617</td>
-<td headers="maximo" class="gt_row gt_right">$2.943</td>
-<td headers="cant" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">People analytics</td>
-<td headers="minimo" class="gt_row gt_right">$897</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.943</td>
-<td headers="maximo" class="gt_row gt_right">$3.805</td>
-<td headers="cant" class="gt_row gt_right">7</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">RSE</td>
-<td headers="minimo" class="gt_row gt_right">$1.546</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.888</td>
-<td headers="maximo" class="gt_row gt_right">$2.229</td>
-<td headers="cant" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="funcion" class="gt_row gt_center">Relaciones laborales</td>
-<td headers="minimo" class="gt_row gt_right">$1.033</td>
-<td headers="mediana_salarial" class="gt_row gt_right">$1.139</td>
-<td headers="maximo" class="gt_row gt_right">$2.718</td>
-<td headers="cant" class="gt_row gt_right">5</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="5">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal">Mediana salarial por Función</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Sueldos en U$D</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Función" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Función</th>
+<th id="Mínimo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mínimo</th>
+<th id="Mediana" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mediana</th>
+<th id="Máximo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Máximo</th>
+<th id="Respuestas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Respuestas</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">Administración de personal</td>
+<td class="gt_row gt_right" headers="minimo">$544</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.631</td>
+<td class="gt_row gt_right" headers="maximo">$2.718</td>
+<td class="gt_row gt_right" headers="cant">24</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Payroll / Liquidación de sueldos</td>
+<td class="gt_row gt_right" headers="minimo">$489</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.250</td>
+<td class="gt_row gt_right" headers="maximo">$2.297</td>
+<td class="gt_row gt_right" headers="cant">23</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">Reclutamiento y selección</td>
+<td class="gt_row gt_right" headers="minimo">$544</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.223</td>
+<td class="gt_row gt_right" headers="maximo">$4.077</td>
+<td class="gt_row gt_right" headers="cant">52</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Generalista</td>
+<td class="gt_row gt_right" headers="minimo">$508</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.618</td>
+<td class="gt_row gt_right" headers="maximo">$4.349</td>
+<td class="gt_row gt_right" headers="cant">100</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">Capacitación y desarrollo</td>
+<td class="gt_row gt_right" headers="minimo">$642</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.693</td>
+<td class="gt_row gt_right" headers="maximo">$4.077</td>
+<td class="gt_row gt_right" headers="cant">15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Compensaciones y beneficios</td>
+<td class="gt_row gt_right" headers="minimo">$815</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.688</td>
+<td class="gt_row gt_right" headers="maximo">$3.729</td>
+<td class="gt_row gt_right" headers="cant">6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">Comunicación interna</td>
+<td class="gt_row gt_right" headers="minimo">$598</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.079</td>
+<td class="gt_row gt_right" headers="maximo">$1.359</td>
+<td class="gt_row gt_right" headers="cant">6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Controller</td>
+<td class="gt_row gt_right" headers="minimo">$1.395</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.395</td>
+<td class="gt_row gt_right" headers="maximo">$1.395</td>
+<td class="gt_row gt_right" headers="cant">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">Diseño organizacional</td>
+<td class="gt_row gt_right" headers="minimo">$1.000</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.374</td>
+<td class="gt_row gt_right" headers="maximo">$3.805</td>
+<td class="gt_row gt_right" headers="cant">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Diversidad e inclusión</td>
+<td class="gt_row gt_right" headers="minimo">$1.332</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$2.025</td>
+<td class="gt_row gt_right" headers="maximo">$2.717</td>
+<td class="gt_row gt_right" headers="cant">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">HRIS / Administración de sistemas de RH</td>
+<td class="gt_row gt_right" headers="minimo">$1.070</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.617</td>
+<td class="gt_row gt_right" headers="maximo">$2.943</td>
+<td class="gt_row gt_right" headers="cant">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">People analytics</td>
+<td class="gt_row gt_right" headers="minimo">$897</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.943</td>
+<td class="gt_row gt_right" headers="maximo">$3.805</td>
+<td class="gt_row gt_right" headers="cant">7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="funcion">RSE</td>
+<td class="gt_row gt_right" headers="minimo">$1.546</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.888</td>
+<td class="gt_row gt_right" headers="maximo">$2.229</td>
+<td class="gt_row gt_right" headers="cant">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="funcion">Relaciones laborales</td>
+<td class="gt_row gt_right" headers="minimo">$1.033</td>
+<td class="gt_row gt_right" headers="mediana_salarial">$1.139</td>
+<td class="gt_row gt_right" headers="maximo">$2.718</td>
+<td class="gt_row gt_right" headers="cant">5</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="5" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -2011,7 +2087,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="sueldos-según-el-origen-del-capital">Sueldos según el origen del capital</h2>
 <p>Si dividimos los gráficos según el <em>Origen del Capital</em>, podemos apreciar que en líneas generales, la mediana salarial en empresas multinaciones es mayor que en las empresas nacionales. Solamente en las posiciones de <strong>HRBP</strong> y de <strong>Gerente</strong> se aprecia una paridad salarial respecto del origen del capital de la organización.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(origen_capital, puesto, sueldo_dolar) <span class="sc">%&gt;%</span> </span>
@@ -2033,12 +2109,16 @@ background-size: cover;
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/origen_capital-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/origen_capital-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Veamos este gráfico de otra manera:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>slope_df <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(puesto, sueldo_dolar, origen_capital) <span class="sc">%&gt;%</span> </span>
@@ -2056,7 +2136,11 @@ background-size: cover;
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">Caption =</span> fuente, <span class="at">WiderLabels =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/origen_capital_slope-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/origen_capital_slope-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2064,7 +2148,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="análisis-por-rubro-y-origen-del-capital">Análisis por rubro y origen del capital</h2>
 <p>Para el análisis de los rubros de la empresa, vamos a filtrar los 5 rubros que tienen más respuestas. También eliminaremos del análisis el puesto de Director porque no se encuentra presente en todos los rubros.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>top_5_rubros <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rubro) <span class="sc">%&gt;%</span> </span>
@@ -2101,12 +2185,16 @@ background-size: cover;
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/rubros-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/rubros-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Para ver las medianas salariales por rubros junto con el desvío estándar, pueden ver la siguiente tabla:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rh23la <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(rubro, sueldo_dolar) <span class="sc">%&gt;%</span> </span>
@@ -2124,6 +2212,7 @@ background-size: cover;
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"500px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
@@ -2306,6 +2395,7 @@ background-size: cover;
 
 </div>
 </div>
+</div>
 </section>
 </section>
 <section id="análisis-por-países" class="level1">
@@ -2318,7 +2408,7 @@ background-size: cover;
 <section id="sueldos-por-puesto" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-puesto">Sueldos por Puesto</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preproceso de datos históricos</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rh23la_clean <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
@@ -2405,14 +2495,18 @@ background-size: cover;
 <span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldo-por-función" class="level3">
 <h3 class="anchored" data-anchor-id="sueldo-por-función">Sueldo por Función</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rh_pe <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(funcion) <span class="sc">%&gt;%</span> </span>
@@ -2432,14 +2526,18 @@ background-size: cover;
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldos-por-rubro" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-rubro">Sueldos por Rubro</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rh_pe <span class="sc">%&gt;%</span> </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rubro) <span class="sc">%&gt;%</span> </span>
@@ -2459,7 +2557,11 @@ background-size: cover;
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2467,7 +2569,7 @@ background-size: cover;
 <h3 class="anchored" data-anchor-id="evolución">Evolución</h3>
 <p>La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>historico <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(anio) <span class="sc">%&gt;%</span> </span>
@@ -2488,7 +2590,11 @@ background-size: cover;
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">3000</span>, <span class="dv">8000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2497,7 +2603,7 @@ background-size: cover;
 <section id="sueldos-por-puesto-1" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-puesto-1">Sueldos por Puesto</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Armar un data frame histórico para Uruguay</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rh20uy <span class="ot">&lt;-</span> rh20 <span class="sc">%&gt;%</span> </span>
@@ -2549,14 +2655,18 @@ background-size: cover;
 <span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldo-por-función-1" class="level3">
 <h3 class="anchored" data-anchor-id="sueldo-por-función-1">Sueldo por Función</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rh_uy <span class="sc">%&gt;%</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(funcion) <span class="sc">%&gt;%</span> </span>
@@ -2576,14 +2686,18 @@ background-size: cover;
 <span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldos-por-rubro-1" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-rubro-1">Sueldos por Rubro</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rh_uy <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rubro) <span class="sc">%&gt;%</span> </span>
@@ -2603,7 +2717,11 @@ background-size: cover;
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2611,7 +2729,7 @@ background-size: cover;
 <h3 class="anchored" data-anchor-id="evolución-1">Evolución</h3>
 <p>La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>historico <span class="sc">%&gt;%</span> </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(anio) <span class="sc">%&gt;%</span> </span>
@@ -2631,9 +2749,13 @@ background-size: cover;
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente) <span class="co">#+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<details>
+</div>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(limits = c(3000, 8000))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -2644,7 +2766,7 @@ background-size: cover;
 <section id="sueldos-por-puesto-2" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-puesto-2">Sueldos por Puesto</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preproceso de datos históricos</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>rh23la_clean <span class="ot">&lt;-</span> rh23la <span class="sc">%&gt;%</span> </span>
@@ -2731,14 +2853,18 @@ background-size: cover;
 <span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldos-por-rubro-2" class="level3">
 <h3 class="anchored" data-anchor-id="sueldos-por-rubro-2">Sueldos por Rubro</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rubro <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tecnologías de información"</span>, <span class="st">"Otros"</span>,</span>
@@ -2764,14 +2890,18 @@ background-size: cover;
 <span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="sueldo-por-función-2" class="level3">
 <h3 class="anchored" data-anchor-id="sueldo-por-función-2">Sueldo por Función</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(funcion) <span class="sc">%&gt;%</span> </span>
@@ -2794,7 +2924,11 @@ background-size: cover;
 <span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2802,7 +2936,7 @@ background-size: cover;
 <h3 class="anchored" data-anchor-id="evolución-2">Evolución</h3>
 <p>La evolución de los salarios en moneda local puede ser contraintuitiva dada la baja cantidad de respuestas obtenidas por año.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>historico <span class="sc">%&gt;%</span> </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(anio) <span class="sc">%&gt;%</span> </span>
@@ -2823,14 +2957,18 @@ background-size: cover;
 <span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">600000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="evolución-por-función-vs.-año-anterior" class="level3">
 <h3 class="anchored" data-anchor-id="evolución-por-función-vs.-año-anterior">Evolución por Función vs.&nbsp;Año Anterior</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>historico <span class="sc">%&gt;%</span> </span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(anio <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2022</span>, <span class="dv">2023</span>),</span>
@@ -2868,7 +3006,11 @@ background-size: cover;
 <span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Año"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2876,7 +3018,7 @@ background-size: cover;
 <h3 class="anchored" data-anchor-id="comparación-salarial-por-género">Comparación salarial por género</h3>
 <p>En el gráfico a continuación podemos apreciar que los hombres cis tienen sueldos más altos que las mujeres cis.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genero <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hombre cis"</span>, <span class="st">"Mujer cis"</span>)) <span class="sc">%&gt;%</span> </span>
@@ -2892,7 +3034,11 @@ background-size: cover;
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2904,7 +3050,7 @@ background-size: cover;
 <p>Los puntos que observamos en algunos casos indican valores extremos que denominamos <strong>outliers</strong>. Estos valores son atípicos. Las líneas que salen de las cajas indican los límites a partir de los cuales se determina que un valor es atípico o no.</p>
 <p>Por último, el tamaño de la caja también es importante porque nos da una idea de la <strong>distribución</strong> de los datos. Si la caja es chiquita quiere decir que los sueldos están en un rango de valores cercano. En cambio si la caja, o una de sus mitades, es larga, eso nos indica que los sueldos tienen un rango más amplio, o sea que los sueldos llegan a valores más altos o más bajos dependiendo el caso, y que se alejan más de la mediana.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genero <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hombre cis"</span>, <span class="st">"Mujer cis"</span>),</span>
@@ -2922,12 +3068,16 @@ background-size: cover;
 <span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En el gráfico a continuación podemos apreciar la brecha salarial comparando la mediana salarial para hombres y mujeres en cada posición.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>brecha <span class="ot">&lt;-</span> rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genero <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Mujer cis"</span>, <span class="st">"Hombre cis"</span>), </span>
@@ -2964,11 +3114,15 @@ background-size: cover;
 <span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(rh_ar <span class="sc">%&gt;%</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genero <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hombre cis"</span>, <span class="st">"Mujer cis"</span>), </span>
@@ -3003,7 +3157,7 @@ background-size: cover;
 <span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">row_group.background.color =</span> <span class="st">"#A3E4D7"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="btiblvzysk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#btiblvzysk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3444,112 +3598,132 @@ background-size: cover;
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="6" class="gt_heading gt_title gt_font_normal" style="">Resumen Salarial por Puesto y Género</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">En AR$</td>
-    </tr>
-    <tr class="gt_col_headings gt_spanner_row">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Género">Género</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="Rtas">Rtas</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" scope="colgroup" id="Métricas Salariales">
-        <span class="gt_column_spanner">Métricas Salariales</span>
-      </th>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Min">Min</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mediana">Mediana</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Promedio">Promedio</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Max">Max</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Gerente">Gerente</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Gerente  genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="Gerente  Rtas" class="gt_row gt_right">6</td>
-<td headers="Gerente  Min" class="gt_row gt_right">$700.800</td>
-<td headers="Gerente  Mediana" class="gt_row gt_right">$1.085.000</td>
-<td headers="Gerente  Promedio" class="gt_row gt_right">$1.118.467</td>
-<td headers="Gerente  Max" class="gt_row gt_right">$1.550.000</td></tr>
-    <tr><td headers="Gerente  genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="Gerente  Rtas" class="gt_row gt_right">15</td>
-<td headers="Gerente  Min" class="gt_row gt_right">$550.000</td>
-<td headers="Gerente  Mediana" class="gt_row gt_right">$950.000</td>
-<td headers="Gerente  Promedio" class="gt_row gt_right">$982.133</td>
-<td headers="Gerente  Max" class="gt_row gt_right">$1.400.000</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Jefe">Jefe</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Jefe  genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="Jefe  Rtas" class="gt_row gt_right">4</td>
-<td headers="Jefe  Min" class="gt_row gt_right">$600.000</td>
-<td headers="Jefe  Mediana" class="gt_row gt_right">$810.000</td>
-<td headers="Jefe  Promedio" class="gt_row gt_right">$955.000</td>
-<td headers="Jefe  Max" class="gt_row gt_right">$1.600.000</td></tr>
-    <tr><td headers="Jefe  genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="Jefe  Rtas" class="gt_row gt_right">12</td>
-<td headers="Jefe  Min" class="gt_row gt_right">$400.000</td>
-<td headers="Jefe  Mediana" class="gt_row gt_right">$650.000</td>
-<td headers="Jefe  Promedio" class="gt_row gt_right">$733.191</td>
-<td headers="Jefe  Max" class="gt_row gt_right">$1.500.000</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Responsable">Responsable</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Responsable  genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="Responsable  Rtas" class="gt_row gt_right">15</td>
-<td headers="Responsable  Min" class="gt_row gt_right">$355.185</td>
-<td headers="Responsable  Mediana" class="gt_row gt_right">$780.000</td>
-<td headers="Responsable  Promedio" class="gt_row gt_right">$704.004</td>
-<td headers="Responsable  Max" class="gt_row gt_right">$1.490.000</td></tr>
-    <tr><td headers="Responsable  genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="Responsable  Rtas" class="gt_row gt_right">37</td>
-<td headers="Responsable  Min" class="gt_row gt_right">$270.000</td>
-<td headers="Responsable  Mediana" class="gt_row gt_right">$560.000</td>
-<td headers="Responsable  Promedio" class="gt_row gt_right">$618.457</td>
-<td headers="Responsable  Max" class="gt_row gt_right">$1.400.000</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="HRBP">HRBP</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="HRBP  genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="HRBP  Rtas" class="gt_row gt_right">3</td>
-<td headers="HRBP  Min" class="gt_row gt_right">$530.000</td>
-<td headers="HRBP  Mediana" class="gt_row gt_right">$1.500.000</td>
-<td headers="HRBP  Promedio" class="gt_row gt_right">$1.180.892</td>
-<td headers="HRBP  Max" class="gt_row gt_right">$1.512.675</td></tr>
-    <tr><td headers="HRBP  genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="HRBP  Rtas" class="gt_row gt_right">12</td>
-<td headers="HRBP  Min" class="gt_row gt_right">$300.000</td>
-<td headers="HRBP  Mediana" class="gt_row gt_right">$525.000</td>
-<td headers="HRBP  Promedio" class="gt_row gt_right">$558.500</td>
-<td headers="HRBP  Max" class="gt_row gt_right">$930.000</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Analista">Analista</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Analista  genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="Analista  Rtas" class="gt_row gt_right">27</td>
-<td headers="Analista  Min" class="gt_row gt_right">$220.000</td>
-<td headers="Analista  Mediana" class="gt_row gt_right">$420.000</td>
-<td headers="Analista  Promedio" class="gt_row gt_right">$522.642</td>
-<td headers="Analista  Max" class="gt_row gt_right">$1.400.000</td></tr>
-    <tr><td headers="Analista  genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="Analista  Rtas" class="gt_row gt_right">85</td>
-<td headers="Analista  Min" class="gt_row gt_right">$200.000</td>
-<td headers="Analista  Mediana" class="gt_row gt_right">$434.000</td>
-<td headers="Analista  Promedio" class="gt_row gt_right">$496.925</td>
-<td headers="Analista  Max" class="gt_row gt_right">$1.500.000</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="6">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="6" class="gt_heading gt_title gt_font_normal">Resumen Salarial por Puesto y Género</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">En AR$</th>
+</tr>
+<tr class="header gt_col_headings gt_spanner_row">
+<th rowspan="2" id="Género" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Género</th>
+<th rowspan="2" id="Rtas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Rtas</th>
+<th colspan="4" id="Métricas Salariales" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Métricas Salariales</span></th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Min</th>
+<th id="Mediana" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mediana</th>
+<th id="Promedio" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Promedio</th>
+<th id="Max" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Max</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="6" id="Gerente" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Gerente</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_center" headers="Gerente  genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="Gerente  Rtas">6</td>
+<td class="gt_row gt_right" headers="Gerente  Min">$700.800</td>
+<td class="gt_row gt_right" headers="Gerente  Mediana">$1.085.000</td>
+<td class="gt_row gt_right" headers="Gerente  Promedio">$1.118.467</td>
+<td class="gt_row gt_right" headers="Gerente  Max">$1.550.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gerente  genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="Gerente  Rtas">15</td>
+<td class="gt_row gt_right" headers="Gerente  Min">$550.000</td>
+<td class="gt_row gt_right" headers="Gerente  Mediana">$950.000</td>
+<td class="gt_row gt_right" headers="Gerente  Promedio">$982.133</td>
+<td class="gt_row gt_right" headers="Gerente  Max">$1.400.000</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="6" id="Jefe" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Jefe</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_center" headers="Jefe  genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="Jefe  Rtas">4</td>
+<td class="gt_row gt_right" headers="Jefe  Min">$600.000</td>
+<td class="gt_row gt_right" headers="Jefe  Mediana">$810.000</td>
+<td class="gt_row gt_right" headers="Jefe  Promedio">$955.000</td>
+<td class="gt_row gt_right" headers="Jefe  Max">$1.600.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Jefe  genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="Jefe  Rtas">12</td>
+<td class="gt_row gt_right" headers="Jefe  Min">$400.000</td>
+<td class="gt_row gt_right" headers="Jefe  Mediana">$650.000</td>
+<td class="gt_row gt_right" headers="Jefe  Promedio">$733.191</td>
+<td class="gt_row gt_right" headers="Jefe  Max">$1.500.000</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="6" id="Responsable" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Responsable</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_center" headers="Responsable  genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="Responsable  Rtas">15</td>
+<td class="gt_row gt_right" headers="Responsable  Min">$355.185</td>
+<td class="gt_row gt_right" headers="Responsable  Mediana">$780.000</td>
+<td class="gt_row gt_right" headers="Responsable  Promedio">$704.004</td>
+<td class="gt_row gt_right" headers="Responsable  Max">$1.490.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Responsable  genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="Responsable  Rtas">37</td>
+<td class="gt_row gt_right" headers="Responsable  Min">$270.000</td>
+<td class="gt_row gt_right" headers="Responsable  Mediana">$560.000</td>
+<td class="gt_row gt_right" headers="Responsable  Promedio">$618.457</td>
+<td class="gt_row gt_right" headers="Responsable  Max">$1.400.000</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="6" id="HRBP" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">HRBP</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_center" headers="HRBP  genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="HRBP  Rtas">3</td>
+<td class="gt_row gt_right" headers="HRBP  Min">$530.000</td>
+<td class="gt_row gt_right" headers="HRBP  Mediana">$1.500.000</td>
+<td class="gt_row gt_right" headers="HRBP  Promedio">$1.180.892</td>
+<td class="gt_row gt_right" headers="HRBP  Max">$1.512.675</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="HRBP  genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="HRBP  Rtas">12</td>
+<td class="gt_row gt_right" headers="HRBP  Min">$300.000</td>
+<td class="gt_row gt_right" headers="HRBP  Mediana">$525.000</td>
+<td class="gt_row gt_right" headers="HRBP  Promedio">$558.500</td>
+<td class="gt_row gt_right" headers="HRBP  Max">$930.000</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="6" id="Analista" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Analista</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_center" headers="Analista  genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="Analista  Rtas">27</td>
+<td class="gt_row gt_right" headers="Analista  Min">$220.000</td>
+<td class="gt_row gt_right" headers="Analista  Mediana">$420.000</td>
+<td class="gt_row gt_right" headers="Analista  Promedio">$522.642</td>
+<td class="gt_row gt_right" headers="Analista  Max">$1.400.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Analista  genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="Analista  Rtas">85</td>
+<td class="gt_row gt_right" headers="Analista  Min">$200.000</td>
+<td class="gt_row gt_right" headers="Analista  Mediana">$434.000</td>
+<td class="gt_row gt_right" headers="Analista  Promedio">$496.925</td>
+<td class="gt_row gt_right" headers="Analista  Max">$1.500.000</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="6" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -3564,7 +3738,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="liderazgo-y-género-en-rrhh">Liderazgo y género en RRHH</h2>
 <p>Analicemos las proporciones de hombres y de mujeres en puesto de liderazgo.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: Test hipotesis liderazgo</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hide</span></span>
@@ -3625,7 +3799,7 @@ background-size: cover;
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>lideres_genero <span class="sc">%&gt;%</span> </span>
@@ -3649,7 +3823,11 @@ background-size: cover;
 <span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/Gráfico de proporción de líderes por género-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/Gráfico de proporción de líderes por género-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>De acuerdo a las respuestas recolectadas <strong>2 de cada 3</strong> participantes son mujeres.</p>
@@ -3662,7 +3840,7 @@ background-size: cover;
 <section id="diversidad-en-rrhh-1" class="level2">
 <h2 class="anchored" data-anchor-id="diversidad-en-rrhh-1">Diversidad en RRHH</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar los datos 2020 y 2021</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>k20 <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="st">"1833xEeRIy1DLke4eHKfEThjjgx01YGX9yQaU6vv15K0"</span>, </span>
@@ -3743,7 +3921,7 @@ background-size: cover;
 </div>
 <p>En la edición 2020, nos referíamos a la identidad de género de una manera diferente a la que lo hicimos en la edición del 2021, así que la siguiente parte consiste en consolidar los datos de todas las ediciones.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar las distintas formas de referirse al género</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(div_rh<span class="sc">$</span>identidad_genero)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3772,7 +3950,7 @@ background-size: cover;
 <p>El sufijo <em>cis</em> hace referencia a las personas que se identifican con el mismo género asignado al nacer.</p>
 </blockquote>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="ot">&lt;-</span> div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">identidad_genero =</span> </span>
@@ -3803,7 +3981,7 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="ot">&lt;-</span> div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rubro =</span> <span class="fu">fct_collapse</span>(rubro, <span class="st">"Agro"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Agricultura, plantaciones, otros sectores rurales"</span>, <span class="st">"Agricultura; plantaciones,otros sectores rurales"</span>),</span>
@@ -3910,7 +4088,7 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
 <p>En este punto creo que es importante aclarar que entre una edición y otra de la Encuesta KIWI hicimos cambios en el diseño del formulario, y por ejemplo, las preguntas sobre orientación sexual sólo se las hicimos a las personas que trabajan en relación de dependencia, con lo cual no tenemos una continuidad en los datos sobre el total de las personas que participaron, especialmente de quienes trabajan de manera freelance.</p>
 <p>En primer lugar, veamos cuántas personas trabajan en RRHH según su identidad de género:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
@@ -3932,7 +4110,7 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
 <span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">identidad_genero =</span> <span class="st">"Identidad de Género"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="nddjtjwjkl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#nddjtjwjkl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4373,65 +4551,74 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Identidad de Género por Edición</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Identidad de Género">Identidad de Género</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2020">2020</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2021">2021</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2022">2022</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2023">2023</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Porcentaje">Porcentaje</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="identidad_genero" class="gt_row gt_center">Mujer cis</td>
-<td headers="2020" class="gt_row gt_right">518</td>
-<td headers="2021" class="gt_row gt_right">403</td>
-<td headers="2022" class="gt_row gt_right">261</td>
-<td headers="2023" class="gt_row gt_right">229</td>
-<td headers="Total" class="gt_row gt_right">1411</td>
-<td headers="Porcentaje" class="gt_row gt_right">70.2%</td></tr>
-    <tr><td headers="identidad_genero" class="gt_row gt_center">Hombre cis</td>
-<td headers="2020" class="gt_row gt_right">233</td>
-<td headers="2021" class="gt_row gt_right">171</td>
-<td headers="2022" class="gt_row gt_right">100</td>
-<td headers="2023" class="gt_row gt_right">76</td>
-<td headers="Total" class="gt_row gt_right">580</td>
-<td headers="Porcentaje" class="gt_row gt_right">28.8%</td></tr>
-    <tr><td headers="identidad_genero" class="gt_row gt_center">Prefiero no responder</td>
-<td headers="2020" class="gt_row gt_right">2</td>
-<td headers="2021" class="gt_row gt_right">6</td>
-<td headers="2022" class="gt_row gt_right">0</td>
-<td headers="2023" class="gt_row gt_right">4</td>
-<td headers="Total" class="gt_row gt_right">12</td>
-<td headers="Porcentaje" class="gt_row gt_right">0.6%</td></tr>
-    <tr><td headers="identidad_genero" class="gt_row gt_center">Género diverso</td>
-<td headers="2020" class="gt_row gt_right">4</td>
-<td headers="2021" class="gt_row gt_right">2</td>
-<td headers="2022" class="gt_row gt_right">2</td>
-<td headers="2023" class="gt_row gt_right">0</td>
-<td headers="Total" class="gt_row gt_right">8</td>
-<td headers="Porcentaje" class="gt_row gt_right">0.4%</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="7">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Identidad de Género por Edición</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Identidad de Género" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Identidad de Género</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2021" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2021</th>
+<th id="2022" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2022</th>
+<th id="2023" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2023</th>
+<th id="Total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total</th>
+<th id="Porcentaje" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Porcentaje</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="identidad_genero">Mujer cis</td>
+<td class="gt_row gt_right" headers="2020">518</td>
+<td class="gt_row gt_right" headers="2021">403</td>
+<td class="gt_row gt_right" headers="2022">261</td>
+<td class="gt_row gt_right" headers="2023">229</td>
+<td class="gt_row gt_right" headers="Total">1411</td>
+<td class="gt_row gt_right" headers="Porcentaje">70.2%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="identidad_genero">Hombre cis</td>
+<td class="gt_row gt_right" headers="2020">233</td>
+<td class="gt_row gt_right" headers="2021">171</td>
+<td class="gt_row gt_right" headers="2022">100</td>
+<td class="gt_row gt_right" headers="2023">76</td>
+<td class="gt_row gt_right" headers="Total">580</td>
+<td class="gt_row gt_right" headers="Porcentaje">28.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="identidad_genero">Prefiero no responder</td>
+<td class="gt_row gt_right" headers="2020">2</td>
+<td class="gt_row gt_right" headers="2021">6</td>
+<td class="gt_row gt_right" headers="2022">0</td>
+<td class="gt_row gt_right" headers="2023">4</td>
+<td class="gt_row gt_right" headers="Total">12</td>
+<td class="gt_row gt_right" headers="Porcentaje">0.6%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="identidad_genero">Género diverso</td>
+<td class="gt_row gt_right" headers="2020">4</td>
+<td class="gt_row gt_right" headers="2021">2</td>
+<td class="gt_row gt_right" headers="2022">2</td>
+<td class="gt_row gt_right" headers="2023">0</td>
+<td class="gt_row gt_right" headers="Total">8</td>
+<td class="gt_row gt_right" headers="Porcentaje">0.4%</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="even">
+<td colspan="7" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
 <p>Según la muestra que obtuvimos, <strong>menos del 1% de las personas que trabajan en RRHH son personas no binarias.</strong> Como para quede más claro veamóslo con un gráfico.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(identidad_genero) <span class="sc">%&gt;%</span> </span>
@@ -4452,14 +4639,18 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
 <span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/diversidad_2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/diversidad_2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Por decirlo amablemente: Hay muchas oportunidades de mejora acá.</p>
 <p>Y ahora veamos la cantidad de respuestas según la orientación sexual de las personas que participaron de la encuesta. Dado que en la edición 2021 esta era una sección voluntaria, la cantidad de respuestas va a ser distinta que en la tabla anterior. Además, fue algo que no le preguntamos a las personas que trabajan de manera independiente.</p>
 <p>La pregunta que hicimos fue <strong>¿Te identificás como LGBTIQ+ (lesbiana, gay, bisexual, transexual, otra minoría sexual)?.</strong> He aquí las respuestas:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(diversidad_sexual)) <span class="sc">%&gt;%</span> </span>
@@ -4478,7 +4669,7 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
 <span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">diversidad_sexual =</span> <span class="st">"Eres de algún</span><span class="sc">\n</span><span class="st">Colectivo LBGTQ+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="bfybnfrvuz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bfybnfrvuz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4919,60 +5110,66 @@ Levels: Mujer cis Género diverso Hombre cis Prefiero no responder</code></pre>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Diversidad Sexual por Edición</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Eres de algún
-Colectivo LBGTQ+">Eres de algún
-Colectivo LBGTQ+</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2020">2020</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2021">2021</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2022">2022</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2023">2023</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Porcentaje">Porcentaje</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="diversidad_sexual" class="gt_row gt_left">No</td>
-<td headers="2020" class="gt_row gt_right">702</td>
-<td headers="2021" class="gt_row gt_right">335</td>
-<td headers="2022" class="gt_row gt_right">197</td>
-<td headers="2023" class="gt_row gt_right">189</td>
-<td headers="Total" class="gt_row gt_right">1423</td>
-<td headers="Porcentaje" class="gt_row gt_right">91.7%</td></tr>
-    <tr><td headers="diversidad_sexual" class="gt_row gt_left">Si</td>
-<td headers="2020" class="gt_row gt_right">41</td>
-<td headers="2021" class="gt_row gt_right">33</td>
-<td headers="2022" class="gt_row gt_right">16</td>
-<td headers="2023" class="gt_row gt_right">9</td>
-<td headers="Total" class="gt_row gt_right">99</td>
-<td headers="Porcentaje" class="gt_row gt_right">6.4%</td></tr>
-    <tr><td headers="diversidad_sexual" class="gt_row gt_left">Prefiero no responder</td>
-<td headers="2020" class="gt_row gt_right">14</td>
-<td headers="2021" class="gt_row gt_right">9</td>
-<td headers="2022" class="gt_row gt_right">3</td>
-<td headers="2023" class="gt_row gt_right">4</td>
-<td headers="Total" class="gt_row gt_right">30</td>
-<td headers="Porcentaje" class="gt_row gt_right">1.9%</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="7">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Diversidad Sexual por Edición</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Eres de algún
+Colectivo LBGTQ+" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Eres de algún Colectivo LBGTQ+</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2021" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2021</th>
+<th id="2022" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2022</th>
+<th id="2023" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2023</th>
+<th id="Total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total</th>
+<th id="Porcentaje" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Porcentaje</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="diversidad_sexual">No</td>
+<td class="gt_row gt_right" headers="2020">702</td>
+<td class="gt_row gt_right" headers="2021">335</td>
+<td class="gt_row gt_right" headers="2022">197</td>
+<td class="gt_row gt_right" headers="2023">189</td>
+<td class="gt_row gt_right" headers="Total">1423</td>
+<td class="gt_row gt_right" headers="Porcentaje">91.7%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="diversidad_sexual">Si</td>
+<td class="gt_row gt_right" headers="2020">41</td>
+<td class="gt_row gt_right" headers="2021">33</td>
+<td class="gt_row gt_right" headers="2022">16</td>
+<td class="gt_row gt_right" headers="2023">9</td>
+<td class="gt_row gt_right" headers="Total">99</td>
+<td class="gt_row gt_right" headers="Porcentaje">6.4%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="diversidad_sexual">Prefiero no responder</td>
+<td class="gt_row gt_right" headers="2020">14</td>
+<td class="gt_row gt_right" headers="2021">9</td>
+<td class="gt_row gt_right" headers="2022">3</td>
+<td class="gt_row gt_right" headers="2023">4</td>
+<td class="gt_row gt_right" headers="Total">30</td>
+<td class="gt_row gt_right" headers="Porcentaje">1.9%</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="7" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
 <p>Al menos respecto de esta pregunta, tenemos una mayor representación de diversidades sexuales. Nuevamente, esta muestra no es representativa de todas las personas que trabajan en RRHH, pero esperamos que permita discutir el tema.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(diversidad_sexual)) <span class="sc">%&gt;%</span></span>
@@ -4993,7 +5190,11 @@ Colectivo LBGTQ+</th>
 <span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(azul, gris, verde))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/diversidad_sexual_plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/diversidad_sexual_plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>El tamaño de las barras reflejan la proporción de cada respuesta según la identidad de género de cada participante. Por ejemplo, en el caso de las personas que se identifican como <em>Hombres cis</em>, 51 personas se identifican como parte de la comunidad LGBTIQ+ (un 11.4%). 45 <em>Mujeres cis</em> (4.1%) pertenecen a este colectivo.</p>
@@ -5002,7 +5203,7 @@ Colectivo LBGTQ+</th>
 <h3 class="anchored" data-anchor-id="en-qué-rubros-se-da-la-mayor-tasa-de-diversidad">En qué rubros se da la mayor tasa de diversidad</h3>
 <p>Ahora analicemos los rubros. Dado que no tenemos muchas personas con diversas identidades de género, listaremos todos los rubros.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(identidad_genero <span class="sc">==</span> <span class="st">"Género diverso"</span>) <span class="sc">%&gt;%</span> </span>
@@ -5013,7 +5214,7 @@ Colectivo LBGTQ+</th>
 <span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="cloqcvwzmx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cloqcvwzmx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5454,39 +5655,53 @@ Colectivo LBGTQ+</th>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Rubro">Rubro</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Respuestas">Respuestas</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Rubro" class="gt_row gt_left">Consultoría Freelance</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Alimentos</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Construcción</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Consultoría</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Correos</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Servicios profesionales</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Total</td>
-<td headers="Respuestas" class="gt_row gt_right">8</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Rubro" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Rubro</th>
+<th id="Respuestas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Respuestas</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Consultoría Freelance</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Alimentos</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Construcción</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Consultoría</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Correos</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Servicios profesionales</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Total</td>
+<td class="gt_row gt_right" headers="Respuestas">8</td>
+</tr>
+</tbody>
 </table>
+
+</div>
 </div>
 </div>
 </div>
 <p>Ahora, repliquemos el análisis con la pregunta <strong>¿Te identificás como LGBTIQ+ (lesbiana, gay, bisexual, transexual, otra minoría sexual)?.</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
@@ -5498,7 +5713,7 @@ Colectivo LBGTQ+</th>
 <span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="wqnmiimpve" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#wqnmiimpve table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5939,65 +6154,111 @@ Colectivo LBGTQ+</th>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Rubro">Rubro</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Respuestas">Respuestas</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Rubro" class="gt_row gt_left">Tecnología</td>
-<td headers="Respuestas" class="gt_row gt_right">17</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Consultoría</td>
-<td headers="Respuestas" class="gt_row gt_right">13</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Otros</td>
-<td headers="Respuestas" class="gt_row gt_right">10</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Bancos y Finanzas</td>
-<td headers="Respuestas" class="gt_row gt_right">9</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Construcción</td>
-<td headers="Respuestas" class="gt_row gt_right">5</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Consultoría Freelance</td>
-<td headers="Respuestas" class="gt_row gt_right">5</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Servicios de salud</td>
-<td headers="Respuestas" class="gt_row gt_right">5</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Alimentos</td>
-<td headers="Respuestas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Hotelería</td>
-<td headers="Respuestas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Agro</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Comercio</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Metalurgia</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Servicios profesionales</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Transporte</td>
-<td headers="Respuestas" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Correos</td>
-<td headers="Respuestas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Función pública</td>
-<td headers="Respuestas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Oil &amp; Gas</td>
-<td headers="Respuestas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Servicios Públicos</td>
-<td headers="Respuestas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Autopartista</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Educación</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Industrias químicas</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Minería</td>
-<td headers="Respuestas" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="Rubro" class="gt_row gt_left">Total</td>
-<td headers="Respuestas" class="gt_row gt_right">99</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Rubro" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Rubro</th>
+<th id="Respuestas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Respuestas</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Tecnología</td>
+<td class="gt_row gt_right" headers="Respuestas">17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Consultoría</td>
+<td class="gt_row gt_right" headers="Respuestas">13</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Otros</td>
+<td class="gt_row gt_right" headers="Respuestas">10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Bancos y Finanzas</td>
+<td class="gt_row gt_right" headers="Respuestas">9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Construcción</td>
+<td class="gt_row gt_right" headers="Respuestas">5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Consultoría Freelance</td>
+<td class="gt_row gt_right" headers="Respuestas">5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Servicios de salud</td>
+<td class="gt_row gt_right" headers="Respuestas">5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Alimentos</td>
+<td class="gt_row gt_right" headers="Respuestas">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Hotelería</td>
+<td class="gt_row gt_right" headers="Respuestas">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Agro</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Comercio</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Metalurgia</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Servicios profesionales</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Transporte</td>
+<td class="gt_row gt_right" headers="Respuestas">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Correos</td>
+<td class="gt_row gt_right" headers="Respuestas">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Función pública</td>
+<td class="gt_row gt_right" headers="Respuestas">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Oil &amp; Gas</td>
+<td class="gt_row gt_right" headers="Respuestas">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Servicios Públicos</td>
+<td class="gt_row gt_right" headers="Respuestas">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Autopartista</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Educación</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Industrias químicas</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Rubro">Minería</td>
+<td class="gt_row gt_right" headers="Respuestas">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Rubro">Total</td>
+<td class="gt_row gt_right" headers="Respuestas">99</td>
+</tr>
+</tbody>
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -6007,7 +6268,7 @@ Colectivo LBGTQ+</th>
 <h3 class="anchored" data-anchor-id="qué-roles-ejercen-las-personas-diversas">Qué roles ejercen las personas diversas</h3>
 <p>Por último, veamos en qué roles se desempeñan las personas que pertenecen a algún colectivo de diversidad dentro de RRHH.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un flag para posiciones de manager (Gerente, Jefe o Responsable)</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>div_rh <span class="ot">&lt;-</span> div_rh <span class="sc">%&gt;%</span> </span>
@@ -6045,7 +6306,11 @@ Colectivo LBGTQ+</th>
 <span id="cb50-34"><a href="#cb50-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/roles-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/roles-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Algo interesante de este gráfico es que un 41% ocupan algún puesto jerárquico (definidos como <code>Gerente</code>, <code>Jefe</code>, o <code>Responsable</code>) lo cual nos parece algo positivo.</p>
@@ -6056,7 +6321,7 @@ Colectivo LBGTQ+</th>
 <h3 class="anchored" data-anchor-id="acoso-en-el-trabajo">Acoso en el trabajo</h3>
 <p>Ahora comparemos las respuestas a la pregunta <strong>¿Sufriste alguna situación de acoso, abuso o de discriminación en algún trabajo?.</strong> Primero, analicemos los resultados según si la persona pertenece a algún colectivo de diversidad o no.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sufrio_acoso =</span> </span>
@@ -6088,13 +6353,17 @@ Colectivo LBGTQ+</th>
 <span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/discriminacion-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/discriminacion-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>El 40% de las personas diversas, ya sea por su identidad de género o por su orientación sexual sufrieron alguna situación de acoso, abuso, o discriminación, frente a un 28% de las personas cis y heterosexuales.</p>
 <p>Ahora desagreguemos el gráfico anterior según la identidad de género de las personas:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>div_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sufrio_acoso =</span> <span class="fu">fct_collapse</span>(sufrio_acoso,</span>
@@ -6124,7 +6393,11 @@ Colectivo LBGTQ+</th>
 <span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En este último gráfico podemos apreciar las distintas realidades de las personas. <strong>Un tercio de las mujeres cis</strong> <strong>sufrió al menos una vez alguna situación de acoso, abuso o discriminación</strong> versus un 15% de los hombres cis. Más allá de la cantidad de respuestas recibidas, las tendencias son claras.</p>
@@ -6133,7 +6406,7 @@ Colectivo LBGTQ+</th>
 <h3 class="anchored" data-anchor-id="machismo">Machismo</h3>
 <p>La siguiente pregunta, <strong>¿Sentís que tu entorno laboral es machista?</strong>, la realizamos por primera vez en 2022, así que en primer lugar comparemos los resultados en función de si las personas son diversas o no.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos un dataframe específico para este análisis.</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>machismo <span class="ot">&lt;-</span> div_rh <span class="sc">%&gt;%</span> </span>
@@ -6168,14 +6441,18 @@ Colectivo LBGTQ+</th>
 <span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Respuesta:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/macho_1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/macho_1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Entre las personas diversas encontramos respuestas con mayor cantidad de respuestas en los extremos, 46% no sienten que su entorno sea machista, y un 27% sienten que es muy machista.</p>
 <p>Entre las personas heteronormativas un 44% que su entorno no es tan machista.</p>
 <p>Analizando las respuestas según la identidad de género, no sorprende que las mujeres tengan una percepción mayor que los hombres sobre si el entorno laboral es machista.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>machismo_genero <span class="ot">&lt;-</span> machismo <span class="sc">%&gt;%</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(identidad_genero <span class="sc">!=</span> <span class="st">"Mujer trans"</span>) <span class="sc">%&gt;%</span> </span>
@@ -6198,7 +6475,11 @@ Colectivo LBGTQ+</th>
 <span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Respuesta:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -6206,7 +6487,7 @@ Colectivo LBGTQ+</th>
 <section id="discapacidad" class="level2">
 <h2 class="anchored" data-anchor-id="discapacidad">Discapacidad</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>disc_rh <span class="ot">&lt;-</span> div_rh <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(discapacidad)) <span class="sc">%&gt;%</span> </span>
@@ -6220,7 +6501,7 @@ Colectivo LBGTQ+</th>
 </div>
 <p>Veamos cuántas personas con alguna discapacidad participaron de la edición actual:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="ot">&lt;-</span> kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">discapacidad =</span> </span>
@@ -6267,11 +6548,15 @@ Colectivo LBGTQ+</th>
 <span id="cb56-43"><a href="#cb56-43" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(discapacidad)) <span class="sc">%&gt;%</span> </span>
@@ -6292,7 +6577,7 @@ Colectivo LBGTQ+</th>
 <span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="zcauiwwslu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#zcauiwwslu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6733,41 +7018,47 @@ Colectivo LBGTQ+</th>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style=""><strong>Respuestas según discapacidad</strong></td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Relación de Dependencia</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Con Discapacidad">Con Discapacidad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Respuestas">Respuestas</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Porcentaje">Porcentaje</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="tiene_discapacidad" class="gt_row gt_center">No</td>
-<td headers="Respuestas" class="gt_row gt_right">189</td>
-<td headers="Porcentaje" class="gt_row gt_right">95.0%</td></tr>
-    <tr><td headers="tiene_discapacidad" class="gt_row gt_center">Si</td>
-<td headers="Respuestas" class="gt_row gt_right">10</td>
-<td headers="Porcentaje" class="gt_row gt_right">5.0%</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="3">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="3" class="gt_heading gt_title gt_font_normal"><strong>Respuestas según discapacidad</strong></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Relación de Dependencia</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Con Discapacidad" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Con Discapacidad</th>
+<th id="Respuestas" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Respuestas</th>
+<th id="Porcentaje" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Porcentaje</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="tiene_discapacidad">No</td>
+<td class="gt_row gt_right" headers="Respuestas">189</td>
+<td class="gt_row gt_right" headers="Porcentaje">95.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="tiene_discapacidad">Si</td>
+<td class="gt_row gt_right" headers="Respuestas">10</td>
+<td class="gt_row gt_right" headers="Porcentaje">5.0%</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="3" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
 <p>En la actual edición contamos sólo con un 5% de colegas con alguna discapacidad trabajando en RRHH, las cuales son las siguientes:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(discapacidad),</span>
@@ -6784,12 +7075,16 @@ Colectivo LBGTQ+</th>
 <span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Veamos cómo fue la evolución de esta respuesta a lo largo de las ediciones de esta encuesta.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>disc_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tiene_discapacidad <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
@@ -6808,7 +7103,11 @@ Colectivo LBGTQ+</th>
 <span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="puestos" class="level3">
@@ -6816,7 +7115,7 @@ Colectivo LBGTQ+</th>
 <p>Si bien la mayor cantidad de personas con discapacidad históricamente se desempeñan en roles de Analista, es interesante apreciar que en total tenemos prácticamente la misma cantidad (18) en roles de liderazgo (Gerente, Jefe o Resposable).</p>
 <p>Esto nos parece positivo porque es una muestra no sólo de diversidad, sino también de inclusión. Consideramos que no sólo es importante contratar personas con discapacidad, sino también darles las oportunidades de desarrollo que le daríamos a cualquier persona de la compañía.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(disc_rh <span class="sc">%&gt;%</span> </span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(discapacidad),</span>
@@ -6836,7 +7135,7 @@ Colectivo LBGTQ+</th>
 <span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
+<div>
 <div id="kezmaqvglo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kezmaqvglo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7277,84 +7576,103 @@ Colectivo LBGTQ+</th>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Puestos de Personas con Discapacidad</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Puesto">Puesto</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2020">2020</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2021">2021</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2022">2022</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="2023">2023</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="puesto" class="gt_row gt_center">Administrativo</td>
-<td headers="2020" class="gt_row gt_right">3</td>
-<td headers="2021" class="gt_row gt_right">0</td>
-<td headers="2022" class="gt_row gt_right">0</td>
-<td headers="2023" class="gt_row gt_right">3</td>
-<td headers="Total" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Analista</td>
-<td headers="2020" class="gt_row gt_right">9</td>
-<td headers="2021" class="gt_row gt_right">8</td>
-<td headers="2022" class="gt_row gt_right">31</td>
-<td headers="2023" class="gt_row gt_right">3</td>
-<td headers="Total" class="gt_row gt_right">48</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Consultor Freelance</td>
-<td headers="2020" class="gt_row gt_right">6</td>
-<td headers="2021" class="gt_row gt_right">0</td>
-<td headers="2022" class="gt_row gt_right">0</td>
-<td headers="2023" class="gt_row gt_right">0</td>
-<td headers="Total" class="gt_row gt_right">6</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Responsable</td>
-<td headers="2020" class="gt_row gt_right">4</td>
-<td headers="2021" class="gt_row gt_right">3</td>
-<td headers="2022" class="gt_row gt_right">6</td>
-<td headers="2023" class="gt_row gt_right">2</td>
-<td headers="Total" class="gt_row gt_right">13</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Gerente</td>
-<td headers="2020" class="gt_row gt_right">3</td>
-<td headers="2021" class="gt_row gt_right">2</td>
-<td headers="2022" class="gt_row gt_right">10</td>
-<td headers="2023" class="gt_row gt_right">2</td>
-<td headers="Total" class="gt_row gt_right">15</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Jefe</td>
-<td headers="2020" class="gt_row gt_right">2</td>
-<td headers="2021" class="gt_row gt_right">2</td>
-<td headers="2022" class="gt_row gt_right">6</td>
-<td headers="2023" class="gt_row gt_right">0</td>
-<td headers="Total" class="gt_row gt_right">10</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">HRBP</td>
-<td headers="2020" class="gt_row gt_right">0</td>
-<td headers="2021" class="gt_row gt_right">2</td>
-<td headers="2022" class="gt_row gt_right">12</td>
-<td headers="2023" class="gt_row gt_right">0</td>
-<td headers="Total" class="gt_row gt_right">14</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Pasante</td>
-<td headers="2020" class="gt_row gt_right">0</td>
-<td headers="2021" class="gt_row gt_right">0</td>
-<td headers="2022" class="gt_row gt_right">1</td>
-<td headers="2023" class="gt_row gt_right">0</td>
-<td headers="Total" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="puesto" class="gt_row gt_center">Total</td>
-<td headers="2020" class="gt_row gt_right">27</td>
-<td headers="2021" class="gt_row gt_right">17</td>
-<td headers="2022" class="gt_row gt_right">66</td>
-<td headers="2023" class="gt_row gt_right">10</td>
-<td headers="Total" class="gt_row gt_right">110</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="6">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">Puestos de Personas con Discapacidad</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Puesto" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Puesto</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2021" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2021</th>
+<th id="2022" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2022</th>
+<th id="2023" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2023</th>
+<th id="Total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Administrativo</td>
+<td class="gt_row gt_right" headers="2020">3</td>
+<td class="gt_row gt_right" headers="2021">0</td>
+<td class="gt_row gt_right" headers="2022">0</td>
+<td class="gt_row gt_right" headers="2023">3</td>
+<td class="gt_row gt_right" headers="Total">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Analista</td>
+<td class="gt_row gt_right" headers="2020">9</td>
+<td class="gt_row gt_right" headers="2021">8</td>
+<td class="gt_row gt_right" headers="2022">31</td>
+<td class="gt_row gt_right" headers="2023">3</td>
+<td class="gt_row gt_right" headers="Total">48</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Consultor Freelance</td>
+<td class="gt_row gt_right" headers="2020">6</td>
+<td class="gt_row gt_right" headers="2021">0</td>
+<td class="gt_row gt_right" headers="2022">0</td>
+<td class="gt_row gt_right" headers="2023">0</td>
+<td class="gt_row gt_right" headers="Total">6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Responsable</td>
+<td class="gt_row gt_right" headers="2020">4</td>
+<td class="gt_row gt_right" headers="2021">3</td>
+<td class="gt_row gt_right" headers="2022">6</td>
+<td class="gt_row gt_right" headers="2023">2</td>
+<td class="gt_row gt_right" headers="Total">13</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Gerente</td>
+<td class="gt_row gt_right" headers="2020">3</td>
+<td class="gt_row gt_right" headers="2021">2</td>
+<td class="gt_row gt_right" headers="2022">10</td>
+<td class="gt_row gt_right" headers="2023">2</td>
+<td class="gt_row gt_right" headers="Total">15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Jefe</td>
+<td class="gt_row gt_right" headers="2020">2</td>
+<td class="gt_row gt_right" headers="2021">2</td>
+<td class="gt_row gt_right" headers="2022">6</td>
+<td class="gt_row gt_right" headers="2023">0</td>
+<td class="gt_row gt_right" headers="Total">10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">HRBP</td>
+<td class="gt_row gt_right" headers="2020">0</td>
+<td class="gt_row gt_right" headers="2021">2</td>
+<td class="gt_row gt_right" headers="2022">12</td>
+<td class="gt_row gt_right" headers="2023">0</td>
+<td class="gt_row gt_right" headers="Total">14</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="puesto">Pasante</td>
+<td class="gt_row gt_right" headers="2020">0</td>
+<td class="gt_row gt_right" headers="2021">0</td>
+<td class="gt_row gt_right" headers="2022">1</td>
+<td class="gt_row gt_right" headers="2023">0</td>
+<td class="gt_row gt_right" headers="Total">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="puesto">Total</td>
+<td class="gt_row gt_right" headers="2020">27</td>
+<td class="gt_row gt_right" headers="2021">17</td>
+<td class="gt_row gt_right" headers="2022">66</td>
+<td class="gt_row gt_right" headers="2023">10</td>
+<td class="gt_row gt_right" headers="Total">110</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="6" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -7363,7 +7681,7 @@ Colectivo LBGTQ+</th>
 <h3 class="anchored" data-anchor-id="contratación-de-personas-con-discapacidad">Contratación de personas con discapacidad</h3>
 <p>En esta edición incluimos la pregunta <strong>En lo que va del año, ¿han contratado en tu empresa a personas con discapacidad?</strong> para analizar si las empresas están activamente tomando acciones de inclusión.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(contrata_discapacidad)) <span class="sc">%&gt;%</span> </span>
@@ -7384,9 +7702,13 @@ Colectivo LBGTQ+</th>
 <span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<details>
+</div>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>contrata_disc <span class="ot">&lt;-</span> kiwi <span class="sc">%&gt;%</span> </span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(contrata_discapacidad)) <span class="sc">%&gt;%</span> </span>
@@ -7408,7 +7730,7 @@ Colectivo LBGTQ+</th>
 <p>En el caso de las personas freelance, la mayoría de las respuestas obtenidas fueron de Argentina. Por eso reiteramos, que los resultados no son representativos de los países.</p>
 <div class="cell">
 <div class="cell-output-display">
-
+<div>
 <div id="rranfaihit" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rranfaihit table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7849,38 +8171,50 @@ Colectivo LBGTQ+</th>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Cantidad de respuestas por país</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Freelance</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="País">País</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Cuenta">Cuenta</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="pais" class="gt_row gt_left">Argentina</td>
-<td headers="Cuenta" class="gt_row gt_right">26</td></tr>
-    <tr><td headers="pais" class="gt_row gt_left">México</td>
-<td headers="Cuenta" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="pais" class="gt_row gt_left">Perú</td>
-<td headers="Cuenta" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="pais" class="gt_row gt_left">Uruguay</td>
-<td headers="Cuenta" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="pais" class="gt_row gt_left">Total</td>
-<td headers="Cuenta" class="gt_row gt_right">29</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="2">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
-    </tr>
-  </tfoot>
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Cantidad de respuestas por país</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Freelance</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="País" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">País</th>
+<th id="Cuenta" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Cuenta</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="pais">Argentina</td>
+<td class="gt_row gt_right" headers="Cuenta">26</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="pais">México</td>
+<td class="gt_row gt_right" headers="Cuenta">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="pais">Perú</td>
+<td class="gt_row gt_right" headers="Cuenta">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="pais">Uruguay</td>
+<td class="gt_row gt_right" headers="Cuenta">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="pais">Total</td>
+<td class="gt_row gt_right" headers="Cuenta">29</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="even">
+<td colspan="2" class="gt_sourcenote">Fuente: Encuesta KIWI de Sueldos de RRHH 2023</td>
+</tr>
+</tfoot>
+
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -7890,12 +8224,17 @@ Colectivo LBGTQ+</th>
 <p>La participación según el género de las personas freelance, es la siguiente:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Podemos observar que la mayoría de las respuestas fueron de Mujeres cis, manteniendo la misma tendencia que las personas en relación de dependencia.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -7922,30 +8261,44 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 </section>
 <section id="respuestas-por-educación" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-por-educación">Respuestas por Educación</h2>
 <p>En esta sección queremos indagar si hay relación entre la formación y la exportacion de los servicios, y si impacta también el tipo de universidad, pública o privada, en dichas prestaciónes. Primero veamos como se distribuye la muestra entre profesionales provenientes de universidades públicas y privadas de los diferentes paises:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Limitandonos al país con mayor cantidad de respuestas, Argentina, en los siguientes graficos podemos observar que la distribución por tipo de Universidad es muy pareja , quedando un valor minimo y poco representativo para quienen no fueron a la Universidad:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Nos interesaba indagar cuál era el nivel de formación de los encuestados.</p>
 <p>En la siguiente tabla podemos ver que la mayoría tiene estudios Universitarios completos:</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -7992,23 +8345,36 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 <p>Cuando analizamos educación, nos resultó interesante analizar la distribución por género y nivel educativo.</p>
 <p>En el siguiente gráfico podemos observar que las mujeres tienen mayor nivel de formación que los hombres:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Veamos los mismos resultados, en terminos relativos:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Respecto a las carreras, vemos que la tendencia de las mismas se corresponden con los resultados obtenidos en las personas en relación de dependencia:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -8017,6 +8383,7 @@ Colectivo LBGTQ+</th>
 <p>La condidición fiscal de los encuestados la podemos observar en la siguiente tabla:</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8051,24 +8418,34 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 </section>
 <section id="respuestas-por-exportación-de-servicio" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-por-exportación-de-servicio">Respuestas por Exportación de Servicio</h2>
 <p>Como vemos a continuación, la mayoría no exporta sus servicios:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Focalizandonos entre quienes exportan, podemos ver cuál es el servicio prestado:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En relación a los medios de pago utilizados por quienes exportan, sus respuestas fueron las siguientes:</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8103,6 +8480,7 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 </section>
 <section id="respuestas-por-antigüedad" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-por-antigüedad">Respuestas por Antigüedad</h2>
@@ -8110,6 +8488,7 @@ Colectivo LBGTQ+</th>
 <p>Un interrogante que nos surge en si la inserción en esta modalidad fue una decisión de carrera voluntaria o impulsada por las consecuencias de la pandemia. Carecemos de elementos para responder esa pregunta, por eso nos limitamos a presentar las respuestas obtenidas:</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8140,6 +8519,7 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 </section>
 <section id="respuestas-por-búsquedas" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-por-búsquedas">Respuestas por Búsquedas</h2>
@@ -8147,6 +8527,7 @@ Colectivo LBGTQ+</th>
 <p>Podemos observar que un 66% de las personas encuestadas en esta categoria se dedican a la tarea de búsqueda.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8172,11 +8553,16 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 <p>Sabiendo el crecimiento y auge de las búsquedas en el sector de IT, veamos cuál es la participación de las mismas entre las personas que hacen recruiting.</p>
 <p>Como se observa en el siguiente gráfico, la mayoría de las búsquedas se concentran que en el sector IT.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -8186,7 +8572,11 @@ Colectivo LBGTQ+</th>
 <p>Veamos entre los que prestan el servicio de recruiting, quienes ofrecen garantía de permanencia del candidato.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En la siguiente tabla podemos observar que los plazos de garantía suelen ir desde un mes hasta los tres meses. Pero un número importante, no ofrece garantia por el servicio contratado.</p>
@@ -8198,6 +8588,7 @@ Colectivo LBGTQ+</th>
 <p>Una pregunta abierta que nos queda, es cuáles son las posiciones mejores pagas para los recruiters. Sin embargo, dicho análisis escapa de los objetivos de la presente encuesta.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8216,9 +8607,11 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 <p>La mayoría cobra un porcentaje que va del 20% al 30% de las remuneraciones mensuales de los ingresantes, como podemos ver en el siguiente cuadro:</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8249,6 +8642,7 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 </section>
 </section>
 <section id="comunidades" class="level1">
@@ -8256,7 +8650,7 @@ Colectivo LBGTQ+</th>
 <p>R4HR es una comunidad abierta y gratuita. ¿Qué quiere decir esto? Que es es un espacio donde cualquier persona puede participar de la comunidad, sepa de R o no sepa nada, y además no hay que pagar nada por formar parte. También es un espacio seguro en el que cuidamos que haya acoso, insultos o abusos.</p>
 <p>Las comunidades son una gran forma de construir conocimiento, de aprender, de generar relaciones, para resolver consultas, y también, por qué no, de hacer buenos amigos. Así que en esta sección nos proponemos ver cuáles son las comunidades más frecuentadas por las personas que participaron de la Encuesta.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>comunidad <span class="ot">&lt;-</span> rh23 <span class="sc">%&gt;%</span> </span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pais, provincia, comunidad, comunidades)</span>
@@ -8297,7 +8691,11 @@ Colectivo LBGTQ+</th>
 <span id="cb63-37"><a href="#cb63-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> fuente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/comunidad-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/comunidad-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Del total de respuestas, 29% (68) participan de alguna comunidad. Estas son las comunidades mencionadas.</p>
@@ -8306,7 +8704,7 @@ Colectivo LBGTQ+</th>
 <p>Tené en cuenta lo siguiente: Para crear una comunidad sólo hace falta tener ganas de hacerlo. Lo mejor de las comunidades es que hay mucha gente dispuesta a compartir.</p>
 </blockquote>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>comunidad <span class="ot">&lt;-</span> comunidad <span class="sc">%&gt;%</span> </span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(comunidades), </span>
@@ -8381,6 +8779,7 @@ Colectivo LBGTQ+</th>
 <span id="cb64-71"><a href="#cb64-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold=</span>T, <span class="at">color=</span><span class="st">"white"</span>, <span class="at">background =</span> azul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -8623,6 +9022,7 @@ Colectivo LBGTQ+</th>
 
 </div>
 </div>
+</div>
 
 
 </section>
@@ -8707,10 +9107,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -8720,8 +9137,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -8733,7 +9159,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -8777,6 +9326,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -8802,6 +9352,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -8862,6 +9438,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
